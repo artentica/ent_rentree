@@ -16,7 +16,6 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 <?php content_for('link')?>
 
 <link rel="stylesheet" href="views/css/style_documents.css" type="text/css" />
->>>>>>> origin/master
 
 <?php end_content_for();?>
 
