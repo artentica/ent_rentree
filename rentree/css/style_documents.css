@@ -1,0 +1,68 @@
+.logo{
+	width: 270px;
+	padding-left: 50px;
+}
+
+.header{
+	padding-top: 30px;
+}
+
+.school{
+	margin-top: 10px;
+	text-align: right;
+	padding-right: 50px;
+	color: #B72321;
+	font-weight: bold;
+}
+
+.yellow{
+	background-color: #FFFFCC;
+	padding-bottom: 30px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.green{
+	background-color: #CCFFCC;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+form{
+	font-size: 14px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000090;
+}
+
+form legend{
+	text-decoration: underline;
+	padding-left: 10px;
+	font-weight: bold;
+	color: #000090;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+.button{
+	margin-top: 30px;
+}
+
+.formask{
+	text-align: center;
+	width: 70%;
+	margin: auto;
+	font-size: 14px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #B72321;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}

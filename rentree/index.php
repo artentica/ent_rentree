@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr" >
-	<head>
-		<title>  </title>
+<?php
+	require_once( 'framework/limonade/limonade.php' );
 
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="author" 			content="Vincent Riouallon - Gilles Biannic" />
-		<meta name="description" 		content="site derenytree de l'isen" />
+	dispatch('/' , 'log_in');
+	dispatch('/logout' , 'log_out');
 
-	    <link href="views/css/style.css" rel="stylesheet" />
-	</head>
+	dispatch_post('/user_acess' , 'user_access');//vérifie si la personne à le droit d'accés et si oui il est redirigé vers la page adéquate
 
-	<body>
-		
-	</body>
-</html>
+	dispatch('/documentseleves' , 'studentinformation'); 
+
+
+	run();
+?>
+
