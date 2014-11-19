@@ -10,5 +10,5 @@
 			
 			($_SESSION['access'])?header( 'Location:' . url_for('/documentseleves') ):header('Location:' . url_for('/'));
 		}
-		header('Location:' . url_for('/'));
+		else header('Location:' . url_for('/'));
 	}
