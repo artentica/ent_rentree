@@ -8,6 +8,8 @@
 
 	dispatch('/documentseleves' , 'studentinformation'); 
 
+	dispatch_post('/save_data_student' , 'save_student');
+
 
 	run();
 ?>

@@ -11,16 +11,36 @@
 <?php end_content_for();?>
 
 <?php content_for('body'); ?>
+	<div class="row">
+		<!-- Formulaire de login -->
+		<div class="col-md-4 col-md-offset-4">
+			<form action="index.php/user_acess" class="form-horizontal" method="post">
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label monLabel" for="mail">Courriel :</label>
+					<div class="col-sm-6">
+						<input required type="email" name="mail" class="form-control" id="mail">
+					</div>
+				</div>
 
-	<form action="index.php/user_acess" method="post">
-		<p>
-		<label for="mail" class="monLabel">Courriel </label> :  <input  required size="30" type="email" name="mail" id="mail"/><br/>
-		<p class="texte">(Cette adresse électronique sera votre identifiant)</p>
-		<label for="password" class="monLabel">Mot de passe </label> : <input  required size="30" type="password" name="password" id="password"/><br/>
-		<p class="texte">(Le mot de passe qui vous a été envoyé par courrier)</p>
-		<input type="submit" value="Valider" class="button" />
-		</p>
-	</form>
+				<p class="texte">(Cette adresse électronique sera votre identifiant)</p>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label monLabel" for="password">Mot de passe :</label>
+					<div class="col-sm-6">
+						<input required type="password" class="form-control" name="password" id="password">
+					</div>
+				</div>
+
+				<p class="texte">(Le mot de passe qui vous a été envoyé par courrier)</p>
+
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+				
+
+
+			</form>
+		</div>
+	</div>
 
 <?php end_content_for(); ?>
 

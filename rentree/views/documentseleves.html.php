@@ -1,8 +1,8 @@
 <?php
 
 
-if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
-    // redirection
+if( empty($_SESSION['identifiant'])) {
+    // redirection 
    header('Location:' . url_for('/'));
   }
 
@@ -18,7 +18,7 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 <?php content_for('header'); ?>
 	<div class="titre row">
 		<div class="col-sm-4" >
-			<img class="logo" src="images/logo_ISEN.png">
+			<img rel="logo de l'isen" class="logo" src="images/logo_ISEN.png">
 		</div>
 
 		<h1 class="col-sm-4 center" >Documents de rentrée</h1>
@@ -33,34 +33,35 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 <?php content_for('body'); ?>
 
 	<div class="row">
+		<!-- Formulaire de rentree -->
 		<div class="col-md-4 col-md-offset-1">
 			<form action="index.php/save" method="post" class="form-horizontal" role="form">
 				<div class="yellow">
 					<p class="formask">Nous vous remercions de bien vouloir compléter ce formulaire avant d'accéder aux documents de rentrée.</p>					
 					<div class="form-group">
-							<label class="col-sm-5 control-label" for="studentname">Identifiant:</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="id" value="<?php echo $_SESSION['mail']; ?>" disabled="disabled" >
-							</div>
+						<label class="col-sm-5 control-label" for="studentname">Identifiant:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="identifiant" value="<?php echo $_SESSION['identifiant']; ?>" disabled="disabled" >
 						</div>
+					</div>
 					<fieldset>
 						<legend>Etudiant(e)</legend>
 						<div class="form-group">
 							<label class="col-sm-5 control-label" for="studentname">Nom de l'étudiant(e):</label>
 							<div class="col-sm-6">
-								<input type="email" class="form-control" id="studentname">
+								<input required type="text" class="form-control" id="studentname">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="studentfirstname">Prénom de l'étudiant(e):</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="studentfirstname">
+								<input required type="text" class="form-control" id="studentfirstname">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="birthday">Date de naissance:</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="birthday">
+								<input required type="text" class="form-control" id="birthday">
 							</div>
 						</div>
 					</fieldset>
@@ -71,13 +72,13 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="phone">Téléphone:</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="phone">
+								<input required type="tel" class="form-control" id="phone">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
 							<div class="col-sm-6">
-								<input type="email" class="form-control" id="email">
+								<input required type="email" class="form-control" id="email">
 							</div>
 						</div>
 						<div class="button">
@@ -90,6 +91,11 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 			<small>
 				Conformément à la loi "Informatique et Libertés" (loi du 6 janvier 1978 telle que modifiée), vous bénéficiez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant, que vous pouvez exercer en vous adressant à l'adresse e-mail mentionnée ci-dessous.
 			</small>
+		</div>
+
+		<!-- GIF and file -->
+		<div class="col-md-7">
+				<img rel="GIF de l'isen" src="images/isen.gif" class="center-block gifdoc"/>
 		</div>
 	</div>
 
@@ -105,7 +111,7 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 <?php content_for('script')?>
 
 
-<script src="js/jquery.js"></script>
+
 <script src="js/jquery.datetimepicker.js"></script>
 <script type="text/javascript">
 	var d = new Date();
@@ -117,7 +123,6 @@ if( !isset($_SESSION['access']) || ($_SESSION['access'] != true ) ) {
 
 	$('#birthday').datetimepicker({
 	 timepicker:false,
-	 mask:true, // '9999/19/39 29:59' - digit is the maximum possible for a cell
 	 lang:'fr',
 	 startDate: date,
 	 format:'d/m/Y',

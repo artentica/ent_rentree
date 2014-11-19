@@ -26,16 +26,3 @@ form{
 .header .titre img{
 	margin-bottom:10px;
 }
-
-.button {
-	color: white;
-	background-color: #666699;
-	border-bottom: thin solid #222244;
-	border-right:  thin solid #222244;
-	border-top: thin solid #9999cc;
-	border-left: thin solid #9999cc;
-	font-size: 11px;
-	font-family: Geneva,Helvetica,sans-serif;
-	font-weight: normal;
-	cursor: pointer;
-}
