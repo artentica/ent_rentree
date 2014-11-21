@@ -11,7 +11,7 @@
 
 		try{
 
-			$GLOBALS['pdo'] = new PDO('mysql:host='.DbHost.';dbname='.DbName.', '.dbuser.', '.dbpass , $options);
+			$GLOBALS['pdo'] = new PDO("mysql:host=".DbHost.";dbname=".DbName.";","".dbuser."","".dbpass."");
 		}
 		catch (Exception $e){
 
@@ -26,7 +26,6 @@
 
 
 	function DbOperation($sql){
-		
 		//prepare: http://fr2.php.net/manual/fr/pdo.prepare.php
 		if (connect_bdd()) {
 			
@@ -35,7 +34,9 @@
 			$sth->execute();
 			$sth->closeCursor(); //pas vraiment utile puisque nous ne faisons qu'une seul éxécution mais plus sûr
 			$tab = $sth->fetchAll(PDO::FETCH_ASSOC);
+			return $tab;
 		}
+		return false;
 	}
 
 ?>

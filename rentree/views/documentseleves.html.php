@@ -37,7 +37,7 @@ if( empty($_SESSION['identifiant'])) {
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="identifiant">Identifiant:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="identifiant"  id="identifiant" value="<?php echo $_SESSION['identifiant']; ?>" disabled="disabled" >
+							<input type="text" class="form-control" name="identifiant"  id="identifiant" value="<?php echo $_SESSION['identifiant']; ?>" readonly="readonly" >
 						</div>
 					</div>
 					<fieldset>
@@ -74,9 +74,20 @@ if( empty($_SESSION['identifiant'])) {
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
 							<div class="col-sm-6">
-								<input required type="email" name="email" class="form-control" id="email">
+								<input  id="samemail" required type="email" name="email" class="form-control" id="email">
 							</div>
 						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-5 col-sm-7">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="checkmail" onchange ="emaildisabled()">Même email que l'identifiant
+									</label>
+								</div>
+							</div>
+						</div>
+
 						<div class="button">
 							<button type="submit" class="btn btn-danger">Quitter</button>
 							<button type="submit" class="btn btn-primary pull-right">Enregistrer</button>
@@ -90,9 +101,17 @@ if( empty($_SESSION['identifiant'])) {
 		</div>
 
 		<!-- GIF and file -->
-		<div class="col-md-7">
-				<img rel="GIF de l'isen" src="images/isen.gif" class="center-block gifdoc"/>
-		</div>
+		<?php
+			if ( (empty($_SESSION['save'])) || ($_SESSION['save']==false) ) {
+				echo '<div class="col-md-7">
+					<img rel="GIF de l\'isen" src="images/isen.gif" class="center-block gifdoc"/>
+				</div>';
+			}
+			else {
+				echo "<p>yolo penis</p>";
+			}
+		?>
+		
 	</div>
 
 <?php end_content_for(); ?>
@@ -109,22 +128,6 @@ if( empty($_SESSION['identifiant'])) {
 
 
 <script src="js/jquery.datetimepicker.js"></script>
-<script type="text/javascript">
-	var d = new Date();
-	var y = d.getFullYear()-18;
-	var m = d.getMonth()+1;
-	var day = d.getDate();
-
-	var date = y + '/' + m + '/' + day;
-
-	$('#birthday').datetimepicker({
-	 timepicker:false,
-	 closeOnDateSelect:true,
-	 lang:'fr',
-	 startDate: date,
-	 format:'d/m/Y',
-	 maxDate:'+1970/01/01',
-	});
-</script>
-
+<script src="js/datepickerconf.js"></script>
+<script src="js/email.js"></script>
 <?php end_content_for();?>
