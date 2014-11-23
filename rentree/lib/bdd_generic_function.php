@@ -28,12 +28,14 @@
 	function DbOperation($sql){
 		//prepare: http://fr2.php.net/manual/fr/pdo.prepare.php
 		if (connect_bdd()) {
-			
 			$sth = $GLOBALS['pdo']->prepare($sql);
 			// $sth->execute(array(':calories' => 150, ':couleur' => 'red')); SI ON MET DES PARAM VERSION SURE
 			$sth->execute();
 			$sth->closeCursor(); //pas vraiment utile puisque nous ne faisons qu'une seul éxécution mais plus sûr
 			$tab = $sth->fetchAll(PDO::FETCH_ASSOC);
+			if (empty($tab)) {
+				return true;
+			}
 			return $tab;
 		}
 		return false;

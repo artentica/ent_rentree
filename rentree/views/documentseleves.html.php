@@ -90,7 +90,7 @@ if( empty($_SESSION['identifiant'])) {
 
 						<div class="button">
 							<button type="submit" class="btn btn-danger">Quitter</button>
-							<button type="submit" class="btn btn-primary pull-right">Enregistrer</button>
+							<button type="submit" onclick="dateverifior()" class="btn btn-primary pull-right">Enregistrer</button>
 						</div>
 					</fieldset>
 				</div>
@@ -129,5 +129,5 @@ if( empty($_SESSION['identifiant'])) {
 
 <script src="js/jquery.datetimepicker.js"></script>
 <script src="js/datepickerconf.js"></script>
-<script src="js/email.js"></script>
+<script src="js/renseignement.js"></script>
 <?php end_content_for();?>

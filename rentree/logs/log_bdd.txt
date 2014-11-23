@@ -54,4 +54,52 @@ Stack trace:
 #3 [internal function]: save_student()
 #4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
 #5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=loca...', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=loca...', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=loca...', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in C:\wamp\www\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=loca...', 'rentree', 'rentree')
+#1 C:\wamp\www\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\rentree\controllers\save_student.php(24): DbOperation('INSERT INTO dat...')
+#3 [internal function]: save_student()
+#4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
+#5 C:\wamp\www\rentree\index.php(14): run()
 #6 {main}
