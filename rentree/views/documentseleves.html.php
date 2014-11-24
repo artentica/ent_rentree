@@ -56,7 +56,7 @@ if( empty($_SESSION['identifiant'])) {
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="birthday">Date de naissance:</label>
-							<div class="col-sm-6">
+							<div class="col-sm-6"  id="birthdaydiv">
 								<input required type="text" name="birthday" class="form-control" id="birthday">
 							</div>
 						</div>
@@ -73,7 +73,7 @@ if( empty($_SESSION['identifiant'])) {
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
-							<div class="col-sm-6" id="emaildiv">
+							<div class="col-sm-6">
 								<input  id="samemail" required type="email" name="email" class="form-control" id="email">
 							</div>
 						</div>
@@ -171,10 +171,10 @@ $(document).ready(function(){
 	date_split = $('#birthday').val().split('/', 3);
 	date = date_split[1]+"/"+date_split[0]+"/"+ date_split[2];
 	dateV = new Date(date);
-	$('#emaildiv').removeClass( "has-error" );
+	$('#birthdaydiv').removeClass( "has-error" );
 	if (dateV.getFullYear() != date_split[2] && (dateV.getMonth()+1)  != parseInt(date_split[1]) && dateV.getDate() != date_split[0]){
 		error_text="La date d'anniversaire n'est pas valide veuillez corriger cela avant de pouvoir poursuivre.";
-		$('#emaildiv').addClass( "has-error" );
+		$('#birthdaydiv').addClass( "has-error" );
 	} 
 
 	compteur = $('#phone').val().length;
