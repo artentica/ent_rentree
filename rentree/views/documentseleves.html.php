@@ -67,13 +67,13 @@ if( empty($_SESSION['identifiant'])) {
 						<legend>Parents</legend>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="phone">Téléphone:</label>
-							<div class="col-sm-6">
+							<div class="col-sm-6" id="phonediv">
 								<input required type="tel" name="phone" class="form-control" id="phone">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
-							<div class="col-sm-6">
+							<div class="col-sm-6" id="emaildiv">
 								<input  id="samemail" required type="email" name="email" class="form-control" id="email">
 							</div>
 						</div>
@@ -89,8 +89,8 @@ if( empty($_SESSION['identifiant'])) {
 						</div>
 
 						<div class="button">
-							<button type="submit" class="btn btn-danger">Quitter</button>
-							<button type="submit" onclick="dateverifior()" class="btn btn-primary pull-right">Enregistrer</button>
+							<a href="<?= url_for('/'); ?>" class="btn btn-danger">Quitter</a>
+							<button type="submit" class="btn btn-primary pull-right"><?php if ( (empty($_SESSION['save'])) || ($_SESSION['save']==false) ) echo "Enregistrer"; else echo "Mettre à jour";?></button>
 						</div>
 					</fieldset>
 				</div>
@@ -107,12 +107,53 @@ if( empty($_SESSION['identifiant'])) {
 					<img rel="GIF de l\'isen" src="images/isen.gif" class="center-block gifdoc"/>
 				</div>';
 			}
-			else {
-				echo "<p>yolo penis</p>";
-			}
+			else echo '
+			<div class="col-md-5 col-md-offset-1">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="center-block item active">
+							<img src="images/1.jpg" alt="image de présentation de l\'isen">
+						</div>
+						<div class="center-block item">
+							<img src="images/2.jpg" alt="image de présentation de l\'isen">
+						</div>
+						<div class="center-block item">
+							<img src="images/3.jpg" alt="image de présentation de l\'isen">
+						</div>
+					</div>
+
+				</div> <!-- Carousel --> 
+			</div>';
 		?>
-		
+
 	</div>
+					
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Erreur(s) à corriger</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p class="error"></p>
+			      </div>
+			      <div class="modal-footer">
+			      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+
+
+
 
 <?php end_content_for(); ?>
 
@@ -125,6 +166,38 @@ if( empty($_SESSION['identifiant'])) {
 
 <?php content_for('script')?>
 
+<script>
+$(document).ready(function(){
+  $("form").submit(function(){
+
+  	var error_text="";
+	date_split = $('#birthday').val().split('/', 3);
+	date = date_split[1]+"/"+date_split[0]+"/"+ date_split[2];
+	dateV = new Date(date);
+	$('#emaildiv').removeClass( "has-error" );
+	if (dateV.getFullYear() != date_split[2] && (dateV.getMonth()+1)  != parseInt(date_split[1]) && dateV.getDate() != date_split[0]){
+		error_text="La date d'anniversaire n'est pas valide veuillez corriger cela avant de pouvoir poursuivre.";
+		$('#emaildiv').addClass( "has-error" );
+	} 
+
+	compteur = $('#phone').val().length;
+	$('#phonediv').removeClass( "has-error" );
+	if (compteur!=10){
+		$('#phonediv').addClass( "has-error" );
+		if (error_text!="") error_text = error_text +"\n";
+		error_text = error_text + "Assurez-vous de rentrer un numéro à 10 chiffres (0123456789).";
+	}
+
+	if (error_text!="") {
+		$("#myModal").modal({backdrop: true});
+		$('.error').text(error_text);
+		event.preventDefault();
+	}
+ 
+  });
+
+});
+</script>
 
 
 <script src="js/jquery.datetimepicker.js"></script>

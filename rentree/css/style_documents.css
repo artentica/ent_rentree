@@ -69,3 +69,11 @@ form legend{
 .gifdoc{
 	padding-top: 190px;
 }
+
+.modal-backdrop.in{
+	opacity: 0;
+}
+
+#carousel-example-generic img{
+	margin: auto;
+}
