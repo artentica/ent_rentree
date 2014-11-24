@@ -1,0 +1,28 @@
+.texte {
+	font-size: 12px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000090;
+}
+
+.monLabel {
+	font-size: 12px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;  
+	color: #000090;
+}
+
+form{
+	text-align: center;
+}
+
+.body{
+	margin-top: 80px;
+}
+
+.header{
+	margin-top: 60px;
+}
+
+.header .titre img{
+	margin-bottom:10px;
+}
