@@ -103,12 +103,7 @@ if( empty($_SESSION['identifiant'])) {
 		<!-- GIF and file -->
 		<?php
 			if ( (empty($_SESSION['save'])) || ($_SESSION['save']==false) ) {
-				echo '<div class="col-md-7">
-					<img rel="GIF de l\'isen" src="images/isen.gif" class="center-block gifdoc"/>
-				</div>';
-			}
-			else echo '
-			<div class="col-md-5 col-md-offset-1">
+				echo '<div class="col-md-5 col-md-offset-1">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
 					<!-- Wrapper for slides -->
@@ -126,6 +121,8 @@ if( empty($_SESSION['identifiant'])) {
 
 				</div> <!-- Carousel --> 
 			</div>';
+			}
+			else echo '<p>yolo penis</p>';
 		?>
 
 	</div>
