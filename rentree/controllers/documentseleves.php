@@ -34,8 +34,11 @@
 			define ('email', $tabinfo[0]['courriel']);
 			define ('date_server', date('y-m-d H:i:s'));
 			define ('addr_ip', $_SERVER["REMOTE_ADDR"]);
-		} 
-		$_SESSION["register"]+=1;//for see if it is a refresh or a sending of informations
+		}
+
+		if (isset($_SESSION["register"])) {
+			$_SESSION["register"]+=1;//for see if it is a refresh or a sending of informations
+		}
 
 		return html('documentseleves.html.php', 'layout.html.php');
 
