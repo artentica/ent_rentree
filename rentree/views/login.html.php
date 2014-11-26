@@ -11,6 +11,21 @@
 <?php end_content_for();?>
 
 <?php content_for('body'); ?>
+
+	<?php if (isset($_SESSION['rightToBeConnected']) && $_SESSION['rightToBeConnected']==false) echo '<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div style="text-align:center;" class="alert alert-danger alert-dismissible fade in" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span></button>
+						<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>
+						<span class="sr-only">Success:</span>
+						Identifiant ou mot de passe incorrect.
+					</div>
+				</div>
+			</div>';
+		?>
+
 	<div class="row">
 		<!-- Formulaire de login -->
 		<div class="col-md-4 col-md-offset-4">
@@ -18,7 +33,7 @@
 				
 				<div class="form-group">
 					<label class="col-sm-3 control-label monLabel" for="mail">Courriel :</label>
-					<div class="col-sm-6 <?php if(isset($flash[0])) echo $flash[0] ?>">
+					<div class="col-sm-6 <?php if (isset($_SESSION['rightToBeConnected']) && $_SESSION['rightToBeConnected']==false) echo 'has-error'; ?>">
 						<input required type="email" name="mail" class="form-control" id="mail">
 					</div>
 				</div>
@@ -27,7 +42,7 @@
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label monLabel" for="password">Mot de passe :</label>
-					<div class="col-sm-6">
+					<div class="col-sm-6 <?php if (isset($_SESSION['rightToBeConnected']) && $_SESSION['rightToBeConnected']==false) echo 'has-error'; ?>">
 						<input required type="password" class="form-control" name="password" id="password">
 					</div>
 				</div>

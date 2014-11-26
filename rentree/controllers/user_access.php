@@ -8,10 +8,19 @@
 			//si le mot de passe est celui de l'étudiant le $_SESSION['acess'] est définie comme "true"
 			//le MDPstudent est définie dans  lib/conf.php avec toutes les autres variables globales
 			
-			($_SESSION['access'])?header( 'Location:' . url_for('/documentseleves') ):header('Location:' . url_for('/'));
+			
+
+			if ($_SESSION['access']) {
+				$_SESSION['rightToBeConnected'] = true;
+				header( 'Location:' . url_for('/documentseleves'));
+			}
+			else{
+				$_SESSION['rightToBeConnected'] = false;
+				header('Location:' . url_for('/'));
+			}
+				
 		}
 		else{
-			flash(0, 'has-error');
 			header('Location:' . url_for('/'));
 		} 
 	}

@@ -230,19 +230,28 @@ if( empty($_SESSION['identifiant'])) {
 
 <script>
 $(document).ready(function(){
-  $("form").submit(function(){
+  $("form").submit(function(event){
   	var error_text="";
 	date_split = $('#birthday').val().split('/', 3);
 	date = date_split[1]+"/"+date_split[0]+"/"+ date_split[2];
 	dateV = new Date(date);
 	$('#birthdaydiv').removeClass( "has-error" );
+
 	if (dateV.getFullYear() != date_split[2] && (dateV.getMonth()+1)  != parseInt(date_split[1]) && dateV.getDate() != date_split[0]){
 		error_text="La date d'anniversaire n'est pas valide veuillez corriger cela avant de pouvoir poursuivre.";
 		$('#birthdaydiv').addClass( "has-error" );
 	} 
+
 	compteur = $('#phone').val().length;
 	$('#phonediv').removeClass( "has-error" );
-	if (compteur!=10){
+		var regex = /[0-9]|\./;
+	if(isNaN($('#phone').val())) {
+		$('#phonediv').addClass( "has-error" );
+		if (error_text!="") error_text = error_text +"\n";
+		error_text = "Le numéro de téléphone doit exclusivement être constitué de chiffres.";
+	}
+
+	else if (compteur!=10){
 		$('#phonediv').addClass( "has-error" );
 		if (error_text!="") error_text = error_text +"\n";
 		error_text = error_text + "Assurez-vous de rentrer un numéro à 10 chiffres (0123456789)";
@@ -253,7 +262,7 @@ $(document).ready(function(){
 	if (error_text!="") {
 		$("#myModal").modal({backdrop: true});
 		$('.error').text(error_text);
-		event.preventDefault();
+		event.preventDefault ();
 	}
  
   });
