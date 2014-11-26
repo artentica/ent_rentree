@@ -151,39 +151,38 @@ if( empty($_SESSION['identifiant'])) {
 				<a href="http://www.7-zip.org/" target="_blank">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
 			</p>
 			<select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
 			<div class="table-responsive">
-			<table class="table">
-			<thead>
-          <tr>
-            <th style="width:10%;">#</th>
-            <th>Documents</th>
-            <th style="width:10%;">Visualiser</th>
-            <th style="width:10%;">Télécharger</th>
-          </tr>
-        </thead>';
+				<table class="table">
+					<thead>
+				        <tr>
+					        <th style="width:10%;">#</th>
+					        <th>Documents</th>
+					        <th style="width:10%;">Visualiser</th>
+					        <th style="width:10%;">Télécharger</th>
+				        </tr>
+        			</thead>';
+
         	$list = liste_promo();
         	foreach ($list as $key => $value) {
         		echo '<tr>
-  <td class="active">'.$key.'</td>
-  <td class="docname success">'.$list[$key].'</td>
-  <td class="tdglyph warning"><a href="#"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
-  <td class="tdglyph info" ><a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
-</tr>';
+						<td class="active">'.$key.'</td>
+						<td class="docname success">'.$list[$key].'</td>
+						<td class="tdglyph warning"><a href="#"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
+						<td class="tdglyph info" ><a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
+					</tr>';
         	}
         	echo '
-			</table></div>
+				</table>
+			</div>
 			<div class="row" id="zip_zone">
-				<p>
-				<b id="promo_libelle"></b>
-				Télécharger tous les fichiers</p>
-				<a class="col-xs-4 col-xs-offset-5" href="#" id="promo_zip_link">
-				</a>
+				<p>Télécharger tous les fichiers</p>
+				<a class="col-xs-4 col-xs-offset-5" href="#" id="promo_zip_link"></a>
 			</div>	
 		</div>';
 			}

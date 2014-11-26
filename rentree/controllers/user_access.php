@@ -21,6 +21,7 @@
 				
 		}
 		else{
+			$_SESSION['rightToBeConnected'] = false;
 			header('Location:' . url_for('/'));
 		} 
 	}
