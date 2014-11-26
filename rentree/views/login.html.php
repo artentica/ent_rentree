@@ -18,7 +18,7 @@
 				
 				<div class="form-group">
 					<label class="col-sm-3 control-label monLabel" for="mail">Courriel :</label>
-					<div class="col-sm-6">
+					<div class="col-sm-6 <?php if(isset($flash[0])) echo $flash[0] ?>">
 						<input required type="email" name="mail" class="form-control" id="mail">
 					</div>
 				</div>
@@ -47,4 +47,11 @@
 <?php content_for('footer')?>
 <hr/>
 <div class="texte" align="left">© ISEN Bretagne (2014)  - Contact : <a href="mailto:jean-pierre.gerval@isen.fr?subject=Documents de rentrée">jean-pierre.gerval@isen.fr</a></div>
+<?php end_content_for();?>
+
+<?php content_for('script')?>
+<script src="js/konami.js"></script>
+<script type="text/javascript">
+		$().ready(konami());
+</script>	
 <?php end_content_for();?>

@@ -31,14 +31,25 @@
 			$sth = $GLOBALS['pdo']->prepare($sql);
 			// $sth->execute(array(':calories' => 150, ':couleur' => 'red')); SI ON MET DES PARAM VERSION SURE
 			$sth->execute();
-			$sth->closeCursor(); //pas vraiment utile puisque nous ne faisons qu'une seul éxécution mais plus sûr
 			$tab = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$sth->closeCursor(); //pas vraiment utile puisque nous ne faisons qu'une seul éxécution mais plus sûr
 			if (empty($tab)) {
-				return true;
+				return "nothing";
 			}
 			return $tab;
 		}
 		return false;
+	}
+
+	function liste_promo(){
+		//TODO ajouter le mot du bde dans document
+		$doc = DbOperation("SELECT DISTINCT promo FROM document");
+		$y=1;
+		for ($i=0; $i < sizeof($doc); $i++) { 
+			$doctrie[$y]=$doc[$i]["promo"];
+			$y++;
+		}
+		return ($doctrie);
 	}
 
 ?>

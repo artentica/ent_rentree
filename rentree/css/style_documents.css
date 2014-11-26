@@ -77,3 +77,26 @@ form legend{
 #carousel-example-generic img{
 	margin: auto;
 }
+
+tr{
+	text-align: center;
+}
+
+.docname{
+	text-align: left;
+}
+
+
+.tdglyph a:hover, .tdglyph a:focus {
+	-webkit-transition: all 70ms cubic-bezier(0.255, 0.475, 0.630, 0.905); 
+    -moz-transition: all 70ms cubic-bezier(0.255, 0.475, 0.630, 0.905); 
+    -o-transition: all 70ms cubic-bezier(0.255, 0.475, 0.630, 0.905); 
+    ransition: all 70ms cubic-bezier(0.255, 0.475, 0.630, 0.905);
+  	color: #398439;
+}
+
+.tdglyph a{
+	color: black;
+	display: block;
+	font-size: 110%;
+}
