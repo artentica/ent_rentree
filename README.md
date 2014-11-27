@@ -35,6 +35,11 @@ Installation
 ```sh
     sudo mv -R ent_rentree-master/ /var/www/
 ```
+- Donner les droits aux fichiers
+```sh
+    cd /var/www
+    sudo chmod -R 555 ent_rentree-master/
+```
 - Lancez le serveur web apache
 ```sh
     /etc/init.d/apache2 restart
