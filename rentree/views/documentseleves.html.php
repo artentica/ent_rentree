@@ -9,6 +9,7 @@ if( empty($_SESSION['identifiant'])) {
 
 <link rel="stylesheet" href="css/style_documents.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
+<link rel="stylesheet" href="css/chosen.css" />
 
 <?php end_content_for();?>
 
@@ -29,7 +30,7 @@ if( empty($_SESSION['identifiant'])) {
 
 <?php content_for('body'); ?>
 		<!--Message d'enregistrement ou d'update -->
-		<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && $_SESSION["register"]==1) echo '<div class="row">
+		<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div style="text-align:center;" class="alert alert-success alert-dismissible fade in" role="alert">
 						<button type="button" class="close" data-dismiss="alert">
@@ -67,20 +68,20 @@ if( empty($_SESSION['identifiant'])) {
 						<legend>Etudiant(e)</legend>
 						<div class="form-group">
 							<label class="col-sm-5 control-label" for="studentname">Nom de l'étudiant(e):</label>
-							<div class="col-sm-6">
-								<input required type="text" name="studentname"  class="form-control" id="studentname" value="<?php echo studentname;?>">
+							<div class="col-sm-6" id="studentnamediv">
+								<input required type="text" name="studentname" onchange="change_value_input('studentnamediv');"  class="form-control" id="studentname" value="<?php echo studentname;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="studentfirstname">Prénom de l'étudiant(e):</label>
-							<div class="col-sm-6">
-								<input required type="text" name="studentfirstname" class="form-control" id="studentfirstname" value="<?php echo studentfirstname;?>">
+							<div class="col-sm-6" id="studentfirstnamediv">
+								<input required type="text" name="studentfirstname" onchange="change_value_input('studentfirstnamediv');" class="form-control" id="studentfirstname" value="<?php echo studentfirstname;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="birthday">Date de naissance:</label>
 							<div class="col-sm-6"  id="birthdaydiv">
-								<input required type="text" name="birthday" class="form-control" id="birthday" value="<?php echo birthday;?>">
+								<input required type="text" name="birthday" onchange="change_value_input('birthdaydiv');" class="form-control" id="birthday" value="<?php echo birthday;?>">
 							</div>
 						</div>
 					</fieldset>
@@ -91,13 +92,13 @@ if( empty($_SESSION['identifiant'])) {
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="phone">Téléphone:</label>
 							<div class="col-sm-6" id="phonediv">
-								<input required type="tel" name="phone" class="form-control" id="phone" value="<?php echo phone;?>">
+								<input required type="tel" onchange="change_value_input('phonediv');" name="phone" class="form-control" id="phone" value="<?php echo phone;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
-							<div class="col-sm-6">
-								<input  id="samemail" required type="email" name="email" class="form-control" id="email" value="<?php echo email;?>">
+							<div class="col-sm-6" id="emaildiv">
+								<input  id="samemail" onchange="change_value_input('emaildiv');" required type="email" name="email" class="form-control" id="email" value="<?php echo email;?>">
 							</div>
 						</div>
 
@@ -144,31 +145,34 @@ if( empty($_SESSION['identifiant'])) {
 			</div>';
 			}
 			else {
+				$listnontrie = liste_promo();
+				$list = trie_list_annee($listnontrie);
 				echo '<div class="col-md-6 " >
 			<p>
 				Vous trouverez sur cette page toutes les informations utiles pour la rentrée 2014 en sélectionnant l\'année qui vous concerne. Vous pouvez télécharger chaque fichier (format 
 				<a href="http://get.adobe.com/fr/reader/" target="_blank">PDF</a>) ou bien l\'ensemble des fichiers (format 
 				<a href="http://www.7-zip.org/" target="_blank">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
 			</p>
-			<select class="form-control">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+			<select data-placeholder="Choisissez votre classe de rentrée" class="chosen-select-deselect form-control input-lg">
+				';
+				// foreach ($list as $key => $value) {
+    //     		echo '<option>'.$value.'</option>>';
+    //     		}
+				echo optionField($list);
+				echo '
 			</select>
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
 				        <tr>
-					        <th style="width:10%;">#</th>
+					        <th class="glyph">#</th>
 					        <th>Documents</th>
-					        <th style="width:10%;">Visualiser</th>
-					        <th style="width:10%;">Télécharger</th>
+					        <th class="glyph">Visualiser</th>
+					        <th class="glyph">Télécharger</th>
 				        </tr>
         			</thead>';
 
-        	$list = liste_promo();
+        	
         	foreach ($list as $key => $value) {
         		echo '<tr>
 						<td class="active">'.$key.'</td>
@@ -227,31 +231,93 @@ if( empty($_SESSION['identifiant'])) {
 
 <?php content_for('script')?>
 
+
+<script src="js/chosen.jquery.js" type="text/javascript"></script>
+<script src="js/jquery.datetimepicker.js"></script>
+<script src="js/datepickerconf.js"></script>
+<script src="js/renseignement.js"></script>
+
 <script>
+
+$(".chosen-select-deselect").chosen({allow_single_deselect:true,
+	disable_search_threshold: 10,
+	no_results_text: "Aucun résultat pour votre recherche"});
+
+
+function change_value_input(divname){
+
+	studentname = <?php echo '"'.studentname.'"';  ?>;
+	studentfirstname = <?php echo '"'.studentfirstname.'"';  ?>;
+	birthday = <?php echo '"'.birthday.'"';  ?>;
+	phone = <?php echo '"'.phone.'"';  ?>;
+	email = <?php echo '"'.email.'"';  ?>;
+
+	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '1'; else echo '0'; ?>){
+		if (divname !="studentnamediv") {
+			if (divname != email || divname != phone || divname != birthday || divname != studentfirstname ) {
+				delete_success(divname);
+			}else{
+				add_success(divname);
+			}
+		}
+		else{
+			if (divname != studentname){//on regarde studentname
+				delete_success(divname);
+			}else{
+				add_success(divname);
+			}
+
+		}
+
+	}
+}
+
+function add_success(divname){
+	console.log("add");
+	$('#' + divname).addClass( "has-success has-feedback" );
+	$('#' + divname).append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
+}
+
+function delete_success(divname){
+	console.log("suppr");
+	$('#' + divname).removeClass( "has-success has-feedback" );
+	$('#' + divname + ' span').remove();
+}
+
 $(document).ready(function(){
+
+	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '1'; else echo '0'; ?>){
+			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').addClass( "has-success has-feedback" );
+			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
+	}else $('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').removeClass( "has-success has-feedback" );
+
   $("form").submit(function(event){
   	var error_text="";
 	date_split = $('#birthday').val().split('/', 3);
 	date = date_split[1]+"/"+date_split[0]+"/"+ date_split[2];
 	dateV = new Date(date);
-	$('#birthdaydiv').removeClass( "has-error" );
+	$('#birthdaydiv').removeClass( "has-error has-feedback" );
 
 	if (dateV.getFullYear() != date_split[2] && (dateV.getMonth()+1)  != parseInt(date_split[1]) && dateV.getDate() != date_split[0]){
 		error_text="La date d'anniversaire n'est pas valide veuillez corriger cela avant de pouvoir poursuivre.";
-		$('#birthdaydiv').addClass( "has-error" );
+		$('#birthdaydiv').addClass( "has-error has-feedback" );
+		$('#birthdaydiv').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
+	
 	} 
 
 	compteur = $('#phone').val().length;
 	$('#phonediv').removeClass( "has-error" );
 		var regex = /[0-9]|\./;
 	if(isNaN($('#phone').val())) {
-		$('#phonediv').addClass( "has-error" );
+		$('#phonediv').addClass( "has-error has-feedback" );
+		$('#phonediv').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		if (error_text!="") error_text = error_text +"\n";
 		error_text = "Le numéro de téléphone doit exclusivement être constitué de chiffres.";
 	}
 
 	else if (compteur!=10){
-		$('#phonediv').addClass( "has-error" );
+		$('#phonediv').addClass( "has-error has-feedback" );
+		$('#phonediv').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		if (error_text!="") error_text = error_text +"\n";
 		error_text = error_text + "Assurez-vous de rentrer un numéro à 10 chiffres (0123456789)";
 		num_less = 10 - compteur;
@@ -268,8 +334,4 @@ $(document).ready(function(){
 });
 </script>
 
-
-<script src="js/jquery.datetimepicker.js"></script>
-<script src="js/datepickerconf.js"></script>
-<script src="js/renseignement.js"></script>
 <?php end_content_for();?>
