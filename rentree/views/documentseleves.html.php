@@ -152,6 +152,7 @@ if( empty($_SESSION['identifiant'])) {
 				Vous trouverez sur cette page toutes les informations utiles pour la rentrée 2014 en sélectionnant l\'année qui vous concerne. Vous pouvez télécharger chaque fichier (format 
 				<a href="http://get.adobe.com/fr/reader/" target="_blank">PDF</a>) ou bien l\'ensemble des fichiers (format 
 				<a href="http://www.7-zip.org/" target="_blank">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#decompresseur">Large modal</button>
 			</p>
 			<select data-placeholder="Choisissez votre classe de rentrée" class="chosen-select-deselect form-control input-lg">
 				';
@@ -196,8 +197,8 @@ if( empty($_SESSION['identifiant'])) {
 	</div>
 					
 
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- Modal Alert error-->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:30%;" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -215,6 +216,26 @@ if( empty($_SESSION['identifiant'])) {
 			  </div>
 			</div>
 
+
+
+			<!-- Modal zip rar-->
+			<div class="modal fade" id="decompresseur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:30%;" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Décompresseur d'archives</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>Vous pouvez décompresser les archives avec (par exemple) 7zip ou RAR</p>
+			      </div>
+			      <div class="modal-footer">
+			      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
 
 
@@ -253,35 +274,45 @@ function change_value_input(divname){
 	email = <?php echo '"'.email.'"';  ?>;
 
 	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '1'; else echo '0'; ?>){
-		if (divname !="studentnamediv") {
-			if (divname != email || divname != phone || divname != birthday || divname != studentfirstname ) {
-				delete_success(divname);
-			}else{
-				add_success(divname);
-			}
-		}
-		else{
-			if (divname != studentname){//on regarde studentname
-				delete_success(divname);
-			}else{
-				add_success(divname);
-			}
 
+		switch(divname) {
+		    case "emaildiv":
+		        if ($('#emaildiv input').val() != email) delete_success(divname);
+		        else add_success(divname);
+		        break;
+		    case "phonediv":
+		        if ($('#phonediv input').val() != phone) delete_success(divname);
+		        else add_success(divname);
+		        break;
+		    case "birthdaydiv":
+		        if ($('#birthdaydiv input').val() != email) delete_success(divname);
+		        else add_success(divname);
+		        break;
+		    case "studentfirstnamediv":
+		        if ($('#studentfirstnamediv input').val() != studentfirstname) delete_success(divname);
+		        else add_success(divname);
+		        break;
+		    case "studentnamediv":
+		        if ($('#studentnamediv input').val() != studentname) delete_success(divname);
+		        else add_success(divname);
+		        break;
+		    default:
+		        console.log("switch error: 'change_value_input(string)'");
 		}
 
 	}
 }
 
 function add_success(divname){
-	console.log("add");
+	$('#' + divname).removeClass( "has-warning" );
 	$('#' + divname).addClass( "has-success has-feedback" );
 	$('#' + divname).append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 }
 
 function delete_success(divname){
-	console.log("suppr");
 	$('#' + divname).removeClass( "has-success has-feedback" );
 	$('#' + divname + ' span').remove();
+	$('#' + divname).addClass( "has-warning" );
 }
 
 $(document).ready(function(){
@@ -312,7 +343,7 @@ $(document).ready(function(){
 		$('#phonediv').addClass( "has-error has-feedback" );
 		$('#phonediv').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span><span id="inputError2Status" class="sr-only">(error)</span>');
 		if (error_text!="") error_text = error_text +"\n";
-		error_text = "Le numéro de téléphone doit exclusivement être constitué de chiffres.";
+		error_text += "Le numéro de téléphone doit exclusivement être constitué de chiffres.";
 	}
 
 	else if (compteur!=10){
@@ -328,6 +359,7 @@ $(document).ready(function(){
 		$("#myModal").modal({backdrop: true});
 		$('.error').text(error_text);
 		event.preventDefault ();
+		return false;//TODO do not work on firefox find how we can do
 	}
  
   });
