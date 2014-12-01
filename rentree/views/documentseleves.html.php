@@ -317,7 +317,7 @@ function delete_success(divname){
 
 $(document).ready(function(){
 
-	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '1'; else echo '0'; ?>){
+	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save']) echo '1'; else echo '0'; ?>){
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').addClass( "has-success has-feedback" );
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 	}else $('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').removeClass( "has-success has-feedback" );
