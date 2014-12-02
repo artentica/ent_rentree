@@ -273,8 +273,8 @@ function change_value_input(divname){
 	phone = <?php echo '"'.phone.'"';  ?>;
 	email = <?php echo '"'.email.'"';  ?>;
 
-	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save'] && isset($_SESSION["register"]) && $_SESSION["register"]==1) echo '1'; else echo '0'; ?>){
-
+	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save']) echo '1'; else echo '0'; ?>){
+console.log(divname);
 		switch(divname) {
 		    case "emaildiv":
 		        if ($('#emaildiv input').val() != email) delete_success(divname);
@@ -295,6 +295,7 @@ function change_value_input(divname){
 		    case "studentnamediv":
 		        if ($('#studentnamediv input').val() != studentname) delete_success(divname);
 		        else add_success(divname);
+                console.log("studentnamediv")
 		        break;
 		    default:
 		        console.log("switch error: 'change_value_input(string)'");
@@ -304,12 +305,14 @@ function change_value_input(divname){
 }
 
 function add_success(divname){
+    console.log("vert");
 	$('#' + divname).removeClass( "has-warning" );
 	$('#' + divname).addClass( "has-success has-feedback" );
 	$('#' + divname).append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 }
 
 function delete_success(divname){
+    console.log("orange");
 	$('#' + divname).removeClass( "has-success has-feedback" );
 	$('#' + divname + ' span').remove();
 	$('#' + divname).addClass( "has-warning" );
