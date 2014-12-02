@@ -70,9 +70,6 @@ form legend{
 	padding-top: 190px;
 }
 
-.modal-backdrop.in{
-	opacity: 0;
-}
 
 #carousel-example-generic img{
 	margin: auto;
@@ -103,4 +100,8 @@ tr{
 
 .glyph{
 	width:10%;
+}
+
+.modal_image{
+    width:25%;
 }

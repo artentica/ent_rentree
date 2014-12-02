@@ -45,11 +45,17 @@
 		//TODO ajouter le mot du bde dans document
 		$doc = DbOperation("SELECT DISTINCT promo FROM document WHERE promo!='' ");
 		$y=1;
-		for ($i=0; $i < sizeof($doc); $i++) { 
+		for ($i=0; $i < count($doc); $i++) {
 			$doctrie[$y]=$doc[$i]["promo"];
 			$y++;
 		}
 		return ($doctrie);
+	}
+
+    function liste_doc(){
+
+		$doc = DbOperation("SELECT * FROM document");
+		return ($doc);
 	}
 
 ?>

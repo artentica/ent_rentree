@@ -147,18 +147,16 @@ if( empty($_SESSION['identifiant'])) {
 			else {
 				$listnontrie = liste_promo();
 				$list = trie_list_annee($listnontrie);
+                $listdoc = liste_doc();
+                $rang=0;
 				echo '<div class="col-md-6 " >
 			<p>
 				Vous trouverez sur cette page toutes les informations utiles pour la rentrée 2014 en sélectionnant l\'année qui vous concerne. Vous pouvez télécharger chaque fichier (format 
 				<a href="http://get.adobe.com/fr/reader/" target="_blank">PDF</a>) ou bien l\'ensemble des fichiers (format 
-				<a href="http://www.7-zip.org/" target="_blank">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#decompresseur">Large modal</button>
+				<a type="button" style="cursor: pointer;"  data-toggle="modal" data-target="#decompresseur">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
 			</p>
 			<select data-placeholder="Choisissez votre classe de rentrée" class="chosen-select-deselect form-control input-lg">
 				';
-				// foreach ($list as $key => $value) {
-    //     		echo '<option>'.$value.'</option>>';
-    //     		}
 				echo optionField($list);
 				echo '
 			</select>
@@ -174,13 +172,18 @@ if( empty($_SESSION['identifiant'])) {
         			</thead>';
 
         	
-        	foreach ($list as $key => $value) {
-        		echo '<tr>
-						<td class="active">'.$key.'</td>
-						<td class="docname success">'.$list[$key].'</td>
+        	foreach ($listdoc as $key => $value) {
+        		if(empty($value['promo'])){
+                    $rang++;
+
+                    echo '<tr>
+						<td class="active">'.$rang.'</td>
+						<td class="docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="tdglyph warning"><a href="#"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
 						<td class="tdglyph info" ><a href="#"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
 					</tr>';
+
+               }
         	}
         	echo '
 				</table>
@@ -190,6 +193,7 @@ if( empty($_SESSION['identifiant'])) {
 				<a class="col-xs-4 col-xs-offset-5" href="#" id="promo_zip_link"></a>
 			</div>	
 		</div>';
+
 			}
 		?>
 
@@ -198,7 +202,7 @@ if( empty($_SESSION['identifiant'])) {
 					
 
 			<!-- Modal Alert error-->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:30%;" aria-hidden="true">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -219,7 +223,7 @@ if( empty($_SESSION['identifiant'])) {
 
 
 			<!-- Modal zip rar-->
-			<div class="modal fade" id="decompresseur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:30%;" aria-hidden="true">
+			<div class="modal fade" id="decompresseur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -227,7 +231,12 @@ if( empty($_SESSION['identifiant'])) {
 			        <h4 class="modal-title" id="myModalLabel">Décompresseur d'archives</h4>
 			      </div>
 			      <div class="modal-body">
-			        <p>Vous pouvez décompresser les archives avec (par exemple) 7zip ou RAR</p>
+			        <p>Vous pouvez décompresser les archives avec (par exemple) <a href="http://www.7-zip.org/download.html" target="_blank">7zip</a> ou <a href="http://www.win-rar.com/start.html?&L=10" target="_blank">RAR</a>:</p><br/>
+			        <p style="width:100%">
+			        <a href="http://www.7-zip.org/download.html" target="_blank"><img class="modal_image" style="margin-left:15%;margin-right:15%" src="images/7z.png" alt="7zip icone"></a>
+			        <a href="http://www.win-rar.com/start.html?&L=10" target="_blank"><img class="modal_image" style="margin-right:15%" src="images/rar.png" alt="winrar icone"></a>
+			        </p>
+
 			      </div>
 			      <div class="modal-footer">
 			      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -274,7 +283,6 @@ function change_value_input(divname){
 	email = <?php echo '"'.email.'"';  ?>;
 
 	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save']) echo '1'; else echo '0'; ?>){
-console.log(divname);
 		switch(divname) {
 		    case "emaildiv":
 		        if ($('#emaildiv input').val() != email) delete_success(divname);
@@ -305,14 +313,12 @@ console.log(divname);
 }
 
 function add_success(divname){
-    console.log("vert");
 	$('#' + divname).removeClass( "has-warning" );
 	$('#' + divname).addClass( "has-success has-feedback" );
 	$('#' + divname).append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 }
 
 function delete_success(divname){
-    console.log("orange");
 	$('#' + divname).removeClass( "has-success has-feedback" );
 	$('#' + divname + ' span').remove();
 	$('#' + divname).addClass( "has-warning" );
@@ -323,7 +329,7 @@ $(document).ready(function(){
 	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save']) echo '1'; else echo '0'; ?>){
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').addClass( "has-success has-feedback" );
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
-			/*$('#birthdaydiv span').css("position": "absolute","right" : "17px");*/
+			$('#birthdaydiv span').css("right","17px");
 			/*$("p").css("background-color","yellow");
 			position: absolute;
 			right: 17px;*/
