@@ -106,7 +106,7 @@ if( empty($_SESSION['identifiant'])) {
 							<div class="col-sm-offset-5 col-sm-7">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" id="checkmail" onchange ="emaildisabled()">Même email que l'identifiant
+										<input type="checkbox" id="checkmail" onchange ="emaildisabled()" <?php if($_SESSION['identifiant']== email) echo "checked"; ?> >Même email que l'identifiant
 									</label>
 								</div>
 							</div>
@@ -320,6 +320,10 @@ $(document).ready(function(){
 	if(<?php if (!empty($_SESSION['save']) && $_SESSION['save']) echo '1'; else echo '0'; ?>){
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').addClass( "has-success has-feedback" );
 			$('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
+			/*$('#birthdaydiv span').css("position": "absolute","right" : "17px");*/
+			/*$("p").css("background-color","yellow");
+			position: absolute;
+			right: 17px;*/
 	}else $('#birthdaydiv,#phonediv, #emaildiv, #studentfirstnamediv, #studentnamediv ').removeClass( "has-success has-feedback" );
 
   $("form").submit(function(event){
