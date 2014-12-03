@@ -171,7 +171,7 @@ if( empty($_SESSION['identifiant'])) {
 				        </tr>
         			</thead>';
 
-        	
+
         	foreach ($listdoc as $key => $value) {
         		if(empty($value['promo'])){
                     $rang++;
@@ -180,7 +180,7 @@ if( empty($_SESSION['identifiant'])) {
 						<td class="active">'.$rang.'</td>
 						<td class="docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="tdglyph warning"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
-						<td class="tdglyph info" ><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
+						<td class="tdglyph info" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
 					</tr>';
 
                }
