@@ -161,7 +161,7 @@ if( empty($_SESSION['identifiant'])) {
 				echo '
 			</select>
 			<div class="table-responsive">
-				<table class="table table-hover">
+				<table class="table table-hover notmovingtable">
 					<thead>
 				        <tr>
 					        <th>#</th>
@@ -185,7 +185,7 @@ if( empty($_SESSION['identifiant'])) {
 
                }
         	}
-               echo '';
+               echo '</table><table class="table table-hover movingtable">';
 
             foreach ($listdoc as $key => $value) {
                 if(!empty($value['promo'])){
@@ -193,8 +193,8 @@ if( empty($_SESSION['identifiant'])) {
                     echo '<tr class="'.$value['promo'].' tabchange" style="display:none" value="'.$value['promo'].'">
 						<td class="active">'.$rang2.'</td>
 						<td class="docname success">'.utf8_encode($value['libelle']).'</td>
-						<td class="tdglyph warning"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
-						<td class="tdglyph info" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
+						<td class="glyph tdglyph warning"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
+						<td class="glyph tdglyph info" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
 					</tr>';
                 }
             }
