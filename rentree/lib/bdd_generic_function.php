@@ -54,7 +54,7 @@
 
     function liste_doc(){
 
-		$doc = DbOperation("SELECT * FROM document");
+		$doc = DbOperation("SELECT * FROM document ORDER BY promo,rang");
 		return ($doc);
 	}
 
