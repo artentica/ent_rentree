@@ -116,3 +116,7 @@ tr{
 .notmovingtable{
     margin-bottom: 0px;
 }
+
+.docfield{
+    width: 70%;
+}
