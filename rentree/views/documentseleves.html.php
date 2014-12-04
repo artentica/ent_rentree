@@ -185,7 +185,9 @@ if( empty($_SESSION['identifiant'])) {
 
                }
         	}
-               echo '</table><table class="table table-hover movingtable">';
+               echo '</table>
+
+               <table class="table table-hover movingtable">';
 
             foreach ($listdoc as $key => $value) {
                 if(!empty($value['promo'])){
