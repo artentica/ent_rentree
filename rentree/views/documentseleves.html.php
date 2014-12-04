@@ -3,6 +3,7 @@ if( empty($_SESSION['identifiant'])) {
 	    // redirection 
 	   header('Location:' . url_for('/'));
 	  }
+
 ?>
 
 <?php content_for('link')?>
