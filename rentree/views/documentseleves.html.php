@@ -188,7 +188,14 @@ if( empty($_SESSION['identifiant'])) {
         	}
                echo '</table>
 
-               <table class="table table-hover movingtable">';
+               <table class="table table-hover movingtable"><thead>
+				        <tr>
+					        <th>#</th>
+					        <th>Documents</th>
+					        <th class="glyph">Visualiser</th>
+					        <th class="glyph">Télécharger</th>
+				        </tr>
+        			</thead>';
 
             foreach ($listdoc as $key => $value) {
                 if(!empty($value['promo'])){
