@@ -105,6 +105,14 @@ tr{
 	width:10%;
 }
 
+.glyph2{
+	width:6%;
+}
+
 .modal_image{
     width:25%;
+}
+
+.notmovingtable{
+    margin-bottom: 0px;
 }

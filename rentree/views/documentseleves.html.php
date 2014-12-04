@@ -178,7 +178,7 @@ if( empty($_SESSION['identifiant'])) {
                     $rang++;
 
                     echo '<tr>
-						<td class="active">'.$rang.'</td>
+						<td class="glyph2 active">'.$rang.'</td>
 						<td class="docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="tdglyph warning iconetable"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
 						<td class="tdglyph info iconetable" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
@@ -188,20 +188,13 @@ if( empty($_SESSION['identifiant'])) {
         	}
                echo '</table>
 
-               <table class="table table-hover movingtable"><thead>
-				        <tr>
-					        <th>#</th>
-					        <th>Documents</th>
-					        <th class="glyph">Visualiser</th>
-					        <th class="glyph">Télécharger</th>
-				        </tr>
-        			</thead>';
+               <table class="table table-hover movingtable">';
 
             foreach ($listdoc as $key => $value) {
                 if(!empty($value['promo'])){
                     $rang2=$rang+$value['rang'];
                     echo '<tr class="'.$value['promo'].' tabchange" style="display:none" value="'.$value['promo'].'">
-						<td class="active">'.$rang2.'</td>
+						<td class="active glyph2">'.$rang2.'</td>
 						<td class="docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="glyph tdglyph warning"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
 						<td class="glyph tdglyph info" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
