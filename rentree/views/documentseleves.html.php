@@ -170,7 +170,7 @@ if( empty($_SESSION['identifiant'])) {
 					        <th class="glyph">Visualiser</th>
 					        <th class="glyph">Télécharger</th>
 				        </tr>
-        			</thead>';
+        			</thead><tbody class="notmovingtable">';
 
 
         	foreach ($listdoc as $key => $value) {
@@ -186,9 +186,7 @@ if( empty($_SESSION['identifiant'])) {
 
                }
         	}
-               echo '</table>
-
-               <table class="table table-hover movingtable">';
+          echo '</tbody><tbody class="movingtable">';
 
             foreach ($listdoc as $key => $value) {
                 if(!empty($value['promo'])){
@@ -202,7 +200,7 @@ if( empty($_SESSION['identifiant'])) {
                 }
             }
 
-        	echo '
+        	echo '</tbody>
 				</table>
 			</div>
 			<div class="row" id="zip_zone">

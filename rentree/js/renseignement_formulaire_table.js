@@ -8,9 +8,11 @@ tabshowrow = "instanciepasnull";
 
 $('.chosen-select-deselect').on('change', function() {
     var value=$(".chosen-select-deselect").val();
-    $("."+tabshowrow).val(value).hide();
+    console.log(value);
+    $("."+tabshowrow).hide();
     if(value!=tabshowrow)tabshowrow=value;
-    $("."+value).val(value).show();
+    if(value=="") tabshowrow="instanciepasnull";
+    if(value!="")$("."+value).val(value).show();
 });
 
 
