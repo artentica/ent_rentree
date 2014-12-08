@@ -29,13 +29,15 @@ function generate_zip(){
 
 function send_archive($name){
     if (file_exists($name)){
-        header('Content-type: application/zip');
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename='.basename($name));
         header('Expires: 0');
-        header("Content-Length: ".filesize( $name ));
-        header('Content-Disposition: attachment; filename="'. $name .'"');
-        header("Content-Transfer-Encoding: binary");
-        header('Pragma: no-cache');
-        readfile( $name );
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($name));
+        readfile($name);
+        exit;
     }
 }
 
