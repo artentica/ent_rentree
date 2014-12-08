@@ -85,5 +85,5 @@ define('M_A5_NONALT_LIBELLE', '5ème année, Majeure (M2, non alternant)');
 define('ITII_A5', 'ITII_A5');
 define('ITII_A5_LIBELLE', '5ème année, Apprentissage (ITII)');
 
-
+define('konami',false);
 ?>

@@ -169,6 +169,7 @@ if( empty($_SESSION['identifiant'])) {
 					        <th>Documents</th>
 					        <th class="glyph">Visualiser</th>
 					        <th class="glyph">Télécharger</th>
+                            <th class="downcheck" style="display:none"></th>
 				        </tr>
         			</thead><tbody class="notmovingtable">';
 
@@ -182,6 +183,7 @@ if( empty($_SESSION['identifiant'])) {
 						<td class="docfield docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="tdglyph warning iconetable"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
 						<td class="tdglyph info iconetable" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
+                        <td class="active downcheck"><label><input value="'.utf8_encode($value['fichier']).'" class="checkboxdown" type="checkbox"></label></td>
 					</tr>';
 
                }
@@ -196,18 +198,33 @@ if( empty($_SESSION['identifiant'])) {
 						<td class="docfield docname success">'.utf8_encode($value['libelle']).'</td>
 						<td class="glyph tdglyph warning"><a target="_blank" href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span></a></td>
 						<td class="glyph tdglyph info" ><a download href="pdf/'.utf8_encode($value['fichier']).'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a></td>
+                        <td class="active downcheck"><label><input value="'.utf8_encode($value['fichier']).'" class="checkboxdown" type="checkbox"></label></td>
 					</tr>';
                 }
             }
 
         	echo '</tbody>
 				</table>
-			</div>
-			<div class="row" id="zip_zone">
+
+			<div id="zip_zone">
 				<p>Télécharger tous les fichiers</p>
 				<a class="col-xs-4 col-xs-offset-5" href="#" id="promo_zip_link"></a>
 			</div>	
-		</div>';
+
+
+        <div class="checkbox">
+			<label>
+				<input type="checkbox" id="choosedown" onchange ="choosefile()" >Choisir le fichier que vous voulez télécharger
+			</label>
+		</div>
+        </div>
+            <div class="col-md-4 col-md-offset-2">
+            <button id="downall" type="button" class="btn btn-primary btn-lg">Télécharger tous les fichiers</button>
+            </div>
+          <div class="col-md-4">
+                <button id="downchoose" disabled="disabled" type="button" class="btn btn-success btn-lg">Télécharger la sélections de fichiers</button>
+
+		</div></div>';
 
 			}
 		?>

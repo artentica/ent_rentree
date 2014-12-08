@@ -124,3 +124,23 @@ tr{
 .docfield{
     width: 70%;
 }
+
+.downcheck{
+    display: none;
+}
+
+.downcheck label{
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    cursor: pointer;
+}
+.downcheck label input{
+    margin: auto;
+    cursor: pointer;
+}
+
+table td{
+    height: 21px;
+}

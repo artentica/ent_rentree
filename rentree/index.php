@@ -10,6 +10,11 @@
 
 	dispatch_post('/save_data_student' , 'save_student');
 
+    //dispatch( '/documents/download', 'generate_zip' );
+    dispatch( '/documents/download/:promo', 'generate_zip' );
+    dispatch( '/documents/downselect/:list', 'generate_zip_select' );
+
+
 
 	run();
 ?>

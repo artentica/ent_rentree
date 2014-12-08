@@ -34,6 +34,8 @@
 			define ('email', $tabinfo[0]['courriel']);
 			define ('date_server', date('y-m-d H:i:s'));
 			define ('addr_ip', $_SERVER["REMOTE_ADDR"]);
+            $_SESSION['studentname']=studentname;
+            $_SESSION['studentfirstname']=studentfirstname;
 		}
 
 		if (isset($_SESSION["register"])) {

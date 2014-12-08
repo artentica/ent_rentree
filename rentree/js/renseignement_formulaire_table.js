@@ -8,12 +8,24 @@ tabshowrow = "instanciepasnull";
 
 $('.chosen-select-deselect').on('change', function() {
     var value=$(".chosen-select-deselect").val();
-    console.log(value);
     $("."+tabshowrow).hide();
     if(value!=tabshowrow)tabshowrow=value;
     if(value=="") tabshowrow="instanciepasnull";
     if(value!="")$("."+value).val(value).show();
 });
+
+function choosefile(){
+   if($('#choosedown').is(':checked')){
+        $('.downcheck').show().css({width: "6%"});
+       $('.docfield').css({width: "64%"});
+       $('#downchoose').attr('disabled', false);
+	}
+	else {
+        $('#downchoose').attr('disabled', true);
+        $('.docfield').css({width: "70%"});
+        $('.downcheck').hide().css({width: "0%"});
+	}
+}
 
 
 function change_value_input(divname){
@@ -115,5 +127,45 @@ $(document).ready(function(){
 	}
 
   });
+});
+
+
+$( window.document ).on( 'click', '#downall', function() {
+ var url=$(".chosen-select-deselect").val();
+    $.ajax(
+		{
+			url: 		"<?=url_for('/documents/download'); ?>" +"/" + url,
+			dataType: 	'text',
+			data:
+			{
+
+			}
+		}).success(function(data){});
+});
+
+$( window.document ).on( 'click', '#downchoose', function() {
+
+    var start=0;
+    var list= '';
+    $('.checkboxdown:checked').each(function(){
+            if(start){
+                list += "*!*";
+            }
+            start =1;
+               var name = $(this).val().replace('/','-_-');
+                list += name;
+
+
+    });
+    console.log(list);
+    $.ajax(
+		{
+			url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
+			dataType: 	'text',
+			data:
+			{
+
+			}
+		}).success(function(data){});
 });
 </script>

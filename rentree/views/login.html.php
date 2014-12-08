@@ -65,7 +65,7 @@
 <?php end_content_for();?>
 
 <?php content_for('script')?>
-<script src="js/konami.js"></script>
+<?php if(konami) echo '<script src="js/konami.js"></script>'; ?>
 <script type="text/javascript">
 		$().ready(konami());
 </script>	
