@@ -144,3 +144,7 @@ tr{
 table td{
     height: 21px;
 }
+
+#downall, #downchoose{
+    margin-bottom: 10px;
+}

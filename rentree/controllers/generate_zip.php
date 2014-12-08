@@ -22,11 +22,22 @@ function generate_zip(){
         }
     }
 
-    $zip->close();
+    $zip->close($zip);
 
-
+    send_archive($name_file);
 }
 
+function send_archive($name){
+    if (file_exists($name)){
+        header('Content-type: application/zip');
+        header('Expires: 0');
+        header("Content-Length: ".filesize( $name ));
+        header('Content-Disposition: attachment; filename="'. $name .'"');
+        header("Content-Transfer-Encoding: binary");
+        header('Pragma: no-cache');
+        readfile( $name );
+    }
+}
 
 
 
@@ -53,5 +64,6 @@ function generate_zip_select(){
 
     $zip->close();
 
+    send_archive($name_file);
 }
 ?>

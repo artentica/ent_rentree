@@ -67,13 +67,14 @@ function change_value_input(divname){
 }
 
 function add_success(divname){
-	$('#' + divname).removeClass( "has-warning" );
+	$('#' + divname).removeClass( "has-warning has-error" );
 	$('#' + divname).addClass( "has-success has-feedback" );
+    $('#' + divname + ' span').remove();
 	$('#' + divname).append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span><span id="inputSuccess2Status" class="sr-only">(success)</span>');
 }
 
 function delete_success(divname){
-	$('#' + divname).removeClass( "has-success has-feedback" );
+	$('#' + divname).removeClass( "has-success has-feedback has-error" );
 	$('#' + divname + ' span').remove();
 	$('#' + divname).addClass( "has-warning" );
 }
@@ -155,17 +156,23 @@ $( window.document ).on( 'click', '#downchoose', function() {
                var name = $(this).val().replace('/','-_-');
                 list += name;
 
-
     });
-    console.log(list);
-    $.ajax(
-		{
-			url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
-			dataType: 	'text',
-			data:
-			{
 
-			}
-		}).success(function(data){});
+    if(list!=''){
+        $.ajax(
+            {
+                url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
+                dataType: 	'zip',
+                data:
+                {
+
+                }
+            }).success(function(data){});
+    }
+    else{
+        $("#myModal").modal({backdrop: true});
+		$('.error').text("Vous devez choisir au moins un fichier");
+    }
+
 });
 </script>
