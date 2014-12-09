@@ -162,12 +162,9 @@ $( window.document ).on( 'click', '#downchoose', function() {
         $.ajax(
             {
                 url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
-                dataType: 	'JSON',
-                data:
-                {
-
-                }
-            }).success(function(data){});
+                dataType: 	'json'
+            }).success(function(data){console.log(data);})
+            .error( function( e, t){ alert(e + t);});
     }
     else{
         $("#myModal").modal({backdrop: true});

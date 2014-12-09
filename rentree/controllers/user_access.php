@@ -20,6 +20,7 @@
                 $_SESSION['access'] = ($_POST['password'] == MDPadmin)?true:false;
                 if ($_SESSION['access']) {
                     $_SESSION['rightToBeConnected'] = true;
+                    $_SESSION['admin']=true;
                     header( 'Location:' . url_for('/adminpanel'));
                 }
                 else{

@@ -16,6 +16,8 @@
 
     dispatch('/adminpanel' , 'adminpanel');
 
+    dispatch('/adminpanelstudent' , 'adminpanelstudent');
+
 	run();
 ?>
 

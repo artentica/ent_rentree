@@ -14,3 +14,12 @@
 	color: #B72321;
 	font-weight: bold;
 }
+
+body{
+    font-size: 16px;
+}
+
+.navbar-default {
+    background-color: rgba(248, 248, 248, 0.8);
+}
+

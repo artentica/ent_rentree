@@ -1,5 +1,5 @@
 <?php
-if( empty($_SESSION['identifiant'])) {
+if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 	    // redirection
 	   header('Location:' . url_for('/'));
 	  }
@@ -18,7 +18,7 @@ if( empty($_SESSION['identifiant'])) {
 			<img rel="logo de l'isen" class="logo" src="images/logo_ISEN.png">
 		</div>
 
-		<h1 class="col-sm-4 center" >Documents de rentrée</h1>
+		<h1 class="col-sm-4 center" >Panel d'administration</h1>
 
 		<h3	class="col-sm-4 school">BREST-RENNES</h3>
 
@@ -30,15 +30,17 @@ if( empty($_SESSION['identifiant'])) {
 
 <?php content_for('body'); ?>
 
+<?php require('adminnavbar.html.php');?>
+
 <div class="row">
-		<div class="col-md-5">
+		<div class="col-md-6">
             <ul class="nav nav-tabs nav-justified">
 
               <li><a href="#home" data-toggle="tab">Accueil</a></li>
               <li><a href="#profile" data-toggle="tab">Profil</a></li>
             </ul>
         </div>
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-6">
             <ul class="nav nav-tabs nav-justified">
 
               <li><a href="#home" data-toggle="tab">Accueil</a></li>
