@@ -3,7 +3,7 @@
 	function adminpanel(){
 
 		set ('title', 'Panel admin');
-		return html ('login.html.php', 'adminpanel.html.php');
+		return html ('adminpanel.html.php', 'layout.html.php');
 
 	}
 

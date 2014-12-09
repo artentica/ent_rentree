@@ -1,0 +1,16 @@
+.logo{
+	width: 270px;
+	padding-left: 50px;
+}
+
+.header{
+	padding-top: 30px;
+}
+
+.school{
+	margin-top: 10px;
+	text-align: right;
+	padding-right: 50px;
+	color: #B72321;
+	font-weight: bold;
+}

@@ -30,7 +30,7 @@ function generate_zip(){
 function send_archive($name){
     if (file_exists($name)){
         header('Content-Description: File Transfer');
-        header('Content-Type: application/zip');
+        header('Content-Type: application/octet-stream');
         header("Content-Transfer-Encoding: binary");
         header('Content-Disposition: attachment; filename='.basename($name));
         header('Expires: 0');
