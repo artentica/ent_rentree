@@ -154,10 +154,12 @@ $( window.document ).on( 'click', '#downchoose', function() {
 
     });
 
+
     if(list!=''){
     	$(this).attr("href","<?=url_for('/documents/downselect'); ?>" +"/" + list);
     }
     else{
+    	$(this).removeAttr("href");
         $("#myModal").modal({backdrop: true});
 		$('.error').text("Vous devez choisir au moins un fichier");
     }
