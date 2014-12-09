@@ -22,4 +22,6 @@ body{
 .navbar-default {
     background-color: rgba(248, 248, 248, 0.8);
 }
-
+.navbar-default li:hover{
+    background-color: rgba(249, 249, 249, 0.85);
+}

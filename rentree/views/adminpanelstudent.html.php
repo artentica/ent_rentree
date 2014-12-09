@@ -32,14 +32,18 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <?php require('adminnavbar.html.php');?>
 
-<div class="row">
-    <div>
+
                 <table id="tablaDatos" class="table table-striped">
             <thead>
                 <tr>
                     <th class="col-md-2">Nro</th>
                     <th class="col-md-2">Super-Héroe</th>
-                    <th class="col-md-9">Descripci&oacute;n</th>
+                    <th class="col-md-8">Descripcin</th>
+                    <th class="col-md-2">Nro</th>
+                    <th class="col-md-2">Super-Héroe</th>
+                    <th class="col-md-8">Descripcin</th>
+                    <th class="col-md-2">Nro</th>
+                    <th class="col-md-2">Super-Héroe</th>
                     <th hidden>Sexo</th>
                 </tr>
             </thead>
@@ -82,8 +86,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 </tr>
             </tbody>
         </table>
-    </div>
-</div>
+
 
 <?php end_content_for();?>
 
