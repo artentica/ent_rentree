@@ -9,6 +9,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('link')?>
 
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
+<link rel="stylesheet" href="css/font_table.css" type="text/css" />
 
 <?php end_content_for();?>
 
@@ -36,56 +37,62 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 <table id="tablaDatos" class="table table-striped">
             <thead>
                 <tr>
-                    <th class="col-md-2">Nro</th>
-                    <th class="col-md-2">Super-Héroe</th>
-                    <th class="col-md-8">Descripcin</th>
-                    <th class="col-md-2">Nro</th>
-                    <th class="col-md-2">Super-Héroe</th>
-                    <th class="col-md-8">Descripcin</th>
-                    <th class="col-md-2">Nro</th>
-                    <th class="col-md-2">Super-Héroe</th>
-                    <th hidden>Sexo</th>
+                    <th class="col-md-2">Identifiant</th>
+                    <th class="col-md-2">Nom</th>
+                    <th class="col-md-2">Prenom</th>
+                    <th class="col-md-1">Date d'anniversaire</th>
+                    <th class="col-md-1">Téléphone</th>
+                    <th class="col-md-2">Couriel</th>
+                    <th class="col-md-1">Date d'enregistrement</th>
+                    <th class="col-md-1">Adresse IP</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Batman</td>
-                    <td>Hombre murcielago. Puede pasar toda la noche sin dormir. Vive en ciudad Gotica</td>
-                    <td hidden>Hombre</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Robin</td>
-                    <td>Es el ayudante de Batman.</td>
-                    <td hidden>Hombre</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Superman</td>
-                    <td>Es un hombre comun, pero tiene super-poderes. Puede volar. Es novio de Luisa Lane</td>
-                    <td hidden>Hombre</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>El Zorro</td>
-                    <td>Superheroe latinoamericano. Es en realidad Don Diego de La Vega. Es muy astuto.</td>
-                    <td hidden>Hombre</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Chapulin colorado</td>
-                    <td>Más ágil que una tortuga, más noble que una lechuga... su escudo es un corazón.</td>
-                    <td hidden>Hombre</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Wonder Woman</td>
-                    <td>Es una chica. Usa culotte muy grande y tiene un lazo.</td>
-                    <td hidden>Mujer</td>
-                </tr>
+
+<?php
+    $data = DbOperation('SELECT * FROM data');
+    if (empty($data)) $downdata =false;
+    else $downdata =true;
+    echo "yolo";
+    foreach($data as $key => $value){
+
+         echo'<tr>
+            <td>'.$value["identifiant"].'</td>
+            <td>'.$value["nom_fils"].'</td>
+            <td>'.$value["prenom_fils"].'</td>
+            <td>'.$value["ddn_fils"].'</td>
+            <td>'.$value["tel_mobile"].'</td>
+            <td>'.$value["courriel"].'</td>
+            <td>'.$value["date"].'</td>
+            <td>'.$value["ip"].'</td>
+        </tr>';
+    }
+?>
+
             </tbody>
         </table>
+
+
+
+        <!-- Modal zip rar-->
+			<div class="modal fade" id="downloadstudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Erreur de chargements</h4>
+			      </div>
+			      <div class="modal-body">
+                      <p>Le chargement des informations ne s'est pas correctement effectué<br>Avez vous bien changé les information dans le fichier conf.php?</p>
+
+			      </div>
+			      <div class="modal-footer">
+			      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
 
 <?php end_content_for();?>
@@ -101,8 +108,13 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('script')?>
 <script src="js/pbTable.min.js"></script>
 <script src="js/li_url.js"></script>
+<script src="js/custom-fields.js"></script>
+
 
 <script>
+
+    <?php if(!$downdata) echo '$("#myModal").modal({backdrop: true});'; ?>
+
     $(document).ready(function(e) {
 	$('#tablaDatos').pbTable({
 		selectable: true,
