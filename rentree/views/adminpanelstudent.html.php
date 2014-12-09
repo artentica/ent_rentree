@@ -34,7 +34,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php require('adminnavbar.html.php');?>
 
 
-                <table id="tablaDatos" class="table table-striped">
+                <table id="tablaDatos" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th class="col-md-2">Identifiant</th>

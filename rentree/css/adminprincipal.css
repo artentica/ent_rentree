@@ -25,3 +25,16 @@ body{
 .navbar-default li:hover{
     background-color: rgba(249, 249, 249, 0.85);
 }
+
+table{
+    background-color: rgb(237, 245, 248);
+}
+
+table thead{
+    background-color: rgb(216, 218, 229);
+}
+
+table thead tr th{
+    text-align: center;
+    vertical-align: middle !important;
+}
