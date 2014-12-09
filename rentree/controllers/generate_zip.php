@@ -30,11 +30,12 @@ function generate_zip(){
 function send_archive($name){
     if (file_exists($name)){
         header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
+        header('Content-Type: application/zip');
+        header("Content-Transfer-Encoding: binary");
         header('Content-Disposition: attachment; filename='.basename($name));
         header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
+        header('Pragma: no-cache');
+        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         header('Content-Length: ' . filesize($name));
         readfile($name);
         exit;

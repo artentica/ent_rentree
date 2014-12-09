@@ -162,7 +162,7 @@ $( window.document ).on( 'click', '#downchoose', function() {
         $.ajax(
             {
                 url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
-                dataType: 	'zip',
+                dataType: 	'JSON',
                 data:
                 {
 
