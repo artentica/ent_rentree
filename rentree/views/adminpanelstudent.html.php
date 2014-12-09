@@ -33,13 +33,14 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <?php require('adminnavbar.html.php');?>
 
+<div class="col-md-12">
 
-                <table id="tablaDatos" class="table table-striped table-hover">
+            <table id="tablaDatos" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th class="col-md-2">Identifiant</th>
-                    <th class="col-md-2">Nom</th>
-                    <th class="col-md-2">Prenom</th>
+                    <th class="col-md-1">Nom</th>
+                    <th class="col-md-1">Prenom</th>
                     <th class="col-md-1">Date d'anniversaire</th>
                     <th class="col-md-1">Téléphone</th>
                     <th class="col-md-2">Couriel</th>
@@ -53,7 +54,6 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
     $data = DbOperation('SELECT * FROM data');
     if (empty($data)) $downdata =false;
     else $downdata =true;
-    echo "yolo";
     foreach($data as $key => $value){
 
          echo'<tr>
@@ -71,6 +71,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
             </tbody>
         </table>
+    </div>
 
 
 
