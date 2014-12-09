@@ -61,6 +61,9 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <?php content_for('script')?>
 
-
+<script src="js/li_url.js"></script>
+<script>
+    active_li();
+</script>
 
 <?php end_content_for();?>

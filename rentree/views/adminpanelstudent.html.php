@@ -33,54 +33,56 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php require('adminnavbar.html.php');?>
 
 <div class="row">
-		<table id="tablaDatos" class="table table-striped">
-	<thead>
-		<tr>
-			<th class="col-md-2">Nro</th>
-			<th class="col-md-2">Super-Héroe</th>
-			<th class="col-md-9">Descripci&oacute;n</th>
-			<th hidden>Sexo</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>1</td>
-			<td>Batman</td>
-			<td>Hombre murcielago. Puede pasar toda la noche sin dormir. Vive en ciudad Gotica</td>
-			<td hidden>Hombre</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Robin</td>
-			<td>Es el ayudante de Batman.</td>
-			<td hidden>Hombre</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>Superman</td>
-			<td>Es un hombre comun, pero tiene super-poderes. Puede volar. Es novio de Luisa Lane</td>
-			<td hidden>Hombre</td>
-		</tr>
-		<tr>
-			<td>4</td>
-			<td>El Zorro</td>
-			<td>Superheroe latinoamericano. Es en realidad Don Diego de La Vega. Es muy astuto.</td>
-			<td hidden>Hombre</td>
-		</tr>
-		<tr>
-			<td>5</td>
-			<td>Chapulin colorado</td>
-			<td>Más ágil que una tortuga, más noble que una lechuga... su escudo es un corazón.</td>
-			<td hidden>Hombre</td>
-		</tr>
-		<tr>
-			<td>6</td>
-			<td>Wonder Woman</td>
-			<td>Es una chica. Usa culotte muy grande y tiene un lazo.</td>
-			<td hidden>Mujer</td>
-		</tr>
-	</tbody>
-</table>
+    <div>
+                <table id="tablaDatos" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Nro</th>
+                    <th class="col-md-2">Super-Héroe</th>
+                    <th class="col-md-9">Descripci&oacute;n</th>
+                    <th hidden>Sexo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Batman</td>
+                    <td>Hombre murcielago. Puede pasar toda la noche sin dormir. Vive en ciudad Gotica</td>
+                    <td hidden>Hombre</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Robin</td>
+                    <td>Es el ayudante de Batman.</td>
+                    <td hidden>Hombre</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Superman</td>
+                    <td>Es un hombre comun, pero tiene super-poderes. Puede volar. Es novio de Luisa Lane</td>
+                    <td hidden>Hombre</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>El Zorro</td>
+                    <td>Superheroe latinoamericano. Es en realidad Don Diego de La Vega. Es muy astuto.</td>
+                    <td hidden>Hombre</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Chapulin colorado</td>
+                    <td>Más ágil que una tortuga, más noble que una lechuga... su escudo es un corazón.</td>
+                    <td hidden>Hombre</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Wonder Woman</td>
+                    <td>Es una chica. Usa culotte muy grande y tiene un lazo.</td>
+                    <td hidden>Mujer</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php end_content_for();?>
@@ -95,6 +97,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <?php content_for('script')?>
 <script src="js/pbTable.min.js"></script>
+<script src="js/li_url.js"></script>
 
 <script>
     $(document).ready(function(e) {
@@ -139,6 +142,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 		}
 	});
 });
+
+active_li();
 </script>
 
 <?php end_content_for();?>
