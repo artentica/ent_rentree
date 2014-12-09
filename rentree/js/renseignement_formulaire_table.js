@@ -130,24 +130,20 @@ $(document).ready(function(){
   });
 });
 
-
+// Met l'url de l'archive dans le href
 $( window.document ).on( 'click', '#downall', function() {
- var url=$(".chosen-select-deselect").val();
-    $.ajax(
-		{
-			url: 		"<?=url_for('/documents/download'); ?>" +"/" + url,
-			dataType: 	'text',
-			data:
-			{
 
-			}
-		}).success(function(data){});
+	var url=$(".chosen-select-deselect").val();
+    $(this).attr("href","<?=url_for('/documents/download'); ?>" +"/" + url);
+
 });
 
+// Met l'url contenant le nom de tous les fichiers selectionnés dans le href
 $( window.document ).on( 'click', '#downchoose', function() {
 
-    var start=0;
+	var start=0;
     var list= '';
+
     $('.checkboxdown:checked').each(function(){
             if(start){
                 list += "*!*";
@@ -159,12 +155,7 @@ $( window.document ).on( 'click', '#downchoose', function() {
     });
 
     if(list!=''){
-        $.ajax(
-            {
-                url: 		"<?=url_for('/documents/downselect'); ?>" +"/" + list,
-                dataType: 	'json'
-            }).success(function(data){console.log(data);})
-            .error( function( e, t){ alert(e + t);});
+    	$(this).attr("href","<?=url_for('/documents/downselect'); ?>" +"/" + list);
     }
     else{
         $("#myModal").modal({backdrop: true});
@@ -172,4 +163,5 @@ $( window.document ).on( 'click', '#downchoose', function() {
     }
 
 });
+
 </script>

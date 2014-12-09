@@ -1,6 +1,6 @@
 <?php
 if( empty($_SESSION['identifiant'])) {
-	    // redirection 
+	    // redirection
 	   header('Location:' . url_for('/'));
 	  }
 
@@ -49,8 +49,8 @@ if( empty($_SESSION['identifiant'])) {
 
 	<div class="row">
 
-		
-		
+
+
 
 
 
@@ -58,7 +58,7 @@ if( empty($_SESSION['identifiant'])) {
 		<div class="col-md-4 col-md-offset-1">
 			<form action="index.php/save_data_student" method="post" class="form-horizontal" role="form">
 				<div class="yellow">
-					<p class="formask">Nous vous remercions de bien vouloir compléter ce formulaire avant d'accéder aux documents de rentrée.</p>					
+					<p class="formask">Nous vous remercions de bien vouloir compléter ce formulaire avant d'accéder aux documents de rentrée.</p>
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="identifiant">Identifiant:</label>
 						<div class="col-sm-6">
@@ -142,7 +142,7 @@ if( empty($_SESSION['identifiant'])) {
 							<img src="images/3.jpg" alt="image de présentation de l\'isen">
 						</div>
 					</div>
-				</div> <!-- Carousel --> 
+				</div> <!-- Carousel -->
 			</div>';
 			}
 			else {
@@ -152,8 +152,8 @@ if( empty($_SESSION['identifiant'])) {
                 $rang=0;
 				echo '<div class="col-md-6 " >
 			<p>
-				Vous trouverez sur cette page toutes les informations utiles pour la rentrée 2014 en sélectionnant l\'année qui vous concerne. Vous pouvez télécharger chaque fichier (format 
-				<a href="http://get.adobe.com/fr/reader/" target="_blank">PDF</a>) ou bien l\'ensemble des fichiers (format 
+				Vous trouverez sur cette page toutes les informations utiles pour la rentrée 2014 en sélectionnant l\'année qui vous concerne. Vous pouvez télécharger chaque fichier (format
+				<a href="http://get.adobe.com/fr/reader/" target="_blank">PDF</a>) ou bien l\'ensemble des fichiers (format
 				<a type="button" style="cursor: pointer;"  data-toggle="modal" data-target="#decompresseur">ZIP</a>) pour l\'année choisie. A imprimer avec modération...
 			</p>
 			<select data-placeholder="Choisissez votre classe de rentrée" class="chosen-select-deselect form-control input-lg">
@@ -209,7 +209,7 @@ if( empty($_SESSION['identifiant'])) {
 			<div id="zip_zone">
 				<p>Télécharger tous les fichiers</p>
 				<a class="col-xs-4 col-xs-offset-5" href="#" id="promo_zip_link"></a>
-			</div>	
+			</div>
 
 
         <div class="checkbox">
@@ -219,19 +219,18 @@ if( empty($_SESSION['identifiant'])) {
 		</div>
         </div>
             <div class="col-md-4 col-md-offset-2">
-            <button id="downall" type="button" class="btn btn-primary btn-lg">Télécharger tous les fichiers</button>
+            	<a id="downall" class="btn btn-primary btn-lg">Télécharger tous les fichiers</a>
             </div>
-          <div class="col-md-4">
-                <button id="downchoose" disabled="disabled" type="button" class="btn btn-success btn-lg">Télécharger la sélections de fichiers</button>
-
-		</div></div>';
-
+        	<div class="col-md-4">
+            	<a id="downchoose" disabled="disabled" class="btn btn-success btn-lg">Télécharger la sélections de fichiers</a>
+			</div>
+		</div>';
 			}
 		?>
 
 
 	</div>
-					
+
 
 			<!-- Modal Alert error-->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
