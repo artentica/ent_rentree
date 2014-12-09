@@ -14,7 +14,7 @@
     dispatch( '/documents/download/:promo', 'generate_zip' );
     dispatch( '/documents/downselect/:list', 'generate_zip_select' );
 
-
+    dispatch('/adminpanel' , 'adminpanel');
 
 	run();
 ?>
