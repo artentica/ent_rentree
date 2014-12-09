@@ -9,7 +9,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ">
-        <li id="gest_promo"><a  href="<?= url_for('/adminpanel'); ?>">Gestion des document et des promotion</a></li>
+        <li id="gest_promo"><a  href="<?= url_for('/adminpanel'); ?>">Gestion des document et des promotions</a></li>
         <li id="gest_student"><a  href="<?= url_for('/adminpanelstudent'); ?>">Gestion des informations des étudiants</a></li>
       </ul>
       <a href="<?= url_for('/'); ?>" type="button" class="btn btn-danger navbar-btn navbar-right">Quitter</a>

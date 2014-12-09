@@ -35,16 +35,14 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <div class="row">
 		<div class="col-md-6">
             <ul class="nav nav-tabs nav-justified">
-
-              <li><a href="#home" data-toggle="tab">Liste des promotions</a></li>
-              <li><a href="#profile" data-toggle="tab">Promo du document sélectionné</a></li>
+              <li><a class="btn" data-toggle="tab">Liste des promotions</a></li>
+              <li><a class="btn" data-toggle="tab">Promo du document sélectionné</a></li>
             </ul>
         </div>
         <div class="col-md-6">
             <ul class="nav nav-tabs nav-justified">
-
-              <li><a href="#home" data-toggle="tab">Tous les documents</a></li>
-              <li><a href="#profile" data-toggle="tab">Document de la promo sélectionné</a></li>
+              <li><a class="btn" data-toggle="tab">Tous les documents</a></li>
+              <li><a class="btn" data-toggle="tab">Document de la promo sélectionné</a></li>
             </ul>
         </div>
 </div>
