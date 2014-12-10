@@ -112,6 +112,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('script')?>
 <script src="js/pbTable.min.js"></script>
 <script src="js/li_url.js"></script>
+<script src="js/tdInput.js"></script>
 
 <script>
 
@@ -121,6 +122,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 //Remplacer le message d'erreur: No se encontraron...   par : "Pas de résultats pour cette requête"
 //Remplacer Todos par Tous et Buscar par "rechercher"
     $(document).ready(function(e) {
+
 	$('#tablaDatos').pbTable({
 		selectable: true,
 		sortable:true,
@@ -139,6 +141,9 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 			alert('Delete button was pressed');
 		}
 	});
+
+    $('#tablaDatos').ModifiedTd({nametd  : "yolo"});
+
 });
 
 active_li();

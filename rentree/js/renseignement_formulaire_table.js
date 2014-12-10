@@ -1,6 +1,9 @@
 
 
 
+    var tdInput = new Object() ;
+
+
 <script>
 
 $(".chosen-select-deselect").chosen({allow_single_deselect:true,
@@ -164,6 +167,7 @@ $( window.document ).on( 'click', '#downchoose', function() {
         $("#myModal").modal({backdrop: true});
 		$('.error').text("Vous devez choisir au moins un fichier");
     }
+
 
 });
 
