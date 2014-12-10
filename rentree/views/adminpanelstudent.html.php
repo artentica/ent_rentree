@@ -38,6 +38,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             <table id="tablaDatos" class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th class="col-md-1">Action</th>
                     <th class="col-md-2">Identifiant</th>
                     <th class="col-md-1">Nom</th>
                     <th class="col-md-1">Prenom</th>
@@ -55,8 +56,10 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
     if (empty($data)) $downdata =false;
     else $downdata =true;
     foreach($data as $key => $value){
-
+       /* $token = explode("/", $value["ddn_fils"]);
+        $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
+            <td class="action"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button></td>
             <td>'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
@@ -109,13 +112,14 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('script')?>
 <script src="js/pbTable.min.js"></script>
 <script src="js/li_url.js"></script>
-<script src="js/custom-fields.js"></script>
-
 
 <script>
 
     <?php if(!$downdata) echo '$("#myModal").modal({backdrop: true});'; ?>
 
+//regex de pbtable à corriger avec cette ligne:   sorttable.DATE_RE = /^(\/d\/d?)[\/\.-](\/d\/d?)[\/\.-]((\/d\/d)?\/d\/d)$/;
+//Remplacer le message d'erreur: No se encontraron...   par : "Pas de résultats pour cette requête"
+//Remplacer Todos par Tous et Buscar par "rechercher"
     $(document).ready(function(e) {
 	$('#tablaDatos').pbTable({
 		selectable: true,
@@ -123,29 +127,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 		toolbar:{
 			enabled:true,
 			filterBox:true,
-			tags:[
-				  {
-					display:'Todos',
-					toSearch:''
-				  },
-				  {
-					display:'Batman',
-					toSearch:'batman'
-				  },
-				  {
-					display:'CH',
-					toSearch:'Chapulin colorado'
-				  },
-				  {
-					display:'Hombre',
-					toSearch:'Hombre'
-				  },
-				  {
-					display:'Mujer',
-					toSearch:'Mujer'
-				  },
-				],
-			buttons:['view', 'edit', 'delete']
+			buttons:['view', 'delete']
 		},
 		onView:function(){
 			alert('View button was pressed');

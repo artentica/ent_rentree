@@ -28,6 +28,7 @@ body{
 
 table{
     background-color: rgb(237, 245, 248);
+    margin-top: 15px;
 }
 
 table thead{

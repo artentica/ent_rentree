@@ -70,19 +70,19 @@ if( empty($_SESSION['identifiant'])) {
 						<div class="form-group">
 							<label class="col-sm-5 control-label" for="studentname">Nom de l'étudiant(e):</label>
 							<div class="col-sm-6" id="studentnamediv">
-								<input required type="text" name="studentname" onchange="change_value_input('studentnamediv');"  class="form-control" id="studentname" value="<?php echo studentname;?>">
+								<input required type="text" name="studentname" onkeyup="change_value_input('studentnamediv');"  class="form-control" id="studentname" value="<?php echo studentname;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="studentfirstname">Prénom de l'étudiant(e):</label>
 							<div class="col-sm-6" id="studentfirstnamediv">
-								<input required type="text" name="studentfirstname" onchange="change_value_input('studentfirstnamediv');" class="form-control" id="studentfirstname" value="<?php echo studentfirstname;?>">
+								<input required type="text" name="studentfirstname" onkeyup="change_value_input('studentfirstnamediv');" class="form-control" id="studentfirstname" value="<?php echo studentfirstname;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="birthday">Date de naissance:</label>
 							<div class="col-sm-6"  id="birthdaydiv">
-								<input required type="text" name="birthday" onchange="change_value_input('birthdaydiv');" class="form-control" id="birthday" value="<?php echo birthday;?>">
+								<input required type="text" name="birthday" onkeyup="change_value_input('birthdaydiv');" class="form-control" id="birthday" value="<?php echo birthday;?>">
 							</div>
 						</div>
 					</fieldset>
@@ -93,13 +93,13 @@ if( empty($_SESSION['identifiant'])) {
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="phone">Téléphone:</label>
 							<div class="col-sm-6" id="phonediv">
-								<input required type="tel" onchange="change_value_input('phonediv');" name="phone" class="form-control" id="phone" value="<?php echo phone;?>">
+								<input required type="tel" onkeyup="change_value_input('phonediv');" name="phone" class="form-control" id="phone" value="<?php echo phone;?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-5 control-label"  for="email">Courriel</label>
 							<div class="col-sm-6" id="emaildiv">
-								<input  id="samemail" onchange="change_value_input('emaildiv');" required type="email" name="email" class="form-control" id="email" value="<?php echo email;?>">
+								<input  id="samemail" onkeyup="change_value_input('emaildiv');" required type="email" name="email" class="form-control" id="email" value="<?php echo email;?>">
 							</div>
 						</div>
 
@@ -107,7 +107,7 @@ if( empty($_SESSION['identifiant'])) {
 							<div class="col-sm-offset-5 col-sm-7">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" id="checkmail" onchange ="emaildisabled()" <?php if($_SESSION['identifiant']== email) echo "checked"; ?> >Même email que l'identifiant
+										<input type="checkbox" id="checkmail" onkeyup ="emaildisabled()" <?php if($_SESSION['identifiant']== email) echo "checked"; ?> >Même email que l'identifiant
 									</label>
 								</div>
 							</div>
