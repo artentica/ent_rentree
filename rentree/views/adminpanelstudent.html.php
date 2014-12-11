@@ -59,7 +59,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
-            <td class="action"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button></td>
+            <td class="action_modified"></td>
             <td>'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
@@ -142,7 +142,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 		}
 	});
 
-    $('#tablaDatos').ModifiedTd({nametd  : "yolo"});
+    $('#tablaDatos').ModifiedTd({});
+
 
 });
 

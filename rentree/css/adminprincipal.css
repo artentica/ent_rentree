@@ -45,3 +45,11 @@ table tbody tr td{
     vertical-align: middle !important;
     padding: 10px  !important;
 }
+
+td input{
+    text-align: center;
+}
+
+td .btn{
+    margin:5px;
+}
