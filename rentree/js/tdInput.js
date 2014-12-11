@@ -22,6 +22,7 @@ $.fn.ModifiedTd = function(definitionAction){
     modifiedglyph : "glyphicon glyphicon-pencil",
     saveglyph : "glyphicon glyphicon-floppy-disk",
     cancelglyph : "glyphicon glyphicon-ban-circle",
+    identifier : "Id"
   };
 
 
@@ -34,7 +35,7 @@ $.fn.ModifiedTd = function(definitionAction){
         var tdpersonnalised = tdInput_defaultSettings;
     }
 
-
+tdpersonnalised.identifier
 
 
 
@@ -71,16 +72,14 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.cancelclass).show();
         $(this).parent().children("." + tdpersonnalised.saveclass).show();
 
+console.log("."+tdpersonnalised.identifier);
 
-
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
 
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
             $(element).append("<input class='form-control' type='text' value='"+ value +"'>");
-            console.log("yolo");
-            console.log(value_number0);
         });
 
     });
@@ -93,7 +92,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
             if(eval("value != value_number"+ index+ ";")){
                 $(element).addClass("changed_value");
@@ -116,7 +115,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
             eval("value = value_number"+ index+ ";");
             $(element).text("");
             $(element).append(value);
@@ -132,7 +131,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 //UNIQUE BUTTON DIV
 if (tdpersonnalised.controleUniqueButton){
     //ADD OF BUTTON
-    $(" ." +tdpersonnalised.nametd).append("<button class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+    $(" ." +tdpersonnalised.nametd).append("<button title='' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
 
     //HIDE SAVE AND CANCEL BUTTON
     $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
@@ -142,27 +141,20 @@ if (tdpersonnalised.controleUniqueButton){
 
 
     $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.modifiedclass).on('click', function(){
-        if ( $(myTable.selector + " td").hasClass("modified_input_open") ) {
-            hide_precedent_input();
 
-
-        }
 
         $(this).hide();
-        $(this).parent().addClass("modified_input_open");
         $(this).parent().children("." + tdpersonnalised.cancelclass).show();
         $(this).parent().children("." + tdpersonnalised.saveclass).show();
 
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).each(function( index , element){
 
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
             $(element).append("<input class='form-control' type='text' value='"+ value +"'>");
-            console.log("yolo");
-            console.log(value_number0);
         });
 
     });

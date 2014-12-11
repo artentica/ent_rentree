@@ -59,7 +59,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
 
-            <td>'.$value["identifiant"].'</td>
+            <td class="Id">'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
             <td>'.$value["ddn_fils"].'</td>
@@ -146,7 +146,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             controleUniqueButton : true,
             modifiedtext : " Modifier",
             savetext : " Sauvegarder",
-            canceltext : " Modifier",
+            canceltext : " Modifier"
         });
 
 
