@@ -50,6 +50,17 @@ td input{
     text-align: center;
 }
 
+
+/*CONF CSS plugin*/
+
 td .btn{
     margin:5px;
 }
+
+td.changed_value{
+    color: #3c763d;
+    font-weight: 600;
+}
+
+/*CONF CSS FIN*/
+

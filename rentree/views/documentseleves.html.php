@@ -107,7 +107,7 @@ if( empty($_SESSION['identifiant'])) {
 							<div class="col-sm-offset-5 col-sm-7">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" id="checkmail" onkeyup ="emaildisabled()" <?php if($_SESSION['identifiant']== email) echo "checked"; ?> >Même email que l'identifiant
+										<input type="checkbox" id="checkmail" onchange ="emaildisabled()" <?php if($_SESSION['identifiant']== email) echo "checked"; ?> >Même email que l'identifiant
 									</label>
 								</div>
 							</div>

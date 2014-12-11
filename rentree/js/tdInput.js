@@ -11,11 +11,14 @@ $.fn.ModifiedTd = function(definitionAction){
     //Default parameters
     tdInput_defaultSettings = {
     nametd  : "action_modified",
-    tdununique : false,
-    isButton : true,
+    controleUniqueButton : false,
+    buttunClass : "btn",
     modifiedclass : "btn-primary",
     saveclass : "btn-success",
     cancelclass : "btn-danger",
+    modifiedtext : "",
+    savetext : "",
+    canceltext : "",
     modifiedglyph : "glyphicon glyphicon-pencil",
     saveglyph : "glyphicon glyphicon-floppy-disk",
     cancelglyph : "glyphicon glyphicon-ban-circle",
@@ -31,9 +34,6 @@ $.fn.ModifiedTd = function(definitionAction){
         var tdpersonnalised = tdInput_defaultSettings;
     }
 
-    var buttonClass="";
-
-    if(tdpersonnalised.isButton) buttonClass="btn "
 
 
 
@@ -43,13 +43,21 @@ $.fn.ModifiedTd = function(definitionAction){
 
 
 
-    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button class=\""+ buttonClass + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\"></span></button><button class=\"" + buttonClass + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\"></span></button><button class=\"" + buttonClass + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\"></span></button>");
- console.log();
 
+
+
+
+
+if (!tdpersonnalised.controleUniqueButton){
+
+
+
+//ADD OF BUTTON
+    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+
+//HIDE SAVE AND CANCEL BUTTON
 $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
 $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.saveclass).hide();
-
-
 
     $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.modifiedclass).on('click', function(){
         if ( $(myTable.selector + " td").hasClass("modified_input_open") ) {
@@ -118,6 +126,17 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(".modified_input_open").removeClass( "modified_input_open" );
 
     });
+}
+
+if (tdpersonnalised.controleUniqueButton){
+    //ADD OF BUTTON
+    $(" ." +tdpersonnalised.nametd).append("<button class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+
+    //HIDE SAVE AND CANCEL BUTTON
+    $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
+    $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.saveclass).hide();
+
+}
 
 
     function hide_precedent_input(){
