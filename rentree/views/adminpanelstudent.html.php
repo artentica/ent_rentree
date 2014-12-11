@@ -58,6 +58,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
+
             <td>'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>

@@ -47,7 +47,7 @@ $.fn.ModifiedTd = function(definitionAction){
 
 
 
-
+//Multiple BUTTON DIV
 if (!tdpersonnalised.controleUniqueButton){
 
 
@@ -128,13 +128,86 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
     });
 }
 
+
+//UNIQUE BUTTON DIV
 if (tdpersonnalised.controleUniqueButton){
     //ADD OF BUTTON
     $(" ." +tdpersonnalised.nametd).append("<button class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
 
     //HIDE SAVE AND CANCEL BUTTON
-    $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
-    $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.saveclass).hide();
+    $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
+    $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.saveclass).hide();
+
+
+
+
+    $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.modifiedclass).on('click', function(){
+        if ( $(myTable.selector + " td").hasClass("modified_input_open") ) {
+            hide_precedent_input();
+
+
+        }
+
+        $(this).hide();
+        $(this).parent().addClass("modified_input_open");
+        $(this).parent().children("." + tdpersonnalised.cancelclass).show();
+        $(this).parent().children("." + tdpersonnalised.saveclass).show();
+
+
+
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+
+            var value = $(element).text().replace('"', '\"');
+            eval("value_number" + index +" = '"+value+ "';");
+            $(element).text("");
+            $(element).append("<input class='form-control' type='text' value='"+ value +"'>");
+            console.log("yolo");
+            console.log(value_number0);
+        });
+
+    });
+
+
+    $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.saveclass).on('click', function(){
+
+        $(this).hide();
+        $(this).parent().children("." + tdpersonnalised.cancelclass).hide();
+        $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
+
+
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+            var value = $(element).children("input").val().replace('"', '\"');
+            if(eval("value != value_number"+ index+ ";")){
+                $(element).addClass("changed_value");
+                if($(element).parent("tr").not(".to_update_line")) $(element).parent("tr").addClass("to_update_line");
+            }
+            $(element).text("");
+            $(element).append(value);
+
+        });
+
+        $(".modified_input_open").removeClass( "modified_input_open" );
+
+    });
+
+
+    $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).on('click', function(){
+
+        $(this).hide();
+        $(this).parent().children("." + tdpersonnalised.saveclass).hide();
+        $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
+
+
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
+            eval("value = value_number"+ index+ ";");
+            $(element).text("");
+            $(element).append(value);
+
+        });
+
+        $(".modified_input_open").removeClass( "modified_input_open" );
+
+    });
 
 }
 
