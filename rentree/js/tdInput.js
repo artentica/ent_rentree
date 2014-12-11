@@ -16,15 +16,19 @@ $.fn.ModifiedTd = function(definitionAction){
     modifiedclass : "btn-primary",
     saveclass : "btn-success",
     cancelclass : "btn-danger",
+    ToSaveclass : "btn-danger",
     modifiedtext : "",
     savetext : "",
     canceltext : "",
+    ToSavetext : "",
     modifiedglyph : "glyphicon glyphicon-pencil",
     saveglyph : "glyphicon glyphicon-floppy-disk",
     cancelglyph : "glyphicon glyphicon-ban-circle",
+    ToSaveglyph : "glyphicon glyphicon-saved",
     modifiedtitle : "",
     savetitle : "",
     canceltitle : "",
+    ToSavetitle : "",
     identifier : "Id",
     notChange : "lockValue",
     saveOnChangeTd:true
@@ -49,8 +53,8 @@ if (!tdpersonnalised.controleUniqueButton){
 
 
 
-//ADD OF BUTTON
-    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+//ADD OF BUTTONS
+    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button title="+tdpersonnalised.modifiedtitle+" class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button title="+tdpersonnalised.savetitle+" class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title="+tdpersonnalised.canceltitle+" class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
 
 //HIDE SAVE AND CANCEL BUTTON
 $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
@@ -162,8 +166,9 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 
 //UNIQUE BUTTON DIV
 if (tdpersonnalised.controleUniqueButton){
-    //ADD OF BUTTON
-    $(" ." +tdpersonnalised.nametd).append("<button title='' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+
+    //ADD OF BUTTONS
+    $(" ." +tdpersonnalised.nametd).append("<button  title='"+tdpersonnalised.modifiedtitle+"' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button title='"+tdpersonnalised.savetitle+"' class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title='"+tdpersonnalised.canceltitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
 
     //HIDE SAVE AND CANCEL BUTTON
     $(" ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();

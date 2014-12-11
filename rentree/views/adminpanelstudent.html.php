@@ -9,7 +9,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('link')?>
 
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
-aaaa
+
 <?php end_content_for();?>
 
 <?php content_for('header'); ?>
@@ -61,7 +61,7 @@ aaaa
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
             <td>'.$value["identifiant"].'</td>
-            <td class="lockValue">'.$value["nom_fils"].'</td>
+            <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
             <td>'.$value["ddn_fils"].'</td>
             <td>'.$value["tel_mobile"].'</td>
@@ -148,7 +148,10 @@ aaaa
             controleUniqueButton : true,
             modifiedtext : " Modifier",
             savetext : " Sauvegarder",
-            canceltext : " Annuler"
+            canceltext : " Annuler",
+            modifiedtitle : "Modifiez tout les champs autorisés",
+            savetitle : "Sauvegardez vos modifications",
+            canceltitle : "Annuler toutes vos récentes modifications"
         });
 
 
