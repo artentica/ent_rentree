@@ -22,7 +22,11 @@ $.fn.ModifiedTd = function(definitionAction){
     modifiedglyph : "glyphicon glyphicon-pencil",
     saveglyph : "glyphicon glyphicon-floppy-disk",
     cancelglyph : "glyphicon glyphicon-ban-circle",
+    modifiedtitle : "",
+    savetitle : "",
+    canceltitle : "",
     identifier : "Id",
+    notChange : "lockValue",
     saveOnChangeTd:true
   };
 
@@ -63,7 +67,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 
 
             if(tdpersonnalised.saveOnChangeTd){
-                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
+                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
                     var value = $(element).children("input").val().replace('"', '\"');
                     if(eval("value != value_number"+ index+ ";")){
                         $(element).addClass("changed_value");
@@ -73,7 +77,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
                     $(element).append(value);
                 });
             }else{
-                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
+                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
 
                     $(element).text("");
                     $(element).append(eval("value_number"+ index));
@@ -96,7 +100,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
 
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
@@ -116,7 +120,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
             if(eval("value != value_number"+ index+ ";")){
                 $(element).addClass("changed_value");
@@ -139,7 +143,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             eval("value = value_number"+ index+ ";");
             $(element).text("");
             $(element).append(value);
@@ -177,7 +181,7 @@ if (tdpersonnalised.controleUniqueButton){
 
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
@@ -194,7 +198,7 @@ if (tdpersonnalised.controleUniqueButton){
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
             if(eval("value != value_number"+ index+ ";")){
                 $(element).addClass("changed_value");
@@ -217,7 +221,7 @@ if (tdpersonnalised.controleUniqueButton){
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).each(function( index , element){
+        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             eval("value = value_number"+ index+ ";");
             $(element).text("");
             $(element).append(value);

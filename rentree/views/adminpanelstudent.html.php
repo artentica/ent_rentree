@@ -9,7 +9,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('link')?>
 
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
-
+aaaa
 <?php end_content_for();?>
 
 <?php content_for('header'); ?>
@@ -38,7 +38,6 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             <thead>
                 <tr>
                     <!--<th class="col-md-1">Action</th>-->
-                    <th class="col-md-1">Action</th>
                     <th class="col-md-2">Identifiant</th>
                     <th class="col-md-1">Nom</th>
                     <th class="col-md-1">Prenom</th>
@@ -47,6 +46,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                     <th class="col-md-2">Couriel</th>
                     <th class="col-md-1">Date d'enregistrement</th>
                     <th class="col-md-1">Adresse IP</th>
+                    <th hidden>ID</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -59,15 +60,15 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
-            <td class="action_modified"></td>
             <td>'.$value["identifiant"].'</td>
-            <td>'.$value["nom_fils"].'</td>
+            <td class="lockValue">'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
             <td>'.$value["ddn_fils"].'</td>
             <td>'.$value["tel_mobile"].'</td>
             <td>'.$value["courriel"].'</td>
             <td>'.$value["date"].'</td>
             <td>'.$value["ip"].'</td>
+            <td class="Id" hidden>'.$value["id"].'</td>
         </tr>';
     }
 ?>
@@ -143,11 +144,11 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 	});
 
         $('#tablaDatos').ModifiedTd({
-           /* nametd  : "unique_div",
+            nametd  : "unique_div",
             controleUniqueButton : true,
             modifiedtext : " Modifier",
             savetext : " Sauvegarder",
-            canceltext : " Modifier"*/
+            canceltext : " Annuler"
         });
 
 
