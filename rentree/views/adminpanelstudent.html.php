@@ -38,6 +38,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             <thead>
                 <tr>
                     <!--<th class="col-md-1">Action</th>-->
+                    <th class="col-md-1">Action</th>
                     <th class="col-md-2">Identifiant</th>
                     <th class="col-md-1">Nom</th>
                     <th class="col-md-1">Prenom</th>
@@ -58,8 +59,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
-
-            <td class="Id">'.$value["identifiant"].'</td>
+            <td class="action_modified"></td>
+            <td>'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
             <td>'.$value["ddn_fils"].'</td>
@@ -142,11 +143,11 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 	});
 
         $('#tablaDatos').ModifiedTd({
-            nametd  : "unique_div",
+           /* nametd  : "unique_div",
             controleUniqueButton : true,
             modifiedtext : " Modifier",
             savetext : " Sauvegarder",
-            canceltext : " Modifier"
+            canceltext : " Modifier"*/
         });
 
 
