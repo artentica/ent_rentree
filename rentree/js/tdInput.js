@@ -87,6 +87,10 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 
         $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
+            if(eval("value != value_number"+ index+ ";")){
+                $(element).addClass("changed_value");
+                if($(element).parent("tr").not(".to_update_line")) $(element).parent("tr").addClass("to_update_line");
+            }
             $(element).text("");
             $(element).append(value);
 
