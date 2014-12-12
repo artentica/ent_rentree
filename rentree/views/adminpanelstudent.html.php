@@ -151,7 +151,9 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             canceltext : " Annuler",
             modifiedtitle : "Modifiez tout les champs autorisés",
             savetitle : "Sauvegardez vos modifications",
-            canceltitle : "Annuler toutes vos récentes modifications"
+            canceltitle : "Annuler toutes vos récentes modifications",
+            ToSavetext : " Valider les changements",
+            ToSavetitle : "Produit une variable renvoyant tous les changements",
         });
 
 

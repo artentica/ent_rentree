@@ -52,10 +52,10 @@ $.fn.ModifiedTd = function(definitionAction){
 //Multiple BUTTON DIV
 if (!tdpersonnalised.controleUniqueButton){
 
-
+//console.log($(".jjbljhbljhbl").get(0));
 
 //ADD OF BUTTONS
-    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button title="+tdpersonnalised.modifiedtitle+" class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button title="+tdpersonnalised.savetitle+" class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title="+tdpersonnalised.canceltitle+" class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
+    $(myTable.selector + " ." +tdpersonnalised.nametd).append("<button title='"+tdpersonnalised.modifiedtitle+"' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button title='"+tdpersonnalised.savetitle+"' class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title='"+tdpersonnalised.canceltitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button>");
 
 //HIDE SAVE AND CANCEL BUTTON
 $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.cancelclass).hide();
@@ -64,7 +64,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
     $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonnalised.modifiedclass).on('click', function(){
 
         //If there already a td editing when we want to edit another
-        if ( $(myTable.selector + " td").hasClass("modified_input_open") ) {
+        if ( $(".modified_input_open").get(0)!= "undefined" ) {
 
             $(".modified_input_open button." + tdpersonnalised.cancelclass).hide();
             $(".modified_input_open ." + tdpersonnalised.saveclass).hide();
@@ -72,17 +72,17 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 
 
             if(tdpersonnalised.saveOnChangeTd){
-                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+                $(myTable.selector + " .modified_input_open").parent().children().not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
                     var value = $(element).children("input").val().replace('"', '\"');
                     if(eval("value != value_number"+ index+ ";")){
                         $(element).addClass("changed_value");
-                        if($(element).parent("tr").not(".to_update_line")) $(element).parent("tr").addClass("to_update_line");
+                        if($(element).parent().not(".to_update_line")) $(element).parent().addClass("to_update_line");
                     }
                     $(element).text("");
                     $(element).append(value);
                 });
             }else{
-                $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+                $(myTable.selector + " modified_input_open").parent().children().not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
 
                     $(element).text("");
                     $(element).append(eval("value_number"+ index));
@@ -125,11 +125,11 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+        $(myTable.selector + " .modified_input_open").parent().children().not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
             if(eval("value != value_number"+ index+ ";")){
                 $(element).addClass("changed_value");
-                if($(element).parent("tr").not(".to_update_line")) $(element).parent("tr").addClass("to_update_line");
+                if($(element).parent().not(".to_update_line")) $(element).parent().addClass("to_update_line");
             }
             $(element).text("");
             $(element).append(value);
@@ -148,7 +148,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
         $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
 
 
-        $(myTable.selector + " td.modified_input_open").parent("tr").children("td").not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+        $(myTable.selector + " .modified_input_open").parent().children().not($(".modified_input_open")).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             eval("value = value_number"+ index+ ";");
             $(element).text("");
             $(element).append(value);
