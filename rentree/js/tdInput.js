@@ -11,7 +11,7 @@ $.fn.ModifiedTd = function(definitionAction){
     //Default parameters
     tdInput_defaultSettings = {
     nametd  : "action_modified",
-    nameFinalButton:"",
+    nameFinalButton:"final_button",
     controleUniqueButton : false,
     buttunClass : "btn",
     modifiedclass : "btn-primary",
@@ -32,6 +32,7 @@ $.fn.ModifiedTd = function(definitionAction){
     ToSavetitle : "",
     identifier : "Id",
     notChange : "lockValue",
+    parentChildrenArch : "tr td",
     saveOnChangeTd:true
   };
 
@@ -46,7 +47,7 @@ $.fn.ModifiedTd = function(definitionAction){
     }
 
 
-
+tdpersonnalised.parentChildrenArch
 
 
 //Multiple BUTTON DIV
@@ -191,7 +192,7 @@ if (tdpersonnalised.controleUniqueButton){
 
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+        $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
@@ -209,11 +210,11 @@ if (tdpersonnalised.controleUniqueButton){
         $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).show();
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+        $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             var value = $(element).children("input").val().replace('"', '\"');
             if(eval("value != value_number"+ index+ ";")){
                 $(element).addClass("changed_value");
-                if($(element).parent("tr").not(".to_update_line")) $(element).parent("tr").addClass("to_update_line");
+                if($(element).parent().not(".to_update_line")) $(element).parent().addClass("to_update_line");
             }
             $(element).text("");
             $(element).append(value);
@@ -233,7 +234,7 @@ if (tdpersonnalised.controleUniqueButton){
         $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).show();
 
 
-        $(myTable.selector + " tr td").not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
+        $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
             eval("value = value_number"+ index+ ";");
             $(element).text("");
             $(element).append(value);
