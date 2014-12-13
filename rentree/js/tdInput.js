@@ -47,9 +47,6 @@ $.fn.ModifiedTd = function(definitionAction){
     }
 
 
-tdpersonnalised.parentChildrenArch
-
-
 //Multiple BUTTON DIV
 if (!tdpersonnalised.controleUniqueButton){
 
@@ -111,7 +108,7 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
-            $(element).append("<input class='form-control' type='text' value='"+ value +"'>");
+            $(element).append("<input class='form-control' type='"+ $(element).type +"' value='"+ value +"'>");
         });
      });
 
@@ -196,7 +193,9 @@ if (tdpersonnalised.controleUniqueButton){
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
-            $(element).append("<input class='form-control' type='text' value='"+ value +"'>");
+            var temp = $(element);
+            if(temp.dataset.type) console.log(temp.dataset.type);
+            $(element).append("<input class='form-control' type='"+ $(element).type +"' value='"+ value +"'>");
         });
 
     });

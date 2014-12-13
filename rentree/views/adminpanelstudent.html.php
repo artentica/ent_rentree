@@ -60,12 +60,12 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
-            <td>'.$value["identifiant"].'</td>
+            <td data-type="email">'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
             <td>'.$value["ddn_fils"].'</td>
-            <td>'.$value["tel_mobile"].'</td>
-            <td>'.$value["courriel"].'</td>
+            <td data-type="number">'.$value["tel_mobile"].'</td>
+            <td data-type="email">'.$value["courriel"].'</td>
             <td>'.$value["date"].'</td>
             <td>'.$value["ip"].'</td>
             <td class="Id" hidden>'.$value["id"].'</td>
