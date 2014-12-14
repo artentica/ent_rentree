@@ -12,73 +12,68 @@ function active_li(){
 /**
 	Charge la liste des promos et cache l'autre onglet
 */
-function loadPromotionsList() {
+$(window.document).on('click', '#promotionsList', function() {
 
-	// OSEF, c'est juste pour tester
- 	var content = "";
-	for (var key in promotionsList){
-	   content += promotionsList[key];
-	   content += " <br/> ";
-	}
-
-	$("#documentSelected_content").addClass("hidden");
-	$("#promotionsList_content").html(content);
-	$("#promotionsList_content").removeClass("hidden");
-
-}
-$(window.document).on('click', '#promotionsList', loadPromotionsList);
-
-/**
-	Affiche les promos concernées par le doc (si un doc est selectionné)
-*/
-$(window.document).on('click', '#documentSelected', function() {
-
-	var content = "No selected document";
-	if(typeof selectedDoc != 'undefined' && selectedDoc != null) {
-		// On affiche les promos qui possèdent le document
-		content = "* les promos qui possèdent le document *";
-	}
-
-	$("#promotionsList_content").addClass("hidden");
-	$("#documentSelected_content").html(content);
-	$("#documentSelected_content").removeClass("hidden");
+	$("#documentSelected_content").hide();
+	$("#documentSelected").removeClass("active");
+	$("#promotionsList_content").show();
+	$("#promotionsList").addClass("active");
 
 });
 
 /**
-	Charge la liste des documents et cache les autres onglets
+	Affiche les promos concernées par le doc (si un doc est selectionné)
 */
-function loadDocumentsList() {
+function loadDocumentSelectedContent() {
 
-	// OSEF, c'est juste pour tester
-	var content = "";
-	for (var key in documentsList){
-	   content += documentsList[key]["libelle"];
-	   content += "&nbsp &nbsp &nbsp";
-	   content += documentsList[key]["fichier"];
-	   content += " <br/> ";
+	var content = "No selected document";
+	if(typeof selectedDoc != 'undefined' && selectedDoc != null) {
+		// On affiche les promos qui possèdent le document
+		content = $("#"+selectedDoc).attr("promos");
+		if(content == "") {
+			content = "Ce document n'est pas associé à une promo en particulier";
+		}
+		content = "<tr><td>"+content+"</td></tr>";
 	}
 
-	$("#promotionSelected_content").addClass("hidden");
-	$("#documentsList_content").html(content);
-	$("#documentsList_content").removeClass("hidden");
+	$("#promotionsList_content").hide();
+	$("#promotionsList").removeClass("active");
+	$("#documentSelected_content").html(content);
+	$("#documentSelected_content").show();
+	$("#documentSelected").addClass("active");
 
 }
-$(window.document).on('click', '#documentsList', loadDocumentsList);
+$(window.document).on('click', '#documentSelected', loadDocumentSelectedContent );
+
+/**
+	Charge la liste des documents et cache les autres onglets
+*/
+$(window.document).on('click', '#documentsList', function() {
+
+	$("#promotionSelected_content").hide();
+	$("#documentsList_content").show();
+
+});
 
 /**
 	Affiche les documents appartenant à la promos (si une promo est selectionnée)
 */
 $(window.document).on('click', '#promotionSelected', function() {
 
-	var content = "No selected document";
+	var content = "No selected promo";
 	if(typeof selectedPromo != 'undefined' && selectedPromo != null) {
 		// On affiche les documents que possède la promo
 		content = "* les documents que possède la promo *";
 	}
 
-	$("#documentsList_content").addClass("hidden");
+	$("#documentsList_content").hide();
 	$("#promotionSelected_content").html(content);
-	$("#promotionSelected_content").removeClass("hidden");
+	$("#promotionSelected_content").show();
 
+});
+
+
+$(".file").click(function() {
+	selectedDoc = $(this).attr("id");
+	loadDocumentSelectedContent();
 });

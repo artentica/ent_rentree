@@ -10,10 +10,10 @@ define ('DbHost', '127.0.0.1');
 define ('DbName', 'rentree');
 //
 //  Utilisateur de la base de donnée	//
-define ('dbuser', 'rentree');
+define ('dbuser', 'root');
 //
 //  Mot de passe de la base de donnée	//
-define ('dbpass', 'rentree');
+define ('dbpass', 'minouchette');
 //
 //
 //
