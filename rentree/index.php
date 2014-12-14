@@ -18,6 +18,11 @@
 
     dispatch('/adminpanelstudent' , 'adminpanelstudent');
 
+    dispatch('/admin/MAJ_BDD' , 'MAJ_BDD');
+
+
+
+
 	run();
 ?>
 

@@ -214,13 +214,11 @@ if (tdpersonnalised.controleUniqueButton){
 
         $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
 
-
+            $(element).removeClass( "has-error has-feedback" );
             if($(element).children().attr("type") == "number"){
                 if (!$(element).children().val()){
                     ok = false;
                     $(element).addClass( "has-error has-feedback" );
-
-
                 }
             }
             else if($(element).children().attr("type") == "email"){
@@ -233,13 +231,13 @@ if (tdpersonnalised.controleUniqueButton){
             else if($(element).children().attr("type") == "date"){
 
             }
-            else $(element).removeClass( "has-error has-feedback" );
+
 
         });
 
         if(ok){
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).each(function( index , element){
-                var value = $(element).children("input").val().replace('"', '\"');
+                var value = $(element).children("input").val();
                 if(eval("value != value_number"+ index+ ";")){
                     $(element).addClass("changed_value");
                     if($(element).parent().not(".to_update_line")) $(element).parent().addClass("to_update_line");
@@ -255,7 +253,6 @@ if (tdpersonnalised.controleUniqueButton){
                 $(this).parent().children("." + tdpersonnalised.cancelclass).hide();
                 $(this).parent().children("." + tdpersonnalised.modifiedclass).show();
                 $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).show();
-            console.log(some_change);
            if(some_change) $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).removeAttr("disabled");
                 $(".modified_input_open").removeClass( "modified_input_open" );
             }
@@ -279,6 +276,12 @@ if (tdpersonnalised.controleUniqueButton){
         });
 
         $(".modified_input_open").removeClass( "modified_input_open" );
+
+    });
+
+    $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).on('click', function(){
+
+        //$.post( "<?=url_for('/admin/MAJ_BDD'); ?>");
 
     });
 
