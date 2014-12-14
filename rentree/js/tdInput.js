@@ -193,9 +193,9 @@ if (tdpersonnalised.controleUniqueButton){
             var value = $(element).text().replace('"', '\"');
             eval("value_number" + index +" = '"+value+ "';");
             $(element).text("");
-            var temp = $(element);
-            if(temp.dataset.type) console.log(temp.dataset.type);
-            $(element).append("<input class='form-control' type='"+ $(element).type +"' value='"+ value +"'>");
+            var temp = $(element).get(0).dataset.type;
+            if (temp==undefined) temp = "text";
+            $(element).append("<input class='form-control' type='"+ temp +"' value='"+ value +"'>");
         });
 
     });
