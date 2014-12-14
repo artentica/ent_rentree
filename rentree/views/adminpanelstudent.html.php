@@ -63,7 +63,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             <td data-type="email">'.$value["identifiant"].'</td>
             <td>'.$value["nom_fils"].'</td>
             <td>'.$value["prenom_fils"].'</td>
-            <td data-type="date">'.$value["ddn_fils"].'</td>
+            <td data-type="">'.$value["ddn_fils"].'</td>
             <td data-type="number">'.$value["tel_mobile"].'</td>
             <td data-type="email">'.$value["courriel"].'</td>
             <td>'.$value["date"].'</td>
@@ -130,16 +130,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 		toolbar:{
 			enabled:true,
 			filterBox:true,
-			buttons:['view', 'delete']
-		},
-		onView:function(){
-			alert('View button was pressed');
-		},
-		onEdit:function(){
-			alert('Edit button was pressed');
-		},
-		onDelete:function(){
-			alert('Delete button was pressed');
+			buttons:[]
 		}
 	});
 
