@@ -115,6 +115,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/li_url.js"></script>
 <script src="js/tdInput.js"></script>
 
+
 <script>
 
     <?php if(!$downdata) echo '$("#myModal").modal({backdrop: true});'; ?>
@@ -145,6 +146,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             canceltitle : "Annuler toutes vos récentes modifications",
             ToSavetext : " Valider les changements",
             ToSavetitle : "Produit une variable renvoyant tous les changements",
+            lien : "<?=url_for('/admin/MAJ_BDD'); ?>"
         });
 
 
@@ -153,5 +155,4 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 active_li();
 </script>
-
 <?php end_content_for();?>

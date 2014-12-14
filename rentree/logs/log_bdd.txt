@@ -102,4 +102,30 @@ Stack trace:
 #3 [internal function]: save_student()
 #4 C:\wamp\www\rentree\framework\limonade\limonade.php(429): call_user_func_array('save_student', Array)
 #5 C:\wamp\www\rentree\index.php(14): run()
-#6 {main}
+#6 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'root', 'minouchette')
+#1 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(46): DbOperation('SELECT DISTINCT...')
+#3 C:\wamp\www\ent_rentree\rentree\views\adminpanel.html.php(48): liste_promo()
+#4 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(1467): include('C:\\wamp\\www\\ent...')
+#5 [internal function]: render('adminpanel.html...', 'layout.html.php')
+#6 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(1507): call_user_func_array('render', Array)
+#7 C:\wamp\www\ent_rentree\rentree\controllers\adminpanelprincipal.php(6): html('adminpanel.html...', 'layout.html.php')
+#8 [internal function]: adminpanel()
+#9 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(429): call_user_func_array('adminpanel', Array)
+#10 C:\wamp\www\ent_rentree\rentree\index.php(26): run()
+#11 {main}exception 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php:14
+Stack trace:
+#0 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'root', 'minouchette')
+#1 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(30): connect_bdd()
+#2 C:\wamp\www\ent_rentree\rentree\lib\bdd_generic_function.php(46): DbOperation('SELECT DISTINCT...')
+#3 C:\wamp\www\ent_rentree\rentree\views\adminpanel.html.php(48): liste_promo()
+#4 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(1467): include('C:\\wamp\\www\\ent...')
+#5 [internal function]: render('adminpanel.html...', 'layout.html.php')
+#6 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(1507): call_user_func_array('render', Array)
+#7 C:\wamp\www\ent_rentree\rentree\controllers\adminpanelprincipal.php(6): html('adminpanel.html...', 'layout.html.php')
+#8 [internal function]: adminpanel()
+#9 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(429): call_user_func_array('adminpanel', Array)
+#10 C:\wamp\www\ent_rentree\rentree\index.php(26): run()
+#11 {main}
