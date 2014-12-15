@@ -279,7 +279,33 @@ if (tdpersonnalised.controleUniqueButton){
     });
 
     $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).on('click', function(){
-        //console.log(tdpersonnalised.lien);
+        var toChange = [];
+
+            $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
+                var value ="";
+
+                //attention arborescense
+
+                $(element).children().each(function(index,element){
+                    if($(element).parent().children(".Id")){//if class Id exist
+                         value = "id : " + $(element + ' .Id').val() +",";
+                        if($(element).hasClass("changed_value")){
+                             value = $(element).get(0).dataset.name_bdd;
+                             console.log(value);
+                    }
+                     }
+
+                    /*toChange.push({
+
+
+                    });
+                     }else{
+                    console.log("yolo2");
+                        }*/
+                });
+            });
+
+        console.log(toChange);
         $.post(tdpersonnalised.lien);
 
     });

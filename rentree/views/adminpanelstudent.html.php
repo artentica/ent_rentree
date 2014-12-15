@@ -60,14 +60,14 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        /* $token = explode("/", $value["ddn_fils"]);
         $date_anniv = $token[2] . "-" . $token[1] ."-" .$token[0];*/
          echo'<tr>
-            <td data-type="email">'.$value["identifiant"].'</td>
-            <td>'.$value["nom_fils"].'</td>
-            <td>'.$value["prenom_fils"].'</td>
-            <td data-type="">'.$value["ddn_fils"].'</td>
-            <td data-type="number">'.$value["tel_mobile"].'</td>
-            <td data-type="email">'.$value["courriel"].'</td>
-            <td>'.$value["date"].'</td>
-            <td>'.$value["ip"].'</td>
+            <td data-type="email"  data-name_bdd="identifiant">'.$value["identifiant"].'</td>
+            <td data-name_bdd="nom_fils">'.$value["nom_fils"].'</td>
+            <td data-name_bdd="prenom_fils">'.$value["prenom_fils"].'</td>
+            <td data-type="" data-name_bdd="ddn_fils">'.$value["ddn_fils"].'</td>
+            <td data-type="number" data-name_bdd="tel_mobile">'.$value["tel_mobile"].'</td>
+            <td data-type="email" data-name_bdd="courriel">'.$value["courriel"].'</td>
+            <td data-name_bdd="date">'.$value["date"].'</td>
+            <td data-name_bdd="ip">'.$value["ip"].'</td>
             <td class="Id" hidden>'.$value["id"].'</td>
         </tr>';
     }

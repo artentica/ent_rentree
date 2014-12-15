@@ -18,7 +18,7 @@
 
     dispatch('/adminpanelstudent' , 'adminpanelstudent');
 
-    dispatch('/admin/MAJ_BDD' , 'MAJ_BDD');
+    dispatch_post('/admin/MAJ_BDD' , 'MAJ_BDD');
 
 
 
