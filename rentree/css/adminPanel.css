@@ -1,3 +1,16 @@
+.promo {
+    font-size: 14px;
+}
+
+.css-treeview a {
+    font-size: 16px;
+}
+
+.css-treeview li {
+    line-height: 22px;
+}
+
+
 /*
  * CSS3 Treeview. No JavaScript
  * @version 1.0
@@ -42,7 +55,9 @@
 
 .css-treeview a
 {
-    color: #00f;
+    /* edit by Gillou */
+    color: black;
+    /**/
     text-decoration: none;
 }
 
@@ -97,6 +112,10 @@
 .css-treeview label
 {
     background-position: 18px 0;
+
+    /* edit by Gillou */
+    font-size: 16px;
+    /**/
 }
 
 .css-treeview label::before
