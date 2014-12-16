@@ -35,8 +35,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
            <div class="row">
             <div class="col-md-4 col-md-offset-4">
 				<div id="register" style="text-align:center;" class="alert alert-success alert-dismissible fade in" role="alert">
-				<button type="button" class="close" data-dismiss="alert">
-				<span aria-hidden="true">&times;</span>
+				<button type="button" class="close">
+				<span onclick="$('#register').hide();" >x</span>
 				<span class="sr-only">Close</span></button>
 				<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>
 				<span class="sr-only">Success:</span>

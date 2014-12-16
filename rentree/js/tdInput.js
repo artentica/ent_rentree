@@ -172,6 +172,13 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 //UNIQUE BUTTON DIV
 if (tdpersonnalised.controleUniqueButton){
 
+
+     $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).keypress(function (e) {
+      if (e.which == 13) {
+         $(" ." + tdpersonnalised.nametd + " button#savebutton").click();
+      }
+    });
+
     //ADD OF BUTTONS
     $(" ." +tdpersonnalised.nametd).append("<button  title='"+tdpersonnalised.modifiedtitle+"' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button id='savebutton' title='"+tdpersonnalised.savetitle+"' class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title='"+tdpersonnalised.canceltitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button><button disabled title='"+tdpersonnalised.ToSavetitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.ToSaveclass +"\"><span class=\""+ tdpersonnalised.ToSaveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.ToSavetext+"</span></button>");
 
