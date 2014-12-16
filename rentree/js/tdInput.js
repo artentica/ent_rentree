@@ -33,7 +33,8 @@ $.fn.ModifiedTd = function(definitionAction){
     identifier : "Id",
     notChange : "lockValue",
     parentChildrenArch : "tr td",
-    saveOnChangeTd:true
+    saveOnChangeTd:true,
+    errorMsgFunction : "Appel de la page non réussie"
   };
 
 
@@ -283,32 +284,43 @@ if (tdpersonnalised.controleUniqueButton){
 
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
                 var value ="";
-
+                if($(element).parent().children(".Id")){//if class Id exist
+                    value = "id : '" + $(element).children(".Id").text() +"',";
+                }
                 //attention arborescense
 
                 $(element).children().each(function(index,element){
-                    if($(element).parent().children(".Id")){//if class Id exist
-                         value = "id : " + $(element + ' .Id').val() +",";
+
+                    if(value!=""){
                         if($(element).hasClass("changed_value")){
-                             value = $(element).get(0).dataset.name_bdd;
-                             console.log(value);
+                            value = value + $(element).get(0).dataset.name_bdd + " : '" +  $(element).text() + "', ";
+                         }
                     }
-                     }
+                    else{
+                        value = value + $(element).get(0).dataset.name_bdd + " : '" +  $(element).text() + "', ";
+                    }
 
-                    /*toChange.push({
 
 
-                    });
-                     }else{
-                    console.log("yolo2");
-                        }*/
                 });
+                toChange.push(value);
             });
 
-        console.log(toChange);
-        $.post(tdpersonnalised.lien);
+        //console.log(toChange);
+        $.ajax({
+            type: "POST",
+            url: tdpersonnalised.lien,
+            data: {list:JSON.stringify(toChange)},
+        }).success(function(data){
+                alert("OK");
+            console.log(data);
+            }).error(function(){
+                alert(tdpersonnalised.errorMsgFunction);
+            });
+
 
     });
+    toChange = [];
 
 }
 
