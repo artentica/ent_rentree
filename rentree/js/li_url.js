@@ -33,8 +33,8 @@ function loadDocumentSelectedContent() {
 		if(content == "") {
 			content = "Ce document n'est pas associé à une promo en particulier";
 		}
-		content = "<tr><td>"+content+"</td></tr>";
 	}
+	content = "<tr><td>"+content+"</td></tr>";
 
 	$("#promotionsList_content").hide();
 	$("#promotionsList").removeClass("active");
@@ -50,30 +50,43 @@ $(window.document).on('click', '#documentSelected', loadDocumentSelectedContent 
 */
 $(window.document).on('click', '#documentsList', function() {
 
-	$("#promotionSelected_content").hide();
+	$("#promotionSelected").removeClass("active");
 	$("#documentsList_content").show();
+	$(".file").show();
+	$("#documentsList").addClass("active");
 
 });
 
 /**
 	Affiche les documents appartenant à la promos (si une promo est selectionnée)
 */
-$(window.document).on('click', '#promotionSelected', function() {
+function loadPromotionSelectedContent() {
 
-	var content = "No selected promo";
+	var promos = "";
 	if(typeof selectedPromo != 'undefined' && selectedPromo != null) {
 		// On affiche les documents que possède la promo
-		content = "* les documents que possède la promo *";
+		promos = $("#"+selectedPromo).html();
 	}
 
-	$("#documentsList_content").hide();
-	$("#promotionSelected_content").html(content);
-	$("#promotionSelected_content").show();
+	$("#documentsList_content").show();
+	$("#documentsList").removeClass("active");
+	$("#promotionSelected").addClass("active");
 
-});
+	if(promos != "") {
+		$(".file").hide();
+		$(".file[promos='']").show();
+		$(".file[promos='"+promos+"']").show();
+	}
+}
+$(window.document).on('click', '#promotionSelected', loadPromotionSelectedContent );
 
 
 $(".file").click(function() {
 	selectedDoc = $(this).attr("id");
 	loadDocumentSelectedContent();
+});
+
+$(".promo").click(function() {
+	selectedPromo = $(this).attr("id");
+	loadPromotionSelectedContent();
 });

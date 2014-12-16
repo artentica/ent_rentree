@@ -9,7 +9,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('link')?>
 
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
-<link rel="stylesheet" href="css/treeView.css" type="text/css" />
+<link rel="stylesheet" href="css/adminPanel.css" type="text/css" />
 
 <?php end_content_for();?>
 
@@ -35,7 +35,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <div class="row">
 
-	<div class="col-md-6">
+	<div class="col-md-4">
 
         <ul class="nav nav-tabs nav-justified">
         	<li id="promotionsList" class="active"><a class="btn" data-toggle="tab">Liste des promotions</a></li>
@@ -47,7 +47,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 			<?php
 				$list = trie_list_annee(liste_promo());
 				foreach ($list as $key => $value) {
-					echo("<tr><td>".$value."</td></tr>");
+					echo('<tr><td id="promo_'.$key.'" class="promo">'.$value."</td></tr>");
 				}
 			?>
 			</tbody>
@@ -57,7 +57,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
 
         <ul class="nav nav-tabs nav-justified">
         	<li id="documentsList" class="active"><a class="btn" data-toggle="tab">Tous les documents</a></li>
@@ -86,23 +86,15 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 							        </ul>
 								</li>
 								<?php
-
-									/*
-									id
-									rang
-									promo
-									libelle
-									fichier
-									*/
-
+									/* id 		rang 	promo 	libelle 	fichier */
 									$listdoc = liste_doc();
 									foreach ($listdoc as $key => $value) {
 										$listdoc[$key]['libelle'] = utf8_encode($value['libelle']);
 									}
-
+									/* <li id="file_42" class="file" promos="CIR3"><a>NOMDUFICHIER</a></li> */
 									foreach ($listdoc as $key => $value) {
 										echo('<li id="file_'.$value["id"].'" class="file" promos="'.$value["promo"].'"><a>');
-										echo($value["fichier"]."<br/>");
+										echo($value["fichier"]);
 										echo("</a></li>");
 									}
 								?>
@@ -112,8 +104,6 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 				</tr>
 			</tbody>
 		</table>
-
-		<table id="promotionSelected_content" class="table table-striped table-hover sortable"></table>
 
     </div>
 
