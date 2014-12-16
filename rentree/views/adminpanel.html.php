@@ -39,22 +39,19 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
         <ul class="nav nav-tabs nav-justified">
         	<li id="promotionsList" class="active"><a class="btn" data-toggle="tab">Liste des promotions</a></li>
-        	<li id="documentSelected"><a class="btn" data-toggle="tab">Promos du document sélectionné</a></li>
         </ul>
 
         <table id="promotionsList_content" class="table table-striped table-hover sortable">
        		<tbody style="cursor: pointer;">
 			<?php
 				$list = trie_list_annee(liste_promo());
+				echo('<tr><td id="promo_0" class="promo">Commun à toutes les promotions</td></tr>');
 				foreach ($list as $key => $value) {
-					echo('<tr><td id="promo_'.$key.'" class="promo">'.$value."</td></tr>");
+					echo('<tr><td id="promo_'.++$key.'" class="promo">'.$value."</td></tr>");
 				}
 			?>
 			</tbody>
 		</table>
-
-		<table id="documentSelected_content" class="table table-striped table-hover sortable"></table>
-
     </div>
 
     <div class="col-md-8">
@@ -93,7 +90,11 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 									}
 									/* <li id="file_42" class="file" promos="CIR3"><a>NOMDUFICHIER</a></li> */
 									foreach ($listdoc as $key => $value) {
-										echo('<li id="file_'.$value["id"].'" class="file" promos="'.$value["promo"].'"><a>');
+										echo('<li id="file_'.$value["id"].'" class="file');
+										if($value["promo"] == "") {
+											echo(' generic');
+										}
+										echo('" promos="'.$value["promo"].'"><a>');
 										echo($value["fichier"]);
 										echo("</a></li>");
 									}

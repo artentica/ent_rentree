@@ -10,42 +10,6 @@ function active_li(){
 }
 
 /**
-	Charge la liste des promos et cache l'autre onglet
-*/
-$(window.document).on('click', '#promotionsList', function() {
-
-	$("#documentSelected_content").hide();
-	$("#documentSelected").removeClass("active");
-	$("#promotionsList_content").show();
-	$("#promotionsList").addClass("active");
-
-});
-
-/**
-	Affiche les promos concernées par le doc (si un doc est selectionné)
-*/
-function loadDocumentSelectedContent() {
-
-	var content = "No selected document";
-	if(typeof selectedDoc != 'undefined' && selectedDoc != null) {
-		// On affiche les promos qui possèdent le document
-		content = $("#"+selectedDoc).attr("promos");
-		if(content == "") {
-			content = "Ce document n'est pas associé à une promo en particulier";
-		}
-	}
-	content = "<tr><td>"+content+"</td></tr>";
-
-	$("#promotionsList_content").hide();
-	$("#promotionsList").removeClass("active");
-	$("#documentSelected_content").html(content);
-	$("#documentSelected_content").show();
-	$("#documentSelected").addClass("active");
-
-}
-$(window.document).on('click', '#documentSelected', loadDocumentSelectedContent );
-
-/**
 	Charge la liste des documents et cache les autres onglets
 */
 $(window.document).on('click', '#documentsList', function() {
@@ -63,8 +27,7 @@ $(window.document).on('click', '#documentsList', function() {
 function loadPromotionSelectedContent() {
 
 	var promos = "";
-	if(typeof selectedPromo != 'undefined' && selectedPromo != null) {
-		// On affiche les documents que possède la promo
+	if(typeof selectedPromo != 'undefined' && selectedPromo != null && selectedPromo != "promo_0") {
 		promos = $("#"+selectedPromo).html();
 	}
 
@@ -72,21 +35,51 @@ function loadPromotionSelectedContent() {
 	$("#documentsList").removeClass("active");
 	$("#promotionSelected").addClass("active");
 
-	if(promos != "") {
-		$(".file").hide();
-		$(".file[promos='']").show();
-		$(".file[promos='"+promos+"']").show();
-	}
+	$(".file").hide();
+	$(".file[promos='']").hide();
+	$(".file[promos='"+promos+"']").show();
+
 }
 $(window.document).on('click', '#promotionSelected', loadPromotionSelectedContent );
 
 
 $(".file").click(function() {
-	selectedDoc = $(this).attr("id");
-	loadDocumentSelectedContent();
+	$(".selected").removeClass("selected");
+	if($(this).hasClass("generic")) {
+		$("#promo_0").addClass("selected");
+	}
+	else {
+		selectedDoc = $(this).attr("id");
+		selectedDoc = $("#"+selectedDoc).attr("promos");
+		$(".promo:contains('"+selectedDoc+"')" ).addClass("selected");
+	}
 });
 
 $(".promo").click(function() {
+	$(".selected").removeClass("selected");
+	$(this).addClass("selected");
 	selectedPromo = $(this).attr("id");
 	loadPromotionSelectedContent();
 });
+
+
+
+
+
+
+
+	// var content = "No selected document";
+	// if(typeof selectedDoc != 'undefined' && selectedDoc != null) {
+	// 	// On affiche les promos qui possèdent le document
+	// 	content = $("#"+selectedDoc).attr("promos");
+	// 	if(content == "") {
+	// 		content = "Ce document est un document générique";
+	// 	}
+	// }
+	// content = '<tr><td id="promo_4" class="promo">'+content+'</td></tr>';
+
+	// $("#promotionsList_content").hide();
+	// $("#promotionsList").removeClass("active");
+	// $("#documentSelected_content").html(content);
+	// $("#documentSelected_content").show();
+	// $("#documentSelected").addClass("active");

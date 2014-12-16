@@ -3,6 +3,7 @@
 }
 
 .css-treeview a {
+    color: black;
     font-size: 16px;
 }
 
@@ -10,6 +11,13 @@
     line-height: 22px;
 }
 
+.generic a {
+    color: grey;
+}
+
+.selected {
+    color: red;
+}
 
 /*
  * CSS3 Treeview. No JavaScript
@@ -18,13 +26,6 @@
  * @url developer's website: http://wemakesites.net/
  * @url developer's twitter: https://twitter.com/#!/wemakesitesnet
  * @url developer's blog http://acidmartin.wordpress.com/
- **/
-
-/*
- * This solution works with all modern browsers and Internet Explorer 9+.
- * If you are interested in purchasing a JavaScript enabler for IE8
- * for the CSS3 Treeview, please, check this link:
- * http://experiments.wemakesites.net/miscellaneous/acidjs-css3-treeview/
  **/
 
 .css-treeview ul,
@@ -55,9 +56,6 @@
 
 .css-treeview a
 {
-    /* edit by Gillou */
-    color: black;
-    /**/
     text-decoration: none;
 }
 
