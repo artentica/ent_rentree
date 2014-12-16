@@ -6,7 +6,7 @@
 
 	dispatch_post('/user_acess' , 'user_access');//vérifie si la personne à le droit d'accés et si oui il est redirigé vers la page adéquate
 
-	dispatch('/documentseleves' , 'studentinformation'); 
+	dispatch('/documentseleves' , 'studentinformation');
 
 	dispatch_post('/save_data_student' , 'save_student');
 
@@ -20,8 +20,8 @@
 
     dispatch_post('/admin/MAJ_BDD' , 'MAJ_BDD');
 
-
-
+	dispatch('/adminpanel/promos' , 'addPromo');
+    dispatch_post('/adminpanel/promos' , 'addPromo');
 
 	run();
 ?>

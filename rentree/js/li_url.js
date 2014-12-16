@@ -62,24 +62,21 @@ $(".promo").click(function() {
 	loadPromotionSelectedContent();
 });
 
+$("#bouton_AjouterPromo").click(function() {
 
+	var promotionName = $("#promotionName").val();
 
+	$.ajax({
+		url : '?/adminpanel/promos',
+    	type : 'POST',
+    	data : 'promotionName='+promotionName,
+    	dataType : 'html'
+	})
+	.success(function(data){
+		alert(data);
+	})
+	.error(function(data){
+		alert("error : "+data);
+	});
 
-
-
-
-	// var content = "No selected document";
-	// if(typeof selectedDoc != 'undefined' && selectedDoc != null) {
-	// 	// On affiche les promos qui possèdent le document
-	// 	content = $("#"+selectedDoc).attr("promos");
-	// 	if(content == "") {
-	// 		content = "Ce document est un document générique";
-	// 	}
-	// }
-	// content = '<tr><td id="promo_4" class="promo">'+content+'</td></tr>';
-
-	// $("#promotionsList_content").hide();
-	// $("#promotionsList").removeClass("active");
-	// $("#documentSelected_content").html(content);
-	// $("#documentSelected_content").show();
-	// $("#documentSelected").addClass("active");
+});
