@@ -16,7 +16,10 @@
 }
 
 .selected {
-    color: red;
+    background-color: rgb(216, 216, 216);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgb(52, 61, 79);
 }
 
 /*
