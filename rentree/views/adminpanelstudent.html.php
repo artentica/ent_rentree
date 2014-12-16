@@ -32,8 +32,22 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <?php require('adminnavbar.html.php');?>
 
+           <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+				<div id="register" style="text-align:center;" class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close</span></button>
+				<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>
+				<span class="sr-only">Success:</span>
+				Les informations ont été correctement enregistrées
+				</div>
+    </div></div>
+
+ <div style="margin-left: 43%;" class="unique_div"></div>
+
 <div class="col-md-12">
-            <div class="unique_div"></div>
+
             <table id="tablaDatos" class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -148,7 +162,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             ToSavetitle : "Produit une variable renvoyant tous les changements",
             lien : "<?=url_for('/admin/MAJ_BDD'); ?>"
         });
-
+$("#register").hide();
 
 
 });
