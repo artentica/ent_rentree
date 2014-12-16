@@ -172,6 +172,13 @@ $(myTable.selector + " ." + tdpersonnalised.nametd + " button" + "." + tdpersonn
 //UNIQUE BUTTON DIV
 if (tdpersonnalised.controleUniqueButton){
 
+
+     $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).keypress(function (e) {
+      if (e.which == 13) {
+         $(" ." + tdpersonnalised.nametd + " button#savebutton").click();
+      }
+    });
+
     //ADD OF BUTTONS
     $(" ." +tdpersonnalised.nametd).append("<button  title='"+tdpersonnalised.modifiedtitle+"' class=\""+ tdpersonnalised.buttunClass+ " "  + tdpersonnalised.modifiedclass +"\"><span class=\""+ tdpersonnalised.modifiedglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.modifiedtext+"</span></button><button id='savebutton' title='"+tdpersonnalised.savetitle+"' class=\"" + tdpersonnalised.buttunClass+ " "  + tdpersonnalised.saveclass +"\"><span class=\""+ tdpersonnalised.saveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.savetext+"</span></button><button title='"+tdpersonnalised.canceltitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.cancelclass +"\"><span class=\""+ tdpersonnalised.cancelglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.canceltext+"</span></button><button disabled title='"+tdpersonnalised.ToSavetitle+"' class=\"" + tdpersonnalised.buttunClass+ " " + tdpersonnalised.ToSaveclass +"\"><span class=\""+ tdpersonnalised.ToSaveglyph +"\" aria-hidden=\"true\">"+tdpersonnalised.ToSavetext+"</span></button>");
 
@@ -280,7 +287,6 @@ if (tdpersonnalised.controleUniqueButton){
     });
 
     $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).on('click', function(){
-        var toChange = [];
          var value ='[';
 
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
@@ -296,11 +302,13 @@ if (tdpersonnalised.controleUniqueButton){
 
                     if(hasID){
                         if($(element).hasClass("changed_value")){
-                            value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
+                            if ( $(element).text().indexOf('"')) value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text().replace(/\"/g, "") + '", ';
+                            else value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
                          }
                     }
                     else{
-                        value = value + '"' +$(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
+                        if ( $(element).text().indexOf('"')) value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text().replace(/\"/g, "") + '", ';
+                            else value = value + '"' +$(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
                     }
 
 
@@ -318,20 +326,25 @@ if (tdpersonnalised.controleUniqueButton){
 
         value += ']';
        //console.log(value);
-        //console.log(toChange);
         $.ajax({
             type: "POST",
             url: tdpersonnalised.lien,
             data: {list:value},
-        }).success(function(data){
-                alert(data);
+        }).success(function(){
+                $("#register").show();
+                $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").each(function(index,element){
+                    $(element).removeClass( "to_update_line" );
+                    $(element).children("").each(function(index,element){
+                       $(element).removeClass( "changed_value" );
+                    });
+                    $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).attr('disabled', 'disabled');;
+                });
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
             });
 
 
     });
-    toChange = [];
 
 }
 
