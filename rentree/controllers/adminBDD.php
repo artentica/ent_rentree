@@ -3,8 +3,8 @@
 function MAJ_BDD(){
 
     $sql = '';
-    $sql = $_POST["list"];
-    foreach($_POST["list"] as $value => $key){
+    $sql = var_dump(json_decode($_POST["list"],true));
+    /*foreach(json_decode($_POST["list"],true) as $key => $value){
         $sql += 'UPDATE `data` SET ';
         if(!empty($value['identifiant'])){
             $sql += '`identifiant`='+ $value['identifiant'] +' ';
@@ -34,8 +34,8 @@ function MAJ_BDD(){
              $sql += 'WHERE `id`=' + $value['id'] + ';';
         }
 
-    }
-    DbOperation($sql);
+    }*/
+    //DbOperation($sql);
     return $sql;
 
 }

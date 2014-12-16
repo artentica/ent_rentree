@@ -283,15 +283,17 @@ if (tdpersonnalised.controleUniqueButton){
         var toChange = [];
 
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
-                var value ="";
+                var value ="{";
+                var hasID = 0;
                 if($(element).parent().children(".Id")){//if class Id exist
-                    value = "id : '" + $(element).children(".Id").text() +"',";
+                    value += "id : '" + $(element).children(".Id").text() +"',";
+                    hasID=1;
                 }
                 //attention arborescense
 
                 $(element).children().each(function(index,element){
 
-                    if(value!=""){
+                    if(hasID){
                         if($(element).hasClass("changed_value")){
                             value = value + $(element).get(0).dataset.name_bdd + " : '" +  $(element).text() + "', ";
                          }
@@ -303,6 +305,11 @@ if (tdpersonnalised.controleUniqueButton){
 
 
                 });
+                //console.log(value);
+                //console.log(value.length-2);
+                value = value.substring(0, value.length-2);//delete ", " at the end of the string
+                value = value + "}";
+                //console.log(value);
                 toChange.push(value);
             });
 
