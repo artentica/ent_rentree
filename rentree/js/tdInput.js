@@ -33,7 +33,8 @@ $.fn.ModifiedTd = function(definitionAction){
     identifier : "Id",
     notChange : "lockValue",
     parentChildrenArch : "tr td",
-    saveOnChangeTd:true
+    saveOnChangeTd:true,
+    errorMsgFunction : "Appel de la page non réussie"
   };
 
 
@@ -280,35 +281,57 @@ if (tdpersonnalised.controleUniqueButton){
 
     $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).on('click', function(){
         var toChange = [];
+         var value ='[';
 
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
-                var value ="";
-
+                value += '{';
+                var hasID = 0;
+                if($(element).parent().children(".Id")){//if class Id exist
+                    value += '"id" : "' + $(element).children(".Id").text() +'",';
+                    hasID=1;
+                }
                 //attention arborescense
 
                 $(element).children().each(function(index,element){
-                    if($(element).parent().children(".Id")){//if class Id exist
-                         value = "id : " + $(element + ' .Id').val() +",";
+
+                    if(hasID){
                         if($(element).hasClass("changed_value")){
-                             value = $(element).get(0).dataset.name_bdd;
-                             console.log(value);
+                            value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
+                         }
                     }
-                     }
+                    else{
+                        value = value + '"' +$(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
+                    }
 
-                    /*toChange.push({
 
 
-                    });
-                     }else{
-                    console.log("yolo2");
-                        }*/
                 });
+                //console.log(value);
+                //console.log(value.length-2);
+                value = value.substring(0, value.length-2);//delete ", " at the end of the string
+                value = value + "},";
+
+                console.log(value);
+
+            });
+        value = value.substring(0, value.length-1);//delete ", " at the end of the string
+
+        value += ']';
+       //console.log(value);
+        //console.log(toChange);
+        $.ajax({
+            type: "POST",
+            url: tdpersonnalised.lien,
+            data: {list:value},
+        }).success(function(data){
+                alert(data);
+            }).error(function(){
+                alert(tdpersonnalised.errorMsgFunction);
             });
 
-        console.log(toChange);
-        $.post(tdpersonnalised.lien);
 
     });
+    toChange = [];
 
 }
 
