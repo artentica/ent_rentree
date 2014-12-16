@@ -15,9 +15,23 @@ function active_li(){
 $(window.document).on('click', '#documentsList', function() {
 
 	$("#promotionSelected").removeClass("active");
+	$("#dropzone").removeClass("active");
 	$("#documentsList_content").show();
 	$(".file").show();
+    $("#dropzonediv").hide();
 	$("#documentsList").addClass("active");
+
+});
+
+$(window.document).on('click', '#dropzone', function() {
+
+	$("#promotionSelected").removeClass("active");
+    $("#documentsList").removeClass("active");
+	$("#dropzone").addClass("active");
+    $("#documentsList_content").hide();
+    $("#dropzonediv").show();
+
+
 
 });
 
@@ -41,7 +55,7 @@ function loadPromotionSelectedContent() {
 
 }
 $(window.document).on('click', '#promotionSelected', loadPromotionSelectedContent );
-
+$("#dropzonediv").hide();
 
 $(".file").click(function() {
 	$(".selected").removeClass("selected");

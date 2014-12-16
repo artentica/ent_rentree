@@ -71,6 +71,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <ul class="nav nav-tabs nav-justified">
         	<li id="documentsList" class="active"><a class="btn" data-toggle="tab">Tous les documents</a></li>
         	<li id="promotionSelected"><a class="btn" data-toggle="tab">Documents de la promo sélectionnée</a></li>
+        	<li id="dropzone"><a class="btn" data-toggle="tab">Ajouter des documents</a></li>
         </ul>
 
 		<table id="documentsList_content" class="table table-striped table-hover sortable">
@@ -102,6 +103,11 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 				</tr>
 			</tbody>
 		</table>
+    <div id="dropzonediv">
+        <form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form>
+    </div>
 
     </div>
 
@@ -120,6 +126,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <?php content_for('script')?>
 
 <script src="js/li_url.js"></script>
+<script src="js/dropzone.js"></script>
 <script>
     active_li();
 </script>
