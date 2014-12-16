@@ -10,6 +10,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
 <link rel="stylesheet" href="css/adminPanel.css" type="text/css" />
+<link rel="stylesheet" href="css/dropzone.css" type="text/css" />
 
 <?php end_content_for();?>
 
@@ -104,9 +105,11 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 			</tbody>
 		</table>
     <div id="dropzonediv">
-        <form action="/file-upload"
-      class="dropzone"
-      id="my-awesome-dropzone"></form>
+        <form action="/file-upload" class="dropzone">
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+</form>
     </div>
 
     </div>
