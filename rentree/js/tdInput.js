@@ -281,12 +281,13 @@ if (tdpersonnalised.controleUniqueButton){
 
     $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).on('click', function(){
         var toChange = [];
+         var value ='[';
 
             $(myTable.selector + " " +tdpersonnalised.parentChildrenArch).parent(".to_update_line").children().not($("."+tdpersonnalised.identifier)).not($("."+tdpersonnalised.notChange)).parent().each(function( index , element){
-                var value ="{";
+                value += '{';
                 var hasID = 0;
                 if($(element).parent().children(".Id")){//if class Id exist
-                    value += "id : '" + $(element).children(".Id").text() +"',";
+                    value += '"id" : "' + $(element).children(".Id").text() +'",';
                     hasID=1;
                 }
                 //attention arborescense
@@ -295,11 +296,11 @@ if (tdpersonnalised.controleUniqueButton){
 
                     if(hasID){
                         if($(element).hasClass("changed_value")){
-                            value = value + $(element).get(0).dataset.name_bdd + " : '" +  $(element).text() + "', ";
+                            value = value + '"' + $(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
                          }
                     }
                     else{
-                        value = value + $(element).get(0).dataset.name_bdd + " : '" +  $(element).text() + "', ";
+                        value = value + '"' +$(element).get(0).dataset.name_bdd + '" : "' +  $(element).text() + '", ';
                     }
 
 
@@ -308,19 +309,22 @@ if (tdpersonnalised.controleUniqueButton){
                 //console.log(value);
                 //console.log(value.length-2);
                 value = value.substring(0, value.length-2);//delete ", " at the end of the string
-                value = value + "}";
-                //console.log(value);
-                toChange.push(value);
-            });
+                value = value + "},";
 
+                console.log(value);
+
+            });
+        value = value.substring(0, value.length-1);//delete ", " at the end of the string
+
+        value += ']';
+       //console.log(value);
         //console.log(toChange);
         $.ajax({
             type: "POST",
             url: tdpersonnalised.lien,
-            data: {list:JSON.stringify(toChange)},
+            data: {list:value},
         }).success(function(data){
-                alert("OK");
-            console.log(data);
+                alert(data);
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
             });
