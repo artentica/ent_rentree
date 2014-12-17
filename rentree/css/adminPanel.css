@@ -229,7 +229,20 @@ span.glyphicon-file:hover {
     cursor: pointer;
 }
 
-//tree
+.newPromo{
+    height: 50px;
+    background-color: rgb(210, 216, 229);
+}
+
+.newPromo div{
+    margin-top: 8px;
+}
+
+
+
+table#promotionsList_content{
+    margin-top: 0px !important;
+}
 
 #ANumber{
     text-align: center;
