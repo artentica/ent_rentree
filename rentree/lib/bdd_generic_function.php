@@ -58,4 +58,24 @@
 		return ($doc);
 	}
 
+	function generatePromosHTMLTable() {
+
+		$list = trie_list_annee(liste_promo());
+
+		$content="";
+		foreach ($list as $key => $value) {
+			$content .= '<tr><td id="promo_'.++$key.'" class="promo">'.$value."</td></tr>";
+		}
+
+		return('
+			<table id="promotionsList_content" class="table table-striped table-hover sortable">
+	   			<tbody style="cursor: pointer;">
+	   				<tr><td id="promo_0" class="promo">Communs à toutes les promotions</td></tr>
+	   				'.$content.'
+	   			</tbody>
+			</table>
+		');
+
+	}
+
 ?>

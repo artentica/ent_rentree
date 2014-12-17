@@ -43,29 +43,26 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         </ul>
 
 
-        <div class="col-md-8">
+        <div class="col-md-6">
         	<input id="promotionName" class="form-control" placeholder="Nouvelle promotion">
-       </div>
-       <div class="col-md-4">
+    	</div>
+    	<div class="col-md-2">
+        	<select id="ANumber" class="form-control">
+        		<option>_A1</option>
+        		<option>_A2</option>
+        		<option>_A3</option>
+        		<option>_A4</option>
+        		<option>_A5</option>
+        	</select>
+    	</div>
+    	<div class="col-md-4">
         	<button id="bouton_AjouterPromo" title="Ajouter une promotion" class="btn generation_element_to_change btn-success" style="display: inline-block;">
         		<span class="glyphicon glyphicon-saved" aria-hidden="true"> Valider</span>
         	</button>
-       </div>
+    	</div>
 
 
-
-
-        <table id="promotionsList_content" class="table table-striped table-hover sortable">
-       		<tbody style="cursor: pointer;">
-			<?php
-				$list = trie_list_annee(liste_promo());
-				echo('<tr><td id="promo_0" class="promo">Communs à toutes les promotions</td></tr>');
-				foreach ($list as $key => $value) {
-					echo('<tr><td id="promo_'.++$key.'" class="promo">'.$value."</td></tr>");
-				}
-			?>
-			</tbody>
-		</table>
+    	<?php echo generatePromosHTMLTable(); ?>
     </div>
 
     <div class="col-md-8">

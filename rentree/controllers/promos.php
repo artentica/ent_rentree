@@ -12,13 +12,14 @@
 				`fichier`
 				)
 				VALUES (
-				NULL ,  '-1',  '".$_POST["promotionName"]."',  'Cette promotion ne contient aucun fichier',  'Cette promotion ne contient aucun fichier'
+				NULL ,  '0',  '".$_POST["promotionName"]."',  '',  ''
 				)"
 			);
 
-			return "success";
+			return generatePromosHTMLTable();
 		}
 		return "error";
+
 	}
 
 ?>
