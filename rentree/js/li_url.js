@@ -101,7 +101,7 @@ $("#bouton_AjouterPromo").click(function() {
 	var promotionName = $("#promotionName").val() + $("#ANumber").val();
 
 	$.ajax({
-		url : '?/adminpanel/promos',
+		url : '?/adminpanel/promos/add',
     	type : 'POST',
     	data : 'promotionName='+promotionName,
     	dataType : 'html'
@@ -110,9 +110,31 @@ $("#bouton_AjouterPromo").click(function() {
 		$('#promotionsList_content').html(data);
 		$('#promotionName').val("");
 		$(".promo").click(promoOnClick);
+
+		//Je voulais faire en sorte de mettre une petite animation quand on a ajouté un fichier, mais j'ai pas encore réussi :/
+		// window.setTimeout( function(){
+  //               $('.yolo').addClass('animated bounce');
+  //       }, 1000);
+
 	})
 	.error(function(data){
 		alert("error : "+data);
 	});
 
+});
+
+// Ajout des boutons suppr et modif onHover
+$(".promo").hover(
+function() {
+	$(this).append('<a id="bouton_SupprimerPromo"><span class="glyphicon glyphicon-remove"></span></a>');
+	$(this).append('<a id="bouton_ModifierPromo"><span class="glyphicon glyphicon-pencil"></span></a>');
+},
+function() {
+    $( this ).find( "span:last" ).remove();
+    $( this ).find( "span:last" ).remove();
+});
+
+// Ajout des boutons suppr et modif onHover
+$("#bouton_SupprimerPromo").click(function() {
+	alert("yolo");
 });

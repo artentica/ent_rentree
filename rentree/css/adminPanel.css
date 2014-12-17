@@ -2,24 +2,26 @@
     font-size: 14px;
 }
 
-.css-treeview a {
-    color: black;
-    font-size: 16px;
-}
-
-.css-treeview li {
-    line-height: 22px;
-}
-
-.generic a {
-    color: grey;
-}
-
 .selected {
     background-color: rgb(216, 216, 216);
     font-weight: 600;
     letter-spacing: 1px;
     color: rgb(52, 61, 79);
+}
+
+#bouton_SupprimerPromo > span, #bouton_ModifierPromo > span {
+    color: black;
+    letter-spacing: 4px;
+    font-size: 16px;
+    float: right;
+}
+
+#bouton_SupprimerPromo > span:hover {
+    color: #F00;
+}
+
+#bouton_ModifierPromo > span:hover {
+    color: #FC0;
 }
 
 /*

@@ -11,6 +11,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <link rel="stylesheet" href="css/adminprincipal.css" type="text/css" />
 <link rel="stylesheet" href="css/adminPanel.css" type="text/css" />
 <link rel="stylesheet" href="css/dropzone.css" type="text/css" />
+<!-- <link rel="stylesheet" href="css/animate.css" type="text/css" /> -->
 
 <?php end_content_for();?>
 
@@ -188,32 +189,3 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 </script>
 
 <?php end_content_for();?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <li><input type="checkbox" id="item-1" /><label for="item-1">This One is Open by Default...</label>
-							        <ul>
-							            <li><input type="checkbox" id="item-1-0" checked="checked" /><label for="item-1-0">And Contains More Nested Items...</label>
-							                <ul>
-							                    <li><a href="./">Look Ma - No Hands</a></li>
-							                    <li><a href="./">Another Item</a></li>
-							                    <li><a href="./">And Yet Another</a></li>
-							                </ul>
-							            </li>
-							            <li><a href="./">Lorem</a></li>
-							            <li><a href="./">Ipsum</a></li>
-							            <li><a href="./">Dolor</a></li>
-							            <li><a href="./">Sit Amet</a></li>
-							        </ul>
-								</li> -->

@@ -58,13 +58,21 @@
 		return ($doc);
 	}
 
-	function generatePromosHTMLTable() {
+	function generatePromosHTMLTable($pName) {
 
 		$list = trie_list_annee(liste_promo());
 
 		$content="";
 		foreach ($list as $key => $value) {
-			$content .= '<tr><td id="promo_'.++$key.'" class="promo">'.$value."</td></tr>";
+			$class="";
+			if(isset($pName)) {
+				if($value == $pName) {
+					// C'est pour identifier le nouvel élément si y'en a un ... Pour l'instant ça sert pas
+					$class="newElement";
+				}
+			}
+
+			$content .= '<tr><td id="promo_'.++$key.'" class="promo '.$class.'">'.$value."</td></tr>";
 		}
 
 		return('

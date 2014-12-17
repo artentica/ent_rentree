@@ -20,8 +20,8 @@
 
     dispatch_post('/admin/MAJ_BDD' , 'MAJ_BDD');
 
-	dispatch('/adminpanel/promos' , 'addPromo');
-    dispatch_post('/adminpanel/promos' , 'addPromo');
+    dispatch_post('/adminpanel/promos/add' , 'addPromo');
+    dispatch_post('/adminpanel/promos/modif' , 'modifPromo');
 
 	run();
 ?>
