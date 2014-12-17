@@ -220,3 +220,9 @@ padding-left: 8px;
     color:#000
 }
 
+li.parent_li>span:hover+ul li span {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000
+}
+
