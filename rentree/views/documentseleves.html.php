@@ -128,22 +128,9 @@ if( empty($_SESSION['identifiant'])) {
 		<!-- GIF and file -->
 		<?php
 			if ( (empty($_SESSION['save'])) || ($_SESSION['save']==false) ) {
-				echo '<div class="col-md-5 col-md-offset-1">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner">
-						<div class="center-block item active">
-							<img src="images/1.jpg" alt="image de présentation de l\'isen">
-						</div>
-						<div class="center-block item">
-							<img src="images/2.jpg" alt="image de présentation de l\'isen">
-						</div>
-						<div class="center-block item">
-							<img src="images/3.jpg" alt="image de présentation de l\'isen">
-						</div>
-					</div>
-				</div> <!-- Carousel -->
-			</div>';
+				echo '<div class="col-md-7">
+				    <img class="gifdoc center-block" src="images/isen.gif" alt="image de présentation de l\'isen">
+			             </div>';
 			}
 			else {
 				$listnontrie = liste_promo();
