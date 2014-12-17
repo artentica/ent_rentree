@@ -46,7 +46,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<li id="promotionsList" class="active"><a class="btn" data-toggle="tab">Liste des promotions</a></li>
         </ul>
 
-
+    <div class="newPromo">
         <div class="col-md-6">
         	<input id="promotionName" class="form-control" placeholder="Nouvelle promotion">
     	</div>
@@ -63,6 +63,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<button id="bouton_AjouterPromo" title="Ajouter une promotion" class="btn generation_element_to_change btn-success" style="display: inline-block;">
         		<span class="glyphicon glyphicon-saved" aria-hidden="true"> Valider</span>
         	</button>
+    	</div>
     	</div>
 
 
