@@ -181,10 +181,10 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
         if (children.is(":visible")) {
             children.hide('fast');
-            $(this).attr('title', 'Vous pouvez ouvrir cette arborescence').find(' > span').addClass('glyphicon-folder-close').removeClass('glyphicon-folder-open');
+            $(this).attr('title', 'Vous pouvez ouvrir cette arborescence').addClass('glyphicon-folder-close').removeClass('glyphicon-folder-open');
         } else {
             children.show('fast');
-            $(this).attr('title', 'Vous pouvez fermer cette arborescence').find(' > span').addClass('glyphicon-folder-open').removeClass('glyphicon-folder-close');
+            $(this).attr('title', 'Vous pouvez fermer cette arborescence').addClass('glyphicon-folder-open').removeClass('glyphicon-folder-close');
         }
         e.stopPropagation();
     });
