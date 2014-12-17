@@ -54,6 +54,8 @@ function loadPromotionSelectedContent() {
 	var promos = "";
 	if(typeof selectedPromo != 'undefined' && selectedPromo != null && selectedPromo != "promo_0") {
 		promos = $("#"+selectedPromo).html();
+		var tmp = promos.split("<a");
+		promos = tmp[0];
 	}
     $("#suppr_modif_file_div").removeClass("active");
     $("#suppr_modif_file_div").hide();
@@ -106,16 +108,14 @@ $("#bouton_AjouterPromo").click(function() {
     	data : 'promotionName='+promotionName,
     	dataType : 'html'
 	})
-	.success(function(data){
+	.success(function(data) {
 		$('#promotionsList_content').html(data);
 		$('#promotionName').val("");
-		$(".promo").click(promoOnClick);
-
+		recontructionAfterAjax();
 		//Je voulais faire en sorte de mettre une petite animation quand on a ajouté un fichier, mais j'ai pas encore réussi :/
 		// window.setTimeout( function(){
   //               $('.yolo').addClass('animated bounce');
   //       }, 1000);
-
 	})
 	.error(function(data){
 		alert("error : "+data);
@@ -124,17 +124,50 @@ $("#bouton_AjouterPromo").click(function() {
 });
 
 // Ajout des boutons suppr et modif onHover
-$(".promo").hover(
-function() {
-	$(this).append('<a id="bouton_SupprimerPromo"><span class="glyphicon glyphicon-remove"></span></a>');
-	$(this).append('<a id="bouton_ModifierPromo"><span class="glyphicon glyphicon-pencil"></span></a>');
-},
-function() {
-    $( this ).find( "span:last" ).remove();
-    $( this ).find( "span:last" ).remove();
-});
+function appendGliphicons() {
+	$(this).append('<a onclick="delPromo()" id="bouton_SupprimerPromo"><span class="glyphicon glyphicon-remove"></span></a>');
+	$(this).append('<a onclick="editPromo()" id="bouton_ModifierPromo"><span class="glyphicon glyphicon-pencil"></span></a>');
+}
+function removeGliphicons() {
+    $( this ).find( "a:last" ).remove();
+    $( this ).find( "a:last" ).remove();
+}
+$(".promo").hover(appendGliphicons, removeGliphicons);
 
-// Ajout des boutons suppr et modif onHover
-$("#bouton_SupprimerPromo").click(function() {
-	alert("yolo");
-});
+// Suppression de promo
+function delPromo() {
+	var promoId = $("#bouton_ModifierPromo").parent().attr('id');
+	var promoName = $("#"+promoId).html();
+	var tmp = promoName.split("<a");
+	promoName = tmp[0];
+	alert("suppression de "+promoName);
+
+	$.ajax({
+		url : '?/adminpanel/promos/remove',
+    	type : 'POST',
+    	data : 'promotionName='+promoName,
+    	dataType : 'html'
+	})
+	.success(function(data) {
+
+			$('#promotionsList_content').html(data);
+			$('#promotionName').val("");
+			recontructionAfterAjax();
+
+	})
+	.error(function(data){
+		alert("error : "+data);
+	});
+};
+
+// Modification de promo
+function editPromo() {
+	var promoId = $("#bouton_ModifierPromo").parent().attr('id');
+	var promoName = $("#"+promoId).html();
+	alert("modif de "+promoName);
+};
+
+function recontructionAfterAjax() {
+	$(".promo").click(promoOnClick);
+	$(".promo").hover(appendGliphicons, removeGliphicons);
+};
