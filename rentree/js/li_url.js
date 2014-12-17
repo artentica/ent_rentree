@@ -78,7 +78,7 @@ $(".promo").click(function() {
 
 $("#bouton_AjouterPromo").click(function() {
 
-	var promotionName = $("#promotionName").val();
+	var promotionName = $("#promotionName").val() + $("#ANumber").val();
 
 	$.ajax({
 		url : '?/adminpanel/promos',
@@ -87,7 +87,8 @@ $("#bouton_AjouterPromo").click(function() {
     	dataType : 'html'
 	})
 	.success(function(data){
-		alert(data);
+		$('#promotionsList_content').html(data);
+		$('#promotionName').val("");
 	})
 	.error(function(data){
 		alert("error : "+data);
