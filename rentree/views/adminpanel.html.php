@@ -12,6 +12,9 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <link rel="stylesheet" href="css/adminPanel.css" type="text/css" />
 <link rel="stylesheet" href="css/dropzone.css" type="text/css" />
 
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
+
+
 <?php end_content_for();?>
 
 <?php content_for('header'); ?>
@@ -119,7 +122,15 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
     </div>
 
     <div id="suppr_modif_file_div">
-        yolopenis bitches
+        <ul id="sortable">
+  <li class="ui-state-default">  Item 1</li>
+  <li class="ui-state-default">  Item 2</li>
+  <li class="ui-state-default">  Item 3</li>
+  <li class="ui-state-default">  Item 4</li>
+  <li class="ui-state-default">  Item 5</li>
+  <li class="ui-state-default">  Item 6</li>
+  <li class="ui-state-default">  Item 7</li>
+</ul>
     </div>
 
     </div>
@@ -140,6 +151,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 <script src="js/li_url.js"></script>
 <script src="js/dropzone.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script>
     active_li();
 
@@ -185,6 +197,13 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         });
 
 });
+
+
+//DRAG AND DROP
+    $(function() {
+        $( "#sortable" ).sortable();
+        $( "#sortable" ).disableSelection();
+  });
 </script>
 
 <?php end_content_for();?>
