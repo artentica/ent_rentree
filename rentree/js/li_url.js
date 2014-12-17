@@ -23,6 +23,7 @@ $(window.document).on('click', '#documentsList', function() {
 
 });
 
+//onglet ajout de fichiers
 $(window.document).on('click', '#dropzone', function() {
 
 	$("#promotionSelected").removeClass("active");
@@ -30,8 +31,6 @@ $(window.document).on('click', '#dropzone', function() {
 	$("#dropzone").addClass("active");
     $("#documentsList_content").hide();
     $("#dropzonediv").show();
-
-
 
 });
 
@@ -54,6 +53,8 @@ function loadPromotionSelectedContent() {
 	$(".file[promos='"+promos+"']").show();
 
 }
+
+
 $(window.document).on('click', '#promotionSelected', loadPromotionSelectedContent );
 $("#dropzonediv").hide();
 
@@ -69,6 +70,8 @@ $(".file").click(function() {
 	}
 });
 
+
+//ajout de la classe select sur la promo cliqué
 $(".promo").click(function() {
 	$(".selected").removeClass("selected");
 	$(this).addClass("selected");
@@ -76,6 +79,8 @@ $(".promo").click(function() {
 	loadPromotionSelectedContent();
 });
 
+
+//Ajout une promotion
 $("#bouton_AjouterPromo").click(function() {
 
 	var promotionName = $("#promotionName").val() + $("#ANumber").val();

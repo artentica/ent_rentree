@@ -46,7 +46,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <div class="col-md-6">
         	<input id="promotionName" class="form-control" placeholder="Nouvelle promotion">
     	</div>
-    	<div class="col-md-2">
+    	<div class="col-md-4 col-md-1-offset">
         	<select id="ANumber" class="form-control">
         		<option>_A1</option>
         		<option>_A2</option>
@@ -80,17 +80,17 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <div class="tree well">
         <?php
              $listdoc = liste_doc();
-            echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  PDF</span><ul>';
+            echo '<li><span class="glyphicon glyphicon-folder-open generic" aria-hidden="true">  PDF</span><ul>';
             foreach ($listdoc as $key => $value) {
 
                 if($value["promo"] == "") {
-                    echo '<li><span class="glyphicon glyphicon-file generic" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
                 }
             }
-            echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A12</span><ul>';
+            echo '<li ><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A12</span><ul>';
              foreach ($listdoc as $key => $value) {
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<li><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
 
                 }
             }
@@ -100,7 +100,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
              echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A345</span><ul>';
              foreach ($listdoc as $key => $value) {
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<li><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
 
                 }
             }

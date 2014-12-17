@@ -220,9 +220,10 @@ padding-left: 8px;
     color:#000
 }
 
-li.parent_li>span:hover+ul li span {
-    background:#eee;
+span.glyphicon-file:hover {
+   background: #F3F5F7;
     border:1px solid #94a0b4;
-    color:#000
+    color:#000;
+    cursor: pointer;
 }
 
