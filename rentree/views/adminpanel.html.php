@@ -46,16 +46,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <div class="col-md-6">
         	<input id="promotionName" class="form-control" placeholder="Nouvelle promotion">
     	</div>
-    	<div class="col-md-4 col-md-1-offset">
+    	<div class="col-md-3">
         	<select id="ANumber" class="form-control">
-        		<option>_A1</option>
-        		<option>_A2</option>
-        		<option>_A3</option>
-        		<option>_A4</option>
-        		<option>_A5</option>
+        		<option>_A1 </option>
+        		<option>_A2 </option>
+        		<option>_A3 </option>
+        		<option>_A4 </option>
+        		<option>_A5 </option>
         	</select>
     	</div>
-    	<div class="col-md-4">
+    	<div class="col-md-3">
         	<button id="bouton_AjouterPromo" title="Ajouter une promotion" class="btn generation_element_to_change btn-success" style="display: inline-block;">
         		<span class="glyphicon glyphicon-saved" aria-hidden="true"> Valider</span>
         	</button>
@@ -71,23 +71,23 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<li id="documentsList" class="active"><a class="btn" data-toggle="tab">Tous les documents</a></li>
         	<li id="promotionSelected"><a class="btn" data-toggle="tab">Documents de la promo sélectionnée</a></li>
         	<li id="dropzone"><a class="btn" data-toggle="tab">Ajouter des documents</a></li>
+        	<li id="suppr_modif_file"><a class="btn" data-toggle="tab">Modifier/Supprimer fichiers</a></li>
         </ul>
         <div  id="documentsList_content">
 
-            <!--TEST TREE-->
 
 
         <div class="tree well">
         <?php
              $listdoc = liste_doc();
-            echo '<li><span class="glyphicon glyphicon-folder-open generic" aria-hidden="true">  PDF</span><ul>';
+            echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  PDF</span><ul>';
             foreach ($listdoc as $key => $value) {
 
                 if($value["promo"] == "") {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
                 }
             }
-            echo '<li ><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A12</span><ul>';
+            echo '<li class="A12" ><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A12</span><ul>';
              foreach ($listdoc as $key => $value) {
                 if(strstr($value["fichier"], "A12")) {
                     echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
@@ -97,7 +97,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             echo '</ul></li>';
 
 
-             echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A345</span><ul>';
+             echo '<li class="A345"><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  A345</span><ul>';
              foreach ($listdoc as $key => $value) {
                 if(strstr($value["fichier"], "A345")) {
                     echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
@@ -112,35 +112,6 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 </div>
 
-		<table class="table table-striped table-hover sortable">
-			<tbody style="cursor: pointer;">
-				<tr>
-					<td>
-						<div class="css-treeview">
-						    <ul>
-								<?php
-									/* id 		rang 	promo 	libelle 	fichier */
-									$listdoc = liste_doc();
-									foreach ($listdoc as $key => $value) {
-										$listdoc[$key]['libelle'] = utf8_encode($value['libelle']);
-									}
-									/* <li id="file_42" class="file" promos="CIR3"><a>NOMDUFICHIER</a></li> */
-									foreach ($listdoc as $key => $value) {
-										echo('<li id="file_'.$value["id"].'" class="file');
-										if($value["promo"] == "") {
-											echo(' generic');
-										}
-										echo('" promos="'.$value["promo"].'"><a>');
-										echo($value["fichier"]);
-										echo("</a></li>");
-									}
-								?>
-						    </ul>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
     </div>
     <div id="dropzonediv">
         <form action="/file-upload" class="dropzone">
@@ -148,6 +119,10 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
     <input name="file" type="file" multiple />
   </div>
 </form>
+    </div>
+
+    <div id="suppr_modif_file_div">
+        yolopenis bitches
     </div>
 
     </div>
@@ -185,6 +160,26 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         }
         e.stopPropagation();
     });
+        $('.tree li.parent_li .file').on('click', function (e) {
+            if($(this).offsetParent().hasClass("A12")){
+                $(".A345 li").hide('fast');
+                 $(".generic").hide('fast');
+                $(".A12 li").show('fast');
+            }
+            else if($(this).offsetParent().hasClass("A345")){
+                 $(".A12 li").hide('fast');
+                $(".generic").hide('fast');
+                $(".A345 li").show('fast');
+            }
+            else {
+                $(".A12 li").hide('fast');
+                 $(".A345 li").hide('fast');
+                $(".PDF>li").show('fast');
+
+            }
+
+        });
+
 });
 </script>
 
