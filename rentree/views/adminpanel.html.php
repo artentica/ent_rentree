@@ -54,6 +54,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
 
+
         <table id="promotionsList_content" class="table table-striped table-hover sortable">
        		<tbody style="cursor: pointer;">
 			<?php
@@ -74,8 +75,47 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<li id="promotionSelected"><a class="btn" data-toggle="tab">Documents de la promo sélectionnée</a></li>
         	<li id="dropzone"><a class="btn" data-toggle="tab">Ajouter des documents</a></li>
         </ul>
+        <div  id="documentsList_content">
 
-		<table id="documentsList_content" class="table table-striped table-hover sortable">
+            <!--TEST TREE-->
+
+
+        <div class="tree well">
+        <?php
+             $listdoc = liste_doc();
+            echo '<li><span class="glyphicon glyphicon-older-close" aria-hidden="true">PDF</span><ul>';
+            foreach ($listdoc as $key => $value) {
+
+                if($value["promo"] == "") {
+                    echo '<li><span class="glyphicon glyphicon-file generic" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
+                }
+            }
+            echo '<li><span class="glyphicon glyphicon-older-close" aria-hidden="true">A12</span><ul>';
+             foreach ($listdoc as $key => $value) {
+                if(strstr($value["fichier"], "A12")) {
+                    echo '<li><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
+
+                }
+            }
+            echo '</ul></li>';
+
+
+             echo '<li><span class="glyphicon glyphicon-older-close" aria-hidden="true">A345</span><ul>';
+             foreach ($listdoc as $key => $value) {
+                if(strstr($value["fichier"], "A345")) {
+                    echo '<li><span class="glyphicon glyphicon-file" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
+
+                }
+            }
+            echo '</ul></li>';
+
+            echo '</ul></li>';
+
+        ?>
+
+</div>
+
+		<table class="table table-striped table-hover sortable">
 			<tbody style="cursor: pointer;">
 				<tr>
 					<td>
@@ -104,6 +144,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 				</tr>
 			</tbody>
 		</table>
+    </div>
     <div id="dropzonediv">
         <form action="/file-upload" class="dropzone">
   <div class="fallback">
@@ -132,6 +173,22 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/dropzone.js"></script>
 <script>
     active_li();
+
+    /*TREE JS*/
+    $(function () {
+    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    $('.tree li.parent_li > span').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation();
+    });
+});
 </script>
 
 <?php end_content_for();?>
