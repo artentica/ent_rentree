@@ -114,7 +114,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     </div>
     <div id="dropzonediv">
-        <form action="jhgvkhvkhgvkj" class="dropzone dz-clickable" id="demo-upload">
+        <form action="<?=url_for('/admin/upload'); ?>" class="dropzone dz-clickable" id="demo-upload">
 <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
 
@@ -145,7 +145,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
     Dropzone.options.myAwesomeDropzone = {
-  maxFilesize: 10, // MB
+  maxFilesize: 100, // MB
 
 };
 
