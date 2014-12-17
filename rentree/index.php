@@ -20,6 +20,7 @@
 
     dispatch_post('/admin/MAJ_BDD' , 'MAJ_BDD');
 
+    dispatch_post('/admin/upload' , 'upload_file');
     dispatch_post('/adminpanel/promos/add' , 'addPromo');
     dispatch_post('/adminpanel/promos/modif' , 'modifPromo');
 
