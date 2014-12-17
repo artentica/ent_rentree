@@ -114,11 +114,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     </div>
     <div id="dropzonediv">
-        <form action="/file-upload" class="dropzone">
-  <div class="fallback">
-    <input name="file" type="file" multiple />
-  </div>
-</form>
+        <form action="#" class="dropzone dz-clickable" id="demo-upload">
+<div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
 
     <div id="suppr_modif_file_div">
@@ -145,6 +142,13 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/dropzone.js"></script>
 <script>
     active_li();
+
+
+    Dropzone.options.myAwesomeDropzone = {
+  maxFilesize: 10, // MB
+
+};
+
 
     /*TREE JS*/
     $(function () {

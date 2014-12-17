@@ -55,7 +55,8 @@ function loadPromotionSelectedContent() {
 	if(typeof selectedPromo != 'undefined' && selectedPromo != null && selectedPromo != "promo_0") {
 		promos = $("#"+selectedPromo).html();
 	}
-
+    $("#suppr_modif_file_div").removeClass("active");
+$("#suppr_modif_file_div").hide();
 	$("#documentsList_content").show();
 	$("#documentsList").removeClass("active");
 	$("#promotionSelected").addClass("active");
@@ -69,8 +70,7 @@ function loadPromotionSelectedContent() {
 
 $(window.document).on('click', '#promotionSelected', loadPromotionSelectedContent );
 $("#dropzonediv").hide();
-$("#suppr_modif_file_div").removeClass("active");
-$("#suppr_modif_file_div").hide();
+
 
 $(".file").click(function() {
 	$(".selected").removeClass("selected");
