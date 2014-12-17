@@ -136,11 +136,11 @@ $(".promo").hover(appendGliphicons, removeGliphicons);
 
 // Suppression de promo
 function delPromo() {
-	var promoId = $("#bouton_ModifierPromo").parent().attr('id');
+	var promoId = $("#bouton_SupprimerPromo").parent().attr('id');
 	var promoName = $("#"+promoId).html();
 	var tmp = promoName.split("<a");
 	promoName = tmp[0];
-	alert("suppression de "+promoName);
+	alert("Ajouter un modal pour demander si l'on veut supprimer aussi les fichiers associés à cette promo ... suppression de "+promoName);
 
 	$.ajax({
 		url : '?/adminpanel/promos/remove',
@@ -164,7 +164,28 @@ function delPromo() {
 function editPromo() {
 	var promoId = $("#bouton_ModifierPromo").parent().attr('id');
 	var promoName = $("#"+promoId).html();
-	alert("modif de "+promoName);
+	var tmp = promoName.split("<a");
+	promoName = tmp[0];
+
+	alert("Ajouter un modal pour demander le nouveau nom de la promo ... modif de "+promoName);
+
+	$.ajax({
+		url : '?/adminpanel/promos/modif',
+    	type : 'POST',
+    	data : 'oldName='+promoName+'&'+'newName=azerty42_A5',
+    	dataType : 'html'
+	})
+	.success(function(data) {
+
+			$('#promotionsList_content').html(data);
+			$('#promotionName').val("");
+			recontructionAfterAjax();
+
+	})
+	.error(function(data){
+		alert("error : "+data);
+	});
+
 };
 
 function recontructionAfterAjax() {
