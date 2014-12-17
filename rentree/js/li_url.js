@@ -38,7 +38,7 @@ $(window.document).on('click', '#dropzone', function() {
     $("#suppr_modif_file_div").removeClass("active");
 	$("#promotionSelected").removeClass("active");
     $("#documentsList").removeClass("active");
-	$("#dropzone").addClass("active");
+	$("#dropzonediv").addClass("active");
     $("#documentsList_content").hide();
     $("#dropzonediv").show();
     $("#suppr_modif_file_div").hide();
@@ -56,10 +56,11 @@ function loadPromotionSelectedContent() {
 		promos = $("#"+selectedPromo).html();
 	}
     $("#suppr_modif_file_div").removeClass("active");
-$("#suppr_modif_file_div").hide();
+    $("#suppr_modif_file_div").hide();
 	$("#documentsList_content").show();
 	$("#documentsList").removeClass("active");
 	$("#promotionSelected").addClass("active");
+    $("#dropzonediv").hide();
 
 	$(".file").hide();
 	$(".file[promos='']").hide();

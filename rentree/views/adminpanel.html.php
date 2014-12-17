@@ -114,7 +114,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     </div>
     <div id="dropzonediv">
-        <form action="#" class="dropzone dz-clickable" id="demo-upload">
+        <form action="jhgvkhvkhgvkj" class="dropzone dz-clickable" id="demo-upload">
 <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
 
