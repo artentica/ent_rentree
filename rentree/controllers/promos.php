@@ -4,6 +4,9 @@
 
 		if(isset($_POST["promotionName"]) && !empty($_POST["promotionName"])) {
 
+			// Ouais j'utilise des fonctions dépréciés :p
+			$pName = mysql_escape_string($_POST["promotionName"]);
+
 			DbOperation("INSERT INTO  `document` (
 				`id` ,
 				`rang` ,
@@ -12,7 +15,7 @@
 				`fichier`
 				)
 				VALUES (
-				NULL ,  '0',  '".$_POST["promotionName"]."',  '',  ''
+				NULL ,  '0',  '".$pName."',  '',  ''
 				)"
 			);
 

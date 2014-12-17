@@ -85,14 +85,14 @@ $(".file").click(function() {
 	}
 });
 
-
-//ajout de la classe select sur la promo cliqué
-$(".promo").click(function() {
+function promoOnClick() {
 	$(".selected").removeClass("selected");
 	$(this).addClass("selected");
 	selectedPromo = $(this).attr("id");
 	loadPromotionSelectedContent();
-});
+}
+//ajout de la classe select sur la promo cliqué
+$(".promo").click(promoOnClick);
 
 
 //Ajout une promotion
@@ -109,6 +109,7 @@ $("#bouton_AjouterPromo").click(function() {
 	.success(function(data){
 		$('#promotionsList_content').html(data);
 		$('#promotionName').val("");
+		$(".promo").click(promoOnClick);
 	})
 	.error(function(data){
 		alert("error : "+data);
