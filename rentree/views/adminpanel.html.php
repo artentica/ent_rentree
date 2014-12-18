@@ -175,16 +175,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                               <div class="row">
                               <div class=" col-md-6 col-md-offset-1"><input  id="promotionNameinput" class="form-control"></div>
                               <div class=" col-md-4"><select  id="ANumberinput" class="form-control">
-                                <option>_A1 </option>
-                                <option>_A2 </option>
-                                <option>_A3 </option>
-                                <option>_A4 </option>
-                                <option>_A5 </option>
+                                <option value="_A1">_A1</option>
+                                <option value="_A2">_A2</option>
+                                <option value="_A3">_A3</option>
+                                <option value="_A4">_A4</option>
+                                <option value="_A5">_A5</option>
                             </select></div>
                               </div>
                           </div>
                           <div class="modal-footer">
-                          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Sauvegarder</button>
+                          <button id="editPromo" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Sauvegarder</button>
                           <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Annuler</button>
 
                           </div>
@@ -211,7 +211,22 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script>
 
     function ModifPromo(){
+        var promoId = $("#bouton_ModifierPromo").parent().attr('id');
+        var promoName = $("#"+promoId).html();
+        var tmp = promoName.split("<a");
+        promoName = tmp[0];
+        var splittedName = promoName.substr(0, promoName.length-3);
+        var splittedPromo = promoName.substr(promoName.length-3, promoName.length);
+
+        $('#promotionNameinput').attr("value", splittedName);
+        $('#ANumberinput').attr("value", splittedPromo).val(splittedPromo);
         $("#modifPromo").modal({backdrop: true});
+
+        $("#editPromo").click(function() {
+            var newName=$('#promotionNameinput').val()+$('#ANumberinput').val();
+            alert(newName);
+            editPromo(promoName, newName);
+        });
     }
     function SupprPromo(){
         var promoId = $("#bouton_SupprimerPromo").parent().attr('id');

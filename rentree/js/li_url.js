@@ -159,20 +159,12 @@ function delPromo(promoId, rmAction) {
 };
 
 // Modification de promo
-function editPromo() {
-	var promoId = $("#bouton_ModifierPromo").parent().attr('id');
-	var promoName = $("#"+promoId).html();
-	var tmp = promoName.split("<a");
-	promoName = tmp[0];
-    var name = promoName.substr(0, promoName.length-3);
-    var promo = promoName.substr(promoName.length-3, promoName.length);
-
-	alert("Ajouter un modal pour demander le nouveau nom de la promo ... modif de "+promoName);
+function editPromo(oldName, newName) {
 
 	$.ajax({
 		url : '?/adminpanel/promos/modif',
     	type : 'POST',
-    	data : 'oldName='+promoName+'&'+'newName=azerty42_A5',
+    	data : 'oldName='+oldName+'&'+'newName='+newName,
     	dataType : 'html'
 	})
 	.success(function(data) {
