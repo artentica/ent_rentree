@@ -504,7 +504,7 @@ $("#documentsList").click();
             url: "<?=url_for('/admin/file_update'); ?>",
             data: "value="+value+"&select="+select + "&id="+id,
         }).success(function(data){
-               $(elem).parent().parent().animate({backgroundColor:'#9cd69c !important'}, 400 );
+               $(elem).parent().parent().animate({backgroundColor:'#9cd69c'}, 400 );
              $(elem).parent().parent().animate({backgroundColor:''}, 400 );
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
