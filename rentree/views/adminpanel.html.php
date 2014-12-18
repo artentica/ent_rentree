@@ -200,16 +200,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 foreach ($listdoc as $key => $value) {
                 echo '<tr>';
                 if($value["promo"] == "") {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button class="btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button class="btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button class="btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
 
                 }
                 echo '</tr>';
@@ -424,6 +424,30 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
    }
 $("#register").hide();
 $("#documentsList").click();
+
+    function modifiedpromoname(elem){
+        $(elem).hide();
+        $(".modified_button_promo").attr('disabled', 'disabled');
+        $(".save_button_promo").attr('disabled', 'disabled');
+        $(".cancelmodifpromoinput").attr('disabled', 'disabled');
+        $(elem).parent().children().removeAttr("disabled");
+
+
+    }
+
+    function savemodifpromo(elem){
+        $(".modified_button_promo").show();
+        $(".modified_button_promo").removeAttr("disabled");
+        $(".save_button_promo").removeAttr("disabled");
+        $(".cancelmodifpromoinput").removeAttr("disabled");
+    }
+
+    function cancelmodifpromo(elem){
+        $(".modified_button_promo").show();
+        $(".modified_button_promo").removeAttr("disabled");
+        $(".save_button_promo").removeAttr("disabled");
+        $(".cancelmodifpromoinput").removeAttr("disabled");
+    }
 
 </script>
 
