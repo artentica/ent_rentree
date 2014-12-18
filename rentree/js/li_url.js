@@ -29,6 +29,8 @@ $(window.document).on('click', '#suppr_modif_file', function() {
 	$(".file").hide();
 	$(".file[promos='']").hide();
 	$(".file[promos='"+promos+"']").show();
+    $("#rename_file_div").hide();
+
 
 
 });
@@ -44,6 +46,21 @@ $(window.document).on('click', '#documentsList', function() {
     $("#dropzonediv").hide();
     $("#suppr_modif_file_div").hide();
 	$("#documentsList").addClass("active");
+    $("#rename_file_div").hide();
+
+
+});
+
+$(window.document).on('click', '#rename_file', function() {
+    $("#suppr_modif_file_div").removeClass("active");
+	$("#promotionSelected").removeClass("active");
+	$("#dropzone").removeClass("active");
+	$("#documentsList_content").hide();
+	$(".file").show();
+    $("#dropzonediv").hide();
+    $("#suppr_modif_file_div").hide();
+    $("#rename_file_div").show();
+	$("#rename_file").addClass("active");
 
 });
 
@@ -56,6 +73,8 @@ $(window.document).on('click', '#dropzone', function() {
     $("#documentsList_content").hide();
     $("#dropzonediv").show();
     $("#suppr_modif_file_div").hide();
+    $("#rename_file_div").hide();
+
 
 
 });
@@ -81,6 +100,8 @@ function loadPromotionSelectedContent() {
 	$(".file").hide();
 	$(".file[promos='']").hide();
 	$(".file[promos='"+promos+"']").show();
+    $("#rename_file_div").hide();
+
 
 }
 

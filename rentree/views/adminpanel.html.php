@@ -77,6 +77,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<li id="promotionSelected"><a class="btn" data-toggle="tab">Documents de la promo sélectionnée</a></li>
         	<li id="dropzone"><a class="btn" data-toggle="tab">Ajouter des documents</a></li>
         	<li id="suppr_modif_file"><a class="btn" data-toggle="tab">Modifier/Supprimer fichiers</a></li>
+        	<li id="rename_file"><a class="btn" data-toggle="tab">Renommer/Attribuer fichier</a></li>
         </ul>
         <div  id="documentsList_content">
 
@@ -162,6 +163,38 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 </ul>
     </div>
 </div>
+   <div id="rename_file_div">
+
+    <table id="tablefile" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <!--<th class="col-md-1">Action</th>-->
+                    <th class="col-md-5 col-md-offset-2">Fichier</th>
+                    <th class="col-md-3">Bouton de contrôle</th>
+                </tr>
+            </thead>
+            <tbody>
+               <?php
+                foreach ($listdoc as $key => $value) {
+                echo '<tr>';
+                if($value["promo"] == "") {
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td>';
+                }
+
+                if(strstr($value["fichier"], "A12")) {
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td>';
+
+                }
+
+                if(strstr($value["fichier"], "A345")) {
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td>';
+
+                }
+                echo '</tr>';
+            }?>
+            </tbody>
+       </table>
+   </div>
     </div>
 
 </div>
@@ -235,9 +268,20 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/dropzone.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script>
-/*
-    $(".rank")
-*/
+
+
+$('#tablefile').pbTable({
+		selectable: true,
+		sortable:true,
+		toolbar:{
+			enabled:true,
+			filterBox:true,
+			buttons:[]
+		}
+	});
+
+
+
     function ModifPromo(){
         var promoId = $("#bouton_ModifierPromo").parent().attr('id');
         var promoName = $("#"+promoId).html();
@@ -275,6 +319,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     Dropzone.options.myAwesomeDropzone = {
   maxFilesize:50, // MB
+    acceptedFiles: "application/pdf"
 
 };
 
@@ -365,6 +410,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
        value +="]";
        return value;
    }
+
 $("#register").hide();
 </script>
 
