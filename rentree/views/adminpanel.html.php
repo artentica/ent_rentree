@@ -124,11 +124,26 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
 
-    <div id="suppr_modif_file_div">
+    <div id="suppr_modif_file_div" class="col-md-6 col-md-offset-3">
         <ul id="sortable">
-  <li class="ui-state-default">  Item 1</li>
-  <li class="ui-state-default">  Item 2</li>
-  <li class="ui-state-default">  Item 3</li>
+        <?php
+        foreach ($listdoc as $key => $value) {
+
+                if($value["promo"] == "") {
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
+                }
+
+                if(strstr($value["fichier"], "A12")) {
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
+
+                }
+
+                if(strstr($value["fichier"], "A345")) {
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
+
+                }
+            }
+        ?>
 
 </ul>
     </div>
@@ -210,6 +225,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
     function ModifPromo(){
         $("#modifPromo").modal({backdrop: true});
     }
+
     function SupprPromo(){
         var promoId = $("#bouton_SupprimerPromo").parent().attr('id');
         $("#supprPromo").modal({backdrop: true});
