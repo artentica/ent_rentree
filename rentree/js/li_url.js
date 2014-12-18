@@ -166,6 +166,8 @@ function editPromo() {
 	var promoName = $("#"+promoId).html();
 	var tmp = promoName.split("<a");
 	promoName = tmp[0];
+    var name = promoName.substr(0, promoName.length-3);
+    var promo = promoName.substr(promoName.length-3, promoName.length);
 
 	alert("Ajouter un modal pour demander le nouveau nom de la promo ... modif de "+promoName);
 

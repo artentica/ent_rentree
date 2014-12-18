@@ -173,8 +173,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                           <div class="modal-body">
                               <p>Vous pouvez modifier le nom de la promotion</p>
                               <div class="row">
-                              <div class=" col-md-6 col-md-offset-1"><input  id="promotionName" class="form-control"></div>
-                              <div class=" col-md-4"><select  id="ANumber" class="form-control">
+                              <div class=" col-md-6 col-md-offset-1"><input  id="promotionNameinput" class="form-control"></div>
+                              <div class=" col-md-4"><select  id="ANumberinput" class="form-control">
                                 <option>_A1 </option>
                                 <option>_A2 </option>
                                 <option>_A3 </option>
