@@ -170,24 +170,42 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 <tr>
                     <!--<th class="col-md-1">Action</th>-->
                     <th class="col-md-5 col-md-offset-2">Fichier</th>
+                    <th class="col-md-3">Promotion</th>
                     <th class="col-md-3">Bouton de contrôle</th>
                 </tr>
             </thead>
             <tbody>
                <?php
+
+
+                function createinput($promotion){
+                    $input= "<select class='selestProm form-control'><option>";
+                    $promo = liste_promo();
+                    foreach($promo as $key => $prom) {
+                        $input .= "<option";
+                        if ($prom==$promotion) $input.=" selected ";
+                        $input.=">";
+                        $input.= $prom;
+                        $input .= "</option>";
+                    }
+                        $input .= "</select>";
+                        return $input;
+                }
+
+
                 foreach ($listdoc as $key => $value) {
                 echo '<tr>';
                 if($value["promo"] == "") {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td></td>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td></td>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td></td>';
 
                 }
                 echo '</tr>';
@@ -267,6 +285,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/li_url.js"></script>
 <script src="js/dropzone.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/pbTable.min.js"></script>
 <script>
 
 
@@ -275,7 +294,7 @@ $('#tablefile').pbTable({
 		sortable:true,
 		toolbar:{
 			enabled:true,
-			filterBox:true,
+			filterBox:false,
 			buttons:[]
 		}
 	});
@@ -372,7 +391,7 @@ $('#tablefile').pbTable({
             }
 
         });
-        //$( "#sortable" ).disableSelection();
+        $( "#sortable" ).disableSelection();
   });
 
     function saveRank(){
@@ -410,8 +429,9 @@ $('#tablefile').pbTable({
        value +="]";
        return value;
    }
-
 $("#register").hide();
+$("#documentsList").click();
+
 </script>
 
 <?php end_content_for();?>
