@@ -285,19 +285,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/li_url.js"></script>
 <script src="js/dropzone.js"></script>
 <script src="js/jquery-ui.js"></script>
-<script src="js/pbTable.min.js"></script>
 <script>
 
-
-$('#tablefile').pbTable({
-		selectable: true,
-		sortable:true,
-		toolbar:{
-			enabled:true,
-			filterBox:false,
-			buttons:[]
-		}
-	});
 
 
 
