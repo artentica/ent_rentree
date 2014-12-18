@@ -89,6 +89,10 @@ function loadPromotionSelectedContent() {
 		promos = $("#"+selectedPromo).html();
 		var tmp = promos.split("<a");
 		promos = tmp[0];
+
+		if(promos == "Fichiers isolés") {
+			promos = "no_promo";
+		}
 	}
     $("#suppr_modif_file_div").removeClass("active");
     $("#suppr_modif_file_div").hide();
@@ -114,6 +118,9 @@ $(".file").click(function() {
 	$(".selected").removeClass("selected");
 	if($(this).hasClass("generic")) {
 		$("#promo_0").addClass("selected");
+	}
+	if($(this).attr("promos") == "no_promo") {
+		$("#promo_1").addClass("selected");
 	}
 	else {
 		selectedDoc = $(this).attr("id");
