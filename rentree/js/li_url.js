@@ -125,8 +125,8 @@ $("#bouton_AjouterPromo").click(function() {
 
 // Ajout des boutons suppr et modif onHover
 function appendGliphicons() {
-	$(this).append('<a onclick="delPromo()" id="bouton_SupprimerPromo"><span class="glyphicon glyphicon-remove"></span></a>');
-	$(this).append('<a onclick="editPromo()" id="bouton_ModifierPromo"><span class="glyphicon glyphicon-pencil"></span></a>');
+	$(this).append('<a onclick="SupprPromo()" id="bouton_SupprimerPromo"><span class="glyphicon glyphicon-remove"></span></a>');
+	$(this).append('<a onclick="ModifPromo()" id="bouton_ModifierPromo"><span class="glyphicon glyphicon-pencil"></span></a>');
 }
 function removeGliphicons() {
     $( this ).find( "a:last" ).remove();
@@ -135,15 +135,13 @@ function removeGliphicons() {
 $(".promo").hover(appendGliphicons, removeGliphicons);
 
 // Suppression de promo
-function delPromo() {
-	var promoId = $("#bouton_SupprimerPromo").parent().attr('id');
+function delPromo(promoId, rmAction) {
 	var promoName = $("#"+promoId).html();
 	var tmp = promoName.split("<a");
 	promoName = tmp[0];
-	alert("Ajouter un modal pour demander si l'on veut supprimer aussi les fichiers associés à cette promo ... suppression de "+promoName);
 
 	$.ajax({
-		url : '?/adminpanel/promos/remove',
+		url : '?/adminpanel/promos/'+rmAction,
     	type : 'POST',
     	data : 'promotionName='+promoName,
     	dataType : 'html'

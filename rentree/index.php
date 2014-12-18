@@ -25,6 +25,7 @@
     dispatch_post('/adminpanel/promos/add' , 'addPromo');
     dispatch_post('/adminpanel/promos/modif' , 'modifPromo');
     dispatch_post('/adminpanel/promos/remove' , 'removePromo');
+    dispatch_post('/adminpanel/promos/removeAll' , 'removePromoAll');
 
 	run();
 ?>
