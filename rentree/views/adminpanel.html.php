@@ -200,12 +200,12 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 4).'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 5).'</span><span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
 
                 }
                 echo '</tr>';
@@ -429,6 +429,10 @@ $("#documentsList").click();
         $(elem).parent().children().removeAttr("disabled");
 
 
+        value = $(elem).parent().parent().children().children(".name_file").text();
+        console.log(value);
+       $(elem).parent().parent().children().children(".name_file").text("");
+        $(elem).parent().parent().children().children(".name_file").append("<input class='form-control' value='"+ value +"'>");
     }
 
     function savemodifpromo(elem){
@@ -436,6 +440,11 @@ $("#documentsList").click();
         $(".modified_button_promo").removeAttr("disabled");
         $(".save_button_promo").removeAttr("disabled");
         $(".cancelmodifpromoinput").removeAttr("disabled");
+
+        $(elem).parent().parent().children().children(".name_file").text("");
+        $(elem).parent().parent().children().children(".name_file").append(value);
+        //APPEL AJAX BDD
+        value ='';
     }
 
     function cancelmodifpromo(elem){
@@ -443,6 +452,10 @@ $("#documentsList").click();
         $(".modified_button_promo").removeAttr("disabled");
         $(".save_button_promo").removeAttr("disabled");
         $(".cancelmodifpromoinput").removeAttr("disabled");
+
+        $(elem).parent().parent().children().children(".name_file").text("");
+        $(elem).parent().parent().children().children(".name_file").append(value);
+        value ='';
     }
 
 </script>
