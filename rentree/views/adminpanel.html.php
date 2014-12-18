@@ -147,9 +147,13 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <ul id="sortable">
         <?php
         foreach ($listdoc as $key => $value) {
-
+                $genericClass = "";
                 if($value["promo"] == "") {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. $value["fichier"] .'</span></span></li>';
+                    $genericClass = "generic";
+                }
+
+                if($value["promo"] == "" || (!strstr($value["fichier"], "A12") && !strstr($value["fichier"], "A345"))) {
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file '.$genericClass.' ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. $value["fichier"] .'</span></span></li>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
@@ -199,9 +203,13 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
                 foreach ($listdoc as $key => $value) {
-                echo '<tr>';
+                $genericClass = "";
                 if($value["promo"] == "") {
-                    echo '<td class="IdFile" hidden>'. $value['id'] .'</td><td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button title="Modifier le nom et la promotion du fichier" onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button title="Sauvegarder les changements" onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button title="Annuler les changements" onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button><button title="Supprimer le fichier" onclick="deletefilepromo(this)" class="deletefileprom btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></td>';
+                    $genericClass = "generic";
+                }
+                echo '<tr>';
+               if($value["promo"] == "" || (!strstr($value["fichier"], "A12") && !strstr($value["fichier"], "A345"))) {
+                    echo '<td class="IdFile" hidden>'. $value['id'] .'</td><td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file '.$genericClass.' ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button title="Modifier le nom et la promotion du fichier" onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button title="Sauvegarder les changements" onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button title="Annuler les changements" onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button><button title="Supprimer le fichier" onclick="deletefilepromo(this)" class="deletefileprom btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></td>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
@@ -443,7 +451,6 @@ $("#documentsList").click();
         select = $(elem).parent().parent().children().children(".selestProm").val();
 
         value = $(elem).parent().parent().children().children(".name_file").text();
-        console.log(value);
        $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append("<input class='form-control' value='"+ value +"'>");
 
@@ -460,12 +467,13 @@ $("#documentsList").click();
         $(".save_button_promo").hide();
 
         $(elem).parent().parent().children().children(".selestProm").attr('disabled', 'disabled');
-
+        var temp='';
         $(".cancelmodifpromoinput").hide();
         value = '';
         value += $(elem).parent().parent().children().children(".file_path").text() + $(elem).parent().parent().children().children(".name_file").children().val();
+        temp +=$(elem).parent().parent().children().children(".name_file").children().val();
         $(elem).parent().parent().children().children(".name_file").text("");
-        $(elem).parent().parent().children().children(".name_file").append(value);
+        $(elem).parent().parent().children().children(".name_file").append(temp);
         select = $(elem).parent().parent().children().children(".selestProm").val();
 
 
@@ -475,7 +483,6 @@ $("#documentsList").click();
             data: "value="+value+"&select="+select + "&id="+id,
         }).success(function(data){
                /* $("#register").show();*/
-             console.log(data);
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
             });
@@ -484,6 +491,7 @@ $("#documentsList").click();
         value ='';
         select ='';
         id = '';
+        temp='';
 
 
     }
@@ -512,7 +520,16 @@ $("#documentsList").click();
     }
 
     function deletefilepromo(elem){
-
+        $.ajax({
+            type: "POST",
+            url: "<?=url_for('/admin/file_suppr'); ?>",
+            data: "value="+value+"&select="+select + "&id="+id,
+        }).success(function(data){
+               /* $("#register").show();*/
+             console.log(data);
+            }).error(function(){
+                alert(tdpersonnalised.errorMsgFunction);
+        });
     }
     $(".save_button_promo").hide();
     $(".cancelmodifpromoinput").hide();

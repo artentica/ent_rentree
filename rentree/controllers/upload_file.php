@@ -26,6 +26,8 @@ function upload_file(){
         if($pass!='') $targetFile = $pass .'/' . $name;
         else  $targetFile = $_FILES['file']['name'];
 
+
+
         $sql='INSERT INTO `document`( `rang`, `promo`, `libelle`, `fichier`) VALUES ("-1","no_promo","Pas_de_libelle","'.$targetFile.'" )';
 
         DbOperation($sql);

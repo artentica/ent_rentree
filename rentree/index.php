@@ -26,6 +26,8 @@
 
     dispatch_post('/admin/file_update' , 'file_update');
 
+    dispatch_post('/admin/file_suppr' , 'file_suppr');
+
     dispatch_post('/adminpanel/promos/add' , 'addPromo');
     dispatch_post('/adminpanel/promos/modif' , 'modifPromo');
     dispatch_post('/adminpanel/promos/remove' , 'removePromo');

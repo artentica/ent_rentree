@@ -19,6 +19,12 @@
 
 }
 
+function file_suppr(){
+
+}
+
+
+
 function file_update(){
 
         //UPDATE `document` SET `promo`=,`fichier`= WHERE `fichier`=[value-5];
@@ -34,11 +40,30 @@ function file_update(){
 
         $sql .= $_POST['value'];
 
-        $sql .= '" WHERE `id`="' . $_POST['id'] .'"';
+        $sql .= '", `libelle`=""';
+
+        $sql .= ' WHERE `id`="' . $_POST['id'] .'"';
 
         $sql .= ';';
 
+
+    $namefile = "SELECT `fichier` FROM `document` WHERE `id`='". $_POST['id'] ."'";
+
+    $ds          = DIRECTORY_SEPARATOR;
+
+    $storeFolder = '..'. $ds .'pdf';
+    $namefile2 = "SELECT `fichier` FROM `document` WHERE `id`='". $_POST['id'] ."'";
+    $namefile=DbOperation($namefile2);
+
+    $name = str_replace("/",$ds,$_POST['value']);
+    rename(dirname( __FILE__ ) . $ds. $storeFolder. $ds . $namefile[0]['fichier'], dirname( __FILE__ ) . $ds. $storeFolder. $ds.$name);
+
+
+
+
+
     DbOperation($sql);
+
     return $sql;
 
 }
