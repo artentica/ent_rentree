@@ -337,7 +337,7 @@ if (tdpersonnalised.controleUniqueButton){
                     $(element).children("").each(function(index,element){
                        $(element).removeClass( "changed_value" );
                     });
-                    $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).attr('disabled', 'disabled');;
+                    $(" ." + tdpersonnalised.nametd + " button" + "." + generate_info_target).attr('disabled', 'disabled');
                 });
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);

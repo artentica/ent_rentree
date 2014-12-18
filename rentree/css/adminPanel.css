@@ -273,3 +273,11 @@ table#promotionsList_content{
 #sortable{
     margin-top: 20px;
 }
+
+#saveRank{
+    margin-top: 40px;
+}
+
+#redoRank{
+    margin-top: 25px;
+}

@@ -17,6 +17,7 @@ $(window.document).on('click', '#suppr_modif_file', function() {
 		promos = tmp[0];
 	}
 
+
     $("#promotionSelected").removeClass("active");
 	$("#dropzone").removeClass("active");
 	$("#suppr_modif_file_div").show();
@@ -28,6 +29,8 @@ $(window.document).on('click', '#suppr_modif_file', function() {
 	$(".file").hide();
 	$(".file[promos='']").hide();
 	$(".file[promos='"+promos+"']").show();
+
+
 });
 /**
 	Charge la liste des documents et cache les autres onglets

@@ -22,6 +22,8 @@
 
     dispatch_post('/admin/upload' , 'upload_file');
 
+    dispatch_post('/admin/BDD_file_rank' , 'rank_file');
+
     dispatch_post('/adminpanel/promos/add' , 'addPromo');
     dispatch_post('/adminpanel/promos/modif' , 'modifPromo');
     dispatch_post('/adminpanel/promos/remove' , 'removePromo');

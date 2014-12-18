@@ -123,23 +123,37 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         <form action="<?=url_for('/admin/upload'); ?>" class="dropzone dz-clickable" id="demo-upload">
 <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
+    <div id="suppr_modif_file_div">
 
-    <div id="suppr_modif_file_div" class="col-md-6 col-md-offset-3">
+                <div id="register" style="text-align:center;" class="alert alert-success alert-dismissible fade in" role="alert">
+				<button type="button" class="close">
+				<span onclick="$('#register').hide();" >x</span>
+				<span class="sr-only">Close</span></button>
+				<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>
+				<span class="sr-only">Success:</span>
+				Les informations ont été correctement enregistrées
+				</div>
+
+    <div class="col-md-1 col-md-offset-1">
+        <button  onclick="saveRank()" id="saveRank" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Sauvegarder</button>
+         <button id="redoRank" class="btn btn-info" onclick="redoRank()" data-dismiss="modal" aria-hidden="true">Renuméroter les rangs</button>
+    </div>
+    <div class="col-md-6 col-md-offset-1">
         <ul id="sortable">
         <?php
         foreach ($listdoc as $key => $value) {
 
                 if($value["promo"] == "") {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. $value["fichier"] .'</span></span></li>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. substr($value["fichier"], 4).'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></li>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true">  '. substr($value["fichier"], 5).'</span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></li>';
 
                 }
             }
@@ -147,7 +161,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 </ul>
     </div>
-
+</div>
     </div>
 
 </div>
@@ -221,7 +235,9 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/dropzone.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script>
-
+/*
+    $(".rank")
+*/
     function ModifPromo(){
         var promoId = $("#bouton_ModifierPromo").parent().attr('id');
         var promoName = $("#"+promoId).html();
@@ -302,9 +318,54 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 //DRAG AND DROP
     $(function() {
-        $( "#sortable" ).sortable();
-        $( "#sortable" ).disableSelection();
+        $( "#sortable" ).sortable({
+            axis: "y",
+            cursor: "move",
+            opacity: 0.9,
+            change: function( event, ui ) {
+
+            }
+
+        });
+        //$( "#sortable" ).disableSelection();
   });
+
+    function saveRank(){
+        value = redoRank();
+        $.ajax({
+            type: "POST",
+            url: "<?=url_for('/admin/BDD_file_rank'); ?>",
+            data: {list:value},
+        }).success(function(data){
+                $("#register").show();
+                console.log(data);
+            }).error(function(){
+                alert(tdpersonnalised.errorMsgFunction);
+            });
+    }
+
+   function redoRank(){
+       var rank =0;
+       var value ='[';
+        $("#suppr_modif_file_div li").each(function(index , element){
+            if($(element).css("display") != 'none'){
+                rank++;
+                value += '{';
+                value += '"name":"';
+                value += $(element).children().children(".name_file").text() + '",';
+
+                value += '"rank":"';
+                value += rank + '"';
+                $(element).children().children(".rank").text("");
+                $(element).children().children(".rank").append("  "+rank);
+                value += '},';
+            }
+        });
+       value = value.substring(0, value.length-1);
+       value +="]";
+       return value;
+   }
+$("#register").hide();
 </script>
 
 <?php end_content_for();?>
