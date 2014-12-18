@@ -128,4 +128,32 @@ Stack trace:
 #8 [internal function]: adminpanel()
 #9 C:\wamp\www\ent_rentree\rentree\framework\limonade\limonade.php(429): call_user_func_array('adminpanel', Array)
 #10 C:\wamp\www\ent_rentree\rentree\index.php(26): run()
-#11 {main}
+#11 {main}exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in /var/www/ent_rentree/rentree/lib/bdd_generic_function.php:14
+Stack trace:
+#0 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'rentree', 'rentree')
+#1 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(30): connect_bdd()
+#2 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(46): DbOperation('SELECT DISTINCT...')
+#3 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(63): liste_promo()
+#4 /var/www/ent_rentree/rentree/views/adminpanel.html.php(70): generatePromosHTMLTable()
+#5 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(1467): include('/var/www/ent_re...')
+#6 [internal function]: render('adminpanel.html...', 'layout.html.php')
+#7 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(1507): call_user_func_array('render', Array)
+#8 /var/www/ent_rentree/rentree/controllers/adminpanelprincipal.php(6): html('adminpanel.html...', 'layout.html.php')
+#9 [internal function]: adminpanel()
+#10 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(429): call_user_func_array('adminpanel', Array)
+#11 /var/www/ent_rentree/rentree/index.php(32): run()
+#12 {main}exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'rentree'@'localhost' (using password: YES)' in /var/www/ent_rentree/rentree/lib/bdd_generic_function.php:14
+Stack trace:
+#0 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(14): PDO->__construct('mysql:host=127....', 'rentree', 'rentree')
+#1 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(30): connect_bdd()
+#2 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(46): DbOperation('SELECT DISTINCT...')
+#3 /var/www/ent_rentree/rentree/lib/bdd_generic_function.php(63): liste_promo()
+#4 /var/www/ent_rentree/rentree/views/adminpanel.html.php(70): generatePromosHTMLTable()
+#5 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(1467): include('/var/www/ent_re...')
+#6 [internal function]: render('adminpanel.html...', 'layout.html.php')
+#7 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(1507): call_user_func_array('render', Array)
+#8 /var/www/ent_rentree/rentree/controllers/adminpanelprincipal.php(6): html('adminpanel.html...', 'layout.html.php')
+#9 [internal function]: adminpanel()
+#10 /var/www/ent_rentree/rentree/framework/limonade/limonade.php(429): call_user_func_array('adminpanel', Array)
+#11 /var/www/ent_rentree/rentree/index.php(32): run()
+#12 {main}
