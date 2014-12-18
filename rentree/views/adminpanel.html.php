@@ -153,8 +153,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
                           </div>
                           <div class="modal-footer">
-                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion</button>
-                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion et fichiers associés</button>
+                          <button id="deletePromoOnly" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion</button>
+                          <button id="deletePromoAndFiles" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion et fichiers associés</button>
                           <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Annuler</button>
 
                           </div>
@@ -214,9 +214,17 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         $("#modifPromo").modal({backdrop: true});
     }
     function SupprPromo(){
+        var promoId = $("#bouton_SupprimerPromo").parent().attr('id');
         $("#supprPromo").modal({backdrop: true});
-    }
 
+        $("#deletePromoOnly").click(function() {
+            delPromo(promoId, "remove");
+        });
+
+        $("#deletePromoAndFiles").click(function() {
+            delPromo(promoId, "removeAll");
+        });
+    }
 
     active_li();
 

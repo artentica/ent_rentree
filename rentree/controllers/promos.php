@@ -15,7 +15,7 @@
 				`fichier`
 				)
 				VALUES (
-				NULL ,  '0',  '".$pName."',  '',  ''
+				NULL ,  '-1',  '".$pName."',  '',  ''
 				)"
 			);
 
@@ -47,16 +47,29 @@
 
 			$pName = mysql_escape_string($_POST["promotionName"]);
 
-			// Pour supprimer la promos ET LES FICHIERS
-			DbOperation("DELETE FROM `document` WHERE `document`.`promo` = '".$pName."'");
-
 			// Pour remplacer le nom de la promo par : Documents sans promotions
-			// DbOperation("UPDATE `document` SET `promo` = 'Documents sans promotions' WHERE `document`.`promo` = '".$pName."'");
+			DbOperation("UPDATE `document` SET `rang` = '0', `promo` = 'no_promo' WHERE `document`.`promo` = '".$pName."'");
 
 			return generatePromosHTMLTable();
 		}
 		return "error";
 
 	}
+
+	function removePromoAll() {
+
+		if(isset($_POST["promotionName"]) && !empty($_POST["promotionName"])) {
+
+			$pName = mysql_escape_string($_POST["promotionName"]);
+
+			// Pour supprimer la promos ET LES FICHIERS
+			DbOperation("DELETE FROM `document` WHERE `document`.`promo` = '".$pName."'");
+
+			return generatePromosHTMLTable();
+		}
+		return "error";
+
+	}
+
 
 ?>
