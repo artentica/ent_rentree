@@ -89,7 +89,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             echo '<li><span class="glyphicon glyphicon-folder-open" aria-hidden="true">  PDF</span><ul>';
             foreach ($listdoc as $key => $value) {
 
-                if($value["promo"] == "") {
+                if($value["promo"] == "" || (!strstr($value["fichier"], "A12") && !strstr($value["fichier"], "A345"))) {
                     echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic" ><span class="glyphicon glyphicon-file" aria-hidden="true">  '. $value["fichier"] .'</span></li>';
                 }
             }
