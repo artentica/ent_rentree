@@ -245,7 +245,29 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                           <div class="modal-footer">
                           <button id="deletePromoOnly" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion</button>
                           <button id="deletePromoAndFiles" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion et fichiers associés</button>
-                          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Annuler</button>
+                          <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Annuler</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- Modal Suppr file-->
+                    <div class="modal fade" id="supprFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Suppression de fichier</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p><span class="glyphicon glyphicon-exclamation-sign"></span>  Attention aucune récupération n'est possible après la suppression</p>
+
+                          </div>
+                          <div class="modal-footer">
+                          <button onclick="supprConfirm()" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer le fichier</button>
+                          <button onclick="$('.toSuppr').removeClass('toSuppr')" class="btn btn-info" data-dismiss="modal" aria-hidden="true">Annuler</button>
 
                           </div>
                         </div>
@@ -482,7 +504,8 @@ $("#documentsList").click();
             url: "<?=url_for('/admin/file_update'); ?>",
             data: "value="+value+"&select="+select + "&id="+id,
         }).success(function(data){
-               /* $("#register").show();*/
+               $(elem).parent().parent().animate({backgroundColor:'#9cd69c !important'}, 400 );
+             $(elem).parent().parent().animate({backgroundColor:''}, 400 );
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
             });
@@ -521,24 +544,33 @@ $("#documentsList").click();
 
     function deletefilepromo(elem){
 
+        $("#supprFile").modal({backdrop: true});
 
-        value = $(elem).parent().parent().children().children(".name_file").text();
+        $(elem).parent().parent().addClass("toSuppr");
+
+
+
+    }
+
+    function supprConfirm(){
+        value ='';
+        elem = $('.toSuppr').children("td").children("button.deletefileprom");
+        value += $(elem).parent().parent().children().children(".file_path").text() + $(elem).parent().parent().children().children(".name_file").text();
         id = $(elem).parent().parent().children(".IdFile").text();
-        $(elem).parent().parent().hide("fast");
 
         $.ajax({
             type: "POST",
             url: "<?=url_for('/admin/file_suppr'); ?>",
             data: "id="+id+"&value="+value,
         }).success(function(data){
-               /* $("#register").show();*/
-             console.log(data);
+
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
         });
+        $('.toSuppr').removeClass("toSuppr");
+        $(elem).parent().parent().hide("fast");
         value='';
         id='';
-
     }
     $(".save_button_promo").hide();
     $(".cancelmodifpromoinput").hide();
