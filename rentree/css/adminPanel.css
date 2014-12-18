@@ -253,3 +253,9 @@ table#promotionsList_content{
     margin-top: 16px;
     font-size: 17px;
 }
+
+#supprPromo p{
+    color: #d9534f;
+    text-align: center;
+    font-weight: 800;
+}

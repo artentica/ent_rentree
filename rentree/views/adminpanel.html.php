@@ -146,14 +146,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Text à remplacer</h4>
+                            <h4 class="modal-title" id="myModalLabel">Suppression de promotion</h4>
                           </div>
                           <div class="modal-body">
-                              <p>Text à remplacer</p>
+                              <p><span class="glyphicon glyphicon-exclamation-sign"></span>  Attention aucune récupération n'est possible après la suppression</p>
 
                           </div>
                           <div class="modal-footer">
-                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion</button>
+                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Supprimer promotion et fichiers associés</button>
+                          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Annuler</button>
 
                           </div>
                         </div>
@@ -166,14 +168,24 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Text à remplacer</h4>
+                            <h4 class="modal-title" id="myModalLabel">Modification de promotion</h4>
                           </div>
                           <div class="modal-body">
-                              <p>LText à remplacer</p>
-
+                              <p>Vous pouvez modifier le nom de la promotion</p>
+                              <div class="row">
+                              <div class=" col-md-6 col-md-offset-1"><input  id="promotionName" class="form-control"></div>
+                              <div class=" col-md-4"><select  id="ANumber" class="form-control">
+                                <option>_A1 </option>
+                                <option>_A2 </option>
+                                <option>_A3 </option>
+                                <option>_A4 </option>
+                                <option>_A5 </option>
+                            </select></div>
+                              </div>
                           </div>
                           <div class="modal-footer">
-                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Sauvegarder</button>
+                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Annuler</button>
 
                           </div>
                         </div>
@@ -210,7 +222,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
     Dropzone.options.myAwesomeDropzone = {
-  maxFilesize: 100, // MB
+  maxFilesize:50, // MB
 
 };
 
