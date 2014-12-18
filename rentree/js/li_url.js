@@ -174,7 +174,7 @@ function removeGliphicons() {
     $( this ).find( "a:last" ).remove();
     $( this ).find( "a:last" ).remove();
 }
-$(".promo").hover(appendGliphicons, removeGliphicons);
+$(".promo").not(".lock_name").hover(appendGliphicons, removeGliphicons);
 
 // Suppression de promo
 function delPromo(promoId, rmAction) {

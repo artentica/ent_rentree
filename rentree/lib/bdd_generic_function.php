@@ -79,8 +79,8 @@
 		return('
 			<table id="promotionsList_content" class="table table-striped table-hover sortable">
 	   			<tbody style="cursor: pointer;">
-	   				<tr><td id="promo_0" class="promo">Communs à toutes les promotions</td></tr>
-	   				<tr><td id="promo_1" class="promo">Fichiers isolés</td></tr>
+	   				<tr><td id="promo_0" class="promo lock_name">Communs à toutes les promotions</td></tr>
+	   				<tr><td id="promo_1" class="promo lock_name">Fichiers isolés</td></tr>
 	   				'.$content.'
 	   			</tbody>
 			</table>

@@ -339,8 +339,12 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
         $("#editPromo").click(function() {
             var newName=$('#promotionNameinput').val()+$('#ANumberinput').val();
-            alert(newName);
             editPromo(promoName, newName);
+            $("li.parent_li li[promos='"+ promoName +"']").each(function(index,element){
+                $(element).attr("promos",newName);
+            });
+
+
         });
     }
 
