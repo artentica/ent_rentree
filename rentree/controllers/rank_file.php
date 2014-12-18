@@ -20,7 +20,23 @@
 }
 
 function file_suppr(){
+    //1'
+    $sql ='';
 
+   //
+        $sql .= "DELETE FROM `document` WHERE `id`='";
+
+        $sql .= $_POST['id'];
+
+        $sql .= "';";
+    $ds          = DIRECTORY_SEPARATOR;
+    $storeFolder = '..'. $ds .'pdf';
+
+    DbOperation($sql);
+
+    $name = str_replace("/",$ds,$_POST['value']);
+
+    unlink(dirname( __FILE__ ) . $ds. $storeFolder. $ds . $name);
 }
 
 

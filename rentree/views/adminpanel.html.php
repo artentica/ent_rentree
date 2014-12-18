@@ -520,16 +520,25 @@ $("#documentsList").click();
     }
 
     function deletefilepromo(elem){
+
+
+        value = $(elem).parent().parent().children().children(".name_file").text();
+        id = $(elem).parent().parent().children(".IdFile").text();
+        $(elem).parent().parent().hide("fast");
+
         $.ajax({
             type: "POST",
             url: "<?=url_for('/admin/file_suppr'); ?>",
-            data: "value="+value+"&select="+select + "&id="+id,
+            data: "id="+id+"&value="+value,
         }).success(function(data){
                /* $("#register").show();*/
              console.log(data);
             }).error(function(){
                 alert(tdpersonnalised.errorMsgFunction);
         });
+        value='';
+        id='';
+
     }
     $(".save_button_promo").hide();
     $(".cancelmodifpromoinput").hide();
