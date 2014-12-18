@@ -76,8 +76,8 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         	<li id="documentsList" class="active"><a class="btn" data-toggle="tab">Tous les documents</a></li>
         	<li id="promotionSelected"><a class="btn" data-toggle="tab">Documents de la promo sélectionnée</a></li>
         	<li id="dropzone"><a class="btn" data-toggle="tab">Ajouter des documents</a></li>
-        	<li id="suppr_modif_file"><a class="btn" data-toggle="tab">Modifier/Supprimer fichiers</a></li>
-        	<li id="rename_file"><a class="btn" data-toggle="tab">Renommer/Attribuer fichier</a></li>
+        	<li id="suppr_modif_file"><a class="btn" data-toggle="tab">Modifier le rang des fichiers</a></li>
+        	<li id="rename_file"><a class="btn" data-toggle="tab">Renommer/Attribuer/Supprimer fichiers</a></li>
         </ul>
         <div  id="documentsList_content">
 
@@ -200,16 +200,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 foreach ($listdoc as $key => $value) {
                 echo '<tr>';
                 if($value["promo"] == "") {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file generic ui-state-default" >  <span class="name_file">'. $value["fichier"] .'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button title="Modifier le nom et la promotion du fichier" onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button title="Sauvegarder les changements" onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button title="Annuler les changements" onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button><button title="Supprimer le fichier" onclick="deletefilepromo(this)" class="deletefileprom btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></td>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 4).'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 4).'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button title="Modifier le nom et la promotion du fichier" onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button title="Sauvegarder les changements" onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button title="Annuler les changements" onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button><button title="Supprimer le fichier" onclick="deletefilepromo(this)" class="deletefileprom btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></td>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 5).'</span><span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button></td>';
+                    echo '<td promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" >  <span disabled>'. substr($value["fichier"],0, 5).'</span><span class="name_file">'. substr($value["fichier"], 5).'</span></span></td><td>'. createinput($value["promo"]) .'</td><td><button title="Modifier le nom et la promotion du fichier" onclick="modifiedpromoname(this)" class="modified_button_promo btn-primary btn"><span class="glyphicon glyphicon-pencil"></span></button><button title="Sauvegarder les changements" onclick="savemodifpromo(this)" class="save_button_promo btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span></button><button title="Annuler les changements" onclick="cancelmodifpromo(this)" class="cancelmodifpromoinput btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span></button><button title="Supprimer le fichier" onclick="deletefilepromo(this)" class="deletefileprom btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></td>';
 
                 }
                 echo '</tr>';
@@ -427,9 +427,12 @@ $("#documentsList").click();
 
     function modifiedpromoname(elem){
         $(elem).hide();
+        $(elem).parent().children(".deletefileprom").hide();
+
         $(".modified_button_promo").attr('disabled', 'disabled');
-        $(".save_button_promo").attr('disabled', 'disabled');
-        $(".cancelmodifpromoinput").attr('disabled', 'disabled');
+        $(".deletefileprom").attr('disabled', 'disabled');
+        $(elem).parent().children(".save_button_promo").show();
+        $(elem).parent().children(".cancelmodifpromoinput").show();
         $(elem).parent().children().removeAttr("disabled");
 
 
@@ -437,31 +440,52 @@ $("#documentsList").click();
         console.log(value);
        $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append("<input class='form-control' value='"+ value +"'>");
+
+
+
+
     }
 
     function savemodifpromo(elem){
         $(".modified_button_promo").show();
+        $(".deletefileprom").show();
+         $(".deletefileprom").removeAttr("disabled");
         $(".modified_button_promo").removeAttr("disabled");
-        $(".save_button_promo").removeAttr("disabled");
-        $(".cancelmodifpromoinput").removeAttr("disabled");
-
+        $(".save_button_promo").hide();
+        $(".cancelmodifpromoinput").hide();
+        value = $(elem).parent().parent().children().children(".name_file").children().val();
         $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append(value);
         //APPEL AJAX BDD
         value ='';
+
+
+
+
     }
 
     function cancelmodifpromo(elem){
         $(".modified_button_promo").show();
+        $(".deletefileprom").show();
+         $(".deletefileprom").removeAttr("disabled");
         $(".modified_button_promo").removeAttr("disabled");
-        $(".save_button_promo").removeAttr("disabled");
-        $(".cancelmodifpromoinput").removeAttr("disabled");
+        $(".save_button_promo").hide();
+        $(".cancelmodifpromoinput").hide();
 
         $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append(value);
         value ='';
+
+
+
+
     }
 
+    function deletefilepromo(elem){
+
+    }
+    $(".save_button_promo").hide();
+    $(".cancelmodifpromoinput").hide();
 </script>
 
 <?php end_content_for();?>
