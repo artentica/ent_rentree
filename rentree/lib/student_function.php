@@ -1,7 +1,7 @@
 <?php
 
 	function trie_list_annee($listnontrie){
-		$annee = array('Documents sans promotions','A1','A2','A3','A4','A5');
+		$annee = array('A1','A2','A3','A4','A5');
 		$listetrie = array();
 		foreach ($annee as $key => $value) {
 			foreach ($listnontrie as $keylist => $valuelist) {

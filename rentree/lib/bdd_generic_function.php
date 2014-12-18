@@ -72,13 +72,15 @@
 				}
 			}
 
-			$content .= '<tr><td id="promo_'.++$key.'" class="promo '.$class.'">'.$value."</td></tr>";
+			$keyPlus2 = $key + 2;
+			$content .= '<tr><td id="promo_'.$keyPlus2.'" class="promo '.$class.'">'.$value."</td></tr>";
 		}
 
 		return('
 			<table id="promotionsList_content" class="table table-striped table-hover sortable">
 	   			<tbody style="cursor: pointer;">
 	   				<tr><td id="promo_0" class="promo">Communs à toutes les promotions</td></tr>
+	   				<tr><td id="promo_1" class="promo">Fichiers isolés</td></tr>
 	   				'.$content.'
 	   			</tbody>
 			</table>

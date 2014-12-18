@@ -10,6 +10,13 @@ function active_li(){
 }
 
 $(window.document).on('click', '#suppr_modif_file', function() {
+	var promos = "";
+	if(typeof selectedPromo != 'undefined' && selectedPromo != null && selectedPromo != "promo_0") {
+		promos = $("#"+selectedPromo).html();
+		var tmp = promos.split("<a");
+		promos = tmp[0];
+	}
+
     $("#promotionSelected").removeClass("active");
 	$("#dropzone").removeClass("active");
 	$("#suppr_modif_file_div").show();
@@ -17,6 +24,10 @@ $(window.document).on('click', '#suppr_modif_file', function() {
     $("#dropzonediv").hide();
     $("#documentsList_content").hide();
 	$("#suppr_modif_file_div").addClass("active");
+
+	$(".file").hide();
+	$(".file[promos='']").hide();
+	$(".file[promos='"+promos+"']").show();
 });
 /**
 	Charge la liste des documents et cache les autres onglets
