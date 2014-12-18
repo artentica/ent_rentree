@@ -17,11 +17,11 @@
 }
 
 #bouton_SupprimerPromo > span:hover {
-    color: #F00;
+    color: #d9534f;
 }
 
 #bouton_ModifierPromo > span:hover {
-    color: #FC0;
+    color: #5bc0de;
 }
 
 /*
@@ -246,4 +246,10 @@ table#promotionsList_content{
 
 #ANumber{
     text-align: center;
+}
+
+#dropzonediv p{
+    text-align: center;
+    margin-top: 16px;
+    font-size: 17px;
 }

@@ -2,19 +2,34 @@
 function upload_file(){
 
 
-    $ds          = DIRECTORY_SEPARATOR;  //1
+    $ds          = DIRECTORY_SEPARATOR;
 
-    $storeFolder = '..'. $ds .'pdf';   //2
+    $storeFolder = '..'. $ds .'pdf';
 
     if (!empty($_FILES)) {
 
-        $tempFile = $_FILES['file']['tmp_name'];          //3
+        $pass ='';
+        $name ='';
+        if(strstr($_FILES['file']['name'], "-_-")){
+            list($pass, $name) = split('-_-', $_FILES['file']['name']);
+            $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds . $pass . $ds;
+            $targetFile =  $targetPath. $name;
+        }
+        else{
+            $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;
+            $targetFile =  $targetPath. $_FILES['file']['name'];
+        }
+        $tempFile = $_FILES['file']['tmp_name'];
 
-        $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //4
+        move_uploaded_file($tempFile,$targetFile);
 
-        $targetFile =  $targetPath. $_FILES['file']['name'];  //5
+        if($pass!='') $targetFile = $pass .'/' . $name;
+        else  $targetFile = $_FILES['file']['name'];
 
-        move_uploaded_file($tempFile,$targetFile); //6
+        $sql='INSERT INTO `document`( `rang`, `promo`, `libelle`, `fichier`) VALUES ("-1","no_promo","Pas_de_libelle","'.$targetFile.'" )';
+
+        DbOperation($sql);
+
 
     }
 }

@@ -119,6 +119,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     </div>
     <div id="dropzonediv">
+       <p>Pour placer un fichier dans un dossier renommer le fichier: nomDuDossier-_-nomDuFichier , les "-_-" servent de séparateurs.</p>
         <form action="<?=url_for('/admin/upload'); ?>" class="dropzone dz-clickable" id="demo-upload">
 <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
     </div>
@@ -139,6 +140,47 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 </div>
 
+        <!-- Modal Suppr promo-->
+                    <div class="modal fade" id="supprPromo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Text à remplacer</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>Text à remplacer</p>
+
+                          </div>
+                          <div class="modal-footer">
+                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+        <!-- Modal Modif promo-->
+                    <div class="modal fade" id="modifPromo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Text à remplacer</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>LText à remplacer</p>
+
+                          </div>
+                          <div class="modal-footer">
+                          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
 <?php end_content_for();?>
 
 
@@ -155,6 +197,15 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 <script src="js/dropzone.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script>
+
+    function ModifPromo(){
+        $("#modifPromo").modal({backdrop: true});
+    }
+    function SupprPromo(){
+        $("#supprPromo").modal({backdrop: true});
+    }
+
+
     active_li();
 
 
