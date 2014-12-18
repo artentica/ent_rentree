@@ -116,11 +116,11 @@ $("#dropzonediv").hide();
 
 $(".file").click(function() {
 	$(".selected").removeClass("selected");
-	if($(this).hasClass("generic")) {
-		$("#promo_0").addClass("selected");
-	}
 	if($(this).attr("promos") == "no_promo") {
 		$("#promo_1").addClass("selected");
+	}
+	if($(this).hasClass("generic")) {
+		$("#promo_0").addClass("selected");
 	}
 	else {
 		selectedDoc = $(this).attr("id");
