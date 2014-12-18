@@ -183,7 +183,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
                 function createinput($promotion){
-                    $input= "<select class='selestProm form-control'><option>";
+                    $input= "<select disabled class='selestProm form-control'><option>";
                     $promo = liste_promo();
                     foreach($promo as $key => $prom) {
                         $input .= "<option";
@@ -435,6 +435,10 @@ $("#documentsList").click();
         $(elem).parent().children(".cancelmodifpromoinput").show();
         $(elem).parent().children().removeAttr("disabled");
 
+        $(elem).parent().parent().children().children(".selestProm").removeAttr("disabled");
+
+
+        select = $(elem).parent().parent().children().children(".selestProm").val();
 
         value = $(elem).parent().parent().children().children(".name_file").text();
         console.log(value);
@@ -452,13 +456,16 @@ $("#documentsList").click();
          $(".deletefileprom").removeAttr("disabled");
         $(".modified_button_promo").removeAttr("disabled");
         $(".save_button_promo").hide();
+
+        $(elem).parent().parent().children().children(".selestProm").attr('disabled', 'disabled');
+
         $(".cancelmodifpromoinput").hide();
         value = $(elem).parent().parent().children().children(".name_file").children().val();
         $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append(value);
         //APPEL AJAX BDD
         value ='';
-
+        select ='';
 
 
 
@@ -471,11 +478,17 @@ $("#documentsList").click();
         $(".modified_button_promo").removeAttr("disabled");
         $(".save_button_promo").hide();
         $(".cancelmodifpromoinput").hide();
+        $(elem).parent().parent().children().children(".selestProm").attr('disabled', 'disabled');
+
+        if($(elem).parent().parent().children().children(".selestProm").val() != select){
+            $(elem).parent().parent().children().children(".selestProm").children("selected").removeAttr("selected");
+            $(elem).parent().parent().children().children(".selestProm").val(select).attr("selected");
+        }
 
         $(elem).parent().parent().children().children(".name_file").text("");
         $(elem).parent().parent().children().children(".name_file").append(value);
         value ='';
-
+        select ='';
 
 
 
