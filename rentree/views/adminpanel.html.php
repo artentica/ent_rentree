@@ -325,7 +325,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
 
 
-    function ModifPromo(){
+    function ModifPromo() {
         var promoId = $("#bouton_ModifierPromo").parent().attr('id');
         var promoName = $("#"+promoId).html();
         var tmp = promoName.split("<a");
@@ -334,7 +334,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         var splittedPromo = promoName.substr(promoName.length-3, promoName.length);
 
         $('#promotionNameinput').attr("value", splittedName);
-        $('#ANumberinput').attr("value", splittedPromo).val(splittedPromo);
+        $('#ANumberinput').val(splittedPromo).attr("value", splittedPromo);
         $("#modifPromo").modal({backdrop: true});
 
         $("#editPromo").click(function() {
@@ -344,8 +344,6 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
             $("li.parent_li li[promos='"+ promoName +"']").each(function(index,element){
                 $(element).attr("promos",newName);
             });
-
-
         });
     }
 
