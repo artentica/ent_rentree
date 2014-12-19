@@ -153,16 +153,16 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
                 }
 
                 if($value["promo"] == "" || (!strstr($value["fichier"], "A12") && !strstr($value["fichier"], "A345"))) {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file '.$genericClass.' ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. $value["fichier"] .'</span></span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file '.$genericClass.' ui-state-default drag-drop" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. $value["fichier"] .'</span></span></li>';
                 }
 
                 if(strstr($value["fichier"], "A12")) {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default drag-drop" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 4).'</span></span></li>';
 
                 }
 
                 if(strstr($value["fichier"], "A345")) {
-                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></li>';
+                    echo '<li promos="'.$value["promo"].'" id="file_'.$value["id"].'" class="file ui-state-default drag-drop" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"><span class="rank">  '. $value["rang"] .'</span>  <span class="name_file">'. substr($value["fichier"], 5).'</span></span></li>';
 
                 }
             }
@@ -340,6 +340,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
         $("#editPromo").click(function() {
             var newName=$('#promotionNameinput').val()+$('#ANumberinput').val();
             editPromo(promoName, newName);
+
             $("li.parent_li li[promos='"+ promoName +"']").each(function(index,element){
                 $(element).attr("promos",newName);
             });
@@ -350,6 +351,7 @@ if( empty($_SESSION['identifiant']) || empty($_SESSION['admin'] )) {
 
     function SupprPromo(){
         var promoId = $("#bouton_SupprimerPromo").parent().attr('id');
+
         $("#supprPromo").modal({backdrop: true});
 
         $("#deletePromoOnly").click(function() {

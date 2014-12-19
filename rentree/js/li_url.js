@@ -154,10 +154,6 @@ $("#bouton_AjouterPromo").click(function() {
 		$('#promotionsList_content').html(data);
 		$('#promotionName').val("");
 		recontructionAfterAjax();
-		//Je voulais faire en sorte de mettre une petite animation quand on a ajouté un fichier, mais j'ai pas encore réussi :/
-		// window.setTimeout( function(){
-  //               $('.yolo').addClass('animated bounce');
-  //       }, 1000);
 	})
 	.error(function(data){
 		alert("error : "+data);

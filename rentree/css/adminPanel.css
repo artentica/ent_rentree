@@ -281,3 +281,7 @@ table#promotionsList_content{
 #redoRank{
     margin-top: 25px;
 }
+
+.drag-drop{
+    background-color: rgb(255, 245, 245);
+}
