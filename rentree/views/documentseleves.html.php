@@ -201,7 +201,7 @@ if( empty($_SESSION['identifiant'])) {
 
         <div class="checkbox">
 			<label>
-				<input type="checkbox" id="choosedown" onchange ="choosefile()" >Choisir le fichier que vous voulez télécharger
+				<input type="checkbox" id="choosedown" onchange ="choosefile()" >Choisir les fichiers que vous voulez télécharger
 			</label>
 		</div>
         </div>
@@ -209,7 +209,7 @@ if( empty($_SESSION['identifiant'])) {
             	<a id="downall" class="btn btn-primary btn-lg">Télécharger tous les fichiers</a>
             </div>
         	<div class="col-md-4">
-            	<a id="downchoose" disabled="disabled" class="btn btn-success btn-lg">Télécharger la sélections de fichiers</a>
+            	<a id="downchoose" disabled="disabled" class="btn btn-success btn-lg">Télécharger la sélection de fichiers</a>
 			</div>
 		</div>';
 			}
